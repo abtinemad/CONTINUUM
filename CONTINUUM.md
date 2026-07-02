@@ -951,7 +951,8 @@ presque rien), le **transfert de densité** (une boucle se replie pendant qu'une
 déploie — la circulation, § ci-dessus), la **tension** (une boucle qui se resserre). Le
 logo est vivant : il se déplace et se déforme, et sa déformation **obéit à la grammaire
 clinique** (elle n'est jamais décorative — le logo animé *est* le nœud-patient en mouvement,
-boucle soin en rouge selon le recours §15).
+la boucle soin se dilatant/rétractant selon le recours §15 — par sa **taille**, pas par une
+couleur).
 
 ### Bistabilité et latence — deux lectures d'un seul geste
 
@@ -1032,22 +1033,25 @@ combinaisons existent — grande boucle à nœud détendu, petite à nœud serr�
 **La boucle soin est à part — c'est la nôtre, pas la sienne.** Les quatre boucles de vie
 sont les axes du *patient* (sa famille, ses amours, ses amis, son travail). Le **soin est
 notre intervention dans sa vie**, pas un pan de son existence propre — il ne faut pas
-suggérer que la psychiatrie est une sphère de sa vie au même titre que l'amour. Distinction
-visuelle : **boucle soin en rouge** (l'intervention, la main humaine — lignage Encre),
-boucles de vie en **noir**. Et c'est la **seule boucle asymétrique** : sa densité *et* sa
-tension sont **calculées** depuis le recours au soin (§15) — la machine y touche les deux
-dimensions, là où les quatre autres sont entièrement déposées. Donc c'est **la boucle à
-surveiller**, car la seule qui se remplit / se vide *sans décision clinique* (mécaniquement,
-avec le nombre de visites) : **grosse = surpsychiatrisation** (on se prend pour le centre
-de sa vie — notre intensité prise pour une donnée sur lui), **petite = abandon** (on l'a
-lâché) *ou* guérison (ses autres boucles portent) — le clinicien lit le sens (§15a).
+suggérer que la psychiatrie est une sphère de sa vie au même titre que l'amour. Mais cette
+singularité **ne se dit pas par la couleur** : les cinq boucles sont du même trait (encre),
+parce que peindre le soin à part le désignerait comme un corps étranger — l'inverse du
+geste, qui veut au contraire qu'il se fonde dans la vie et décroisse. La distinction est
+**mécanique, pas chromatique** : le soin est la **seule boucle asymétrique**, la seule dont
+la densité *et* la tension sont **calculées** depuis le recours au soin (§15), là où les
+quatre autres sont entièrement déposées. C'est ça qui en fait **la boucle à surveiller** —
+la seule qui se remplit / se vide *sans décision clinique* (mécaniquement, avec le nombre de
+visites) : **grosse = surpsychiatrisation** (on se prend pour le centre de sa vie — notre
+intensité prise pour une donnée sur lui), **petite = abandon** (on l'a lâché) *ou* guérison
+(ses autres boucles portent) — le clinicien lit le sens (§15a). Sa nature se lit à son
+comportement (calculée, non déposée), pas à sa teinte.
 
 **Le bon mouvement = transfert de densité — un principe général.** La densité **circule
 entre toutes les boucles**, dans tous les sens : une perte d'emploi (travail qui se
 dédensifie) dont la densité migre vers la famille ; un deuil qu'un ami vient absorber ; une
 rupture dont la matière passe au travail. La vie *est* cette redistribution permanente ;
 le nœud-patient la donne à voir. Le couple **soin↔vie n'en est qu'un cas particulier** —
-celui où *notre* boucle (soin, rouge) doit **décroître au rythme où ses boucles de vie
+celui où *notre* boucle (le soin) doit **décroître au rythme où ses boucles de vie
 croissent** : le soin passe la main. Une boucle soin qui maigrit *parce que* les autres ont
 grossi = réussite ; qui maigrit sans que les autres grossissent = abandon ; qui grossit
 sans fin = surpsychiatrisation. C'est le relai (§12 bis) et la clôture-qui-renoue (§2)
@@ -1125,9 +1129,28 @@ là, latent) :
   l'inverse de la thèse. Le risque de rupture se dit par la **souffrance du fil** (il
   s'amincit, pâlit, se tend) — ce qui appelle **desserrer de ce côté**, jamais trancher.
 
-Registre **Encre** : noir/rouge sur papier, la tension dans la matière du fil, pas en feu
+Registre **Encre** : noir sur papier, la tension dans la matière du fil, pas en feu
 tricolore. **C'est de la v2** — en v1, la forme pauvre en vue liste suffit ; ne pas passer
 trois semaines sur l'animation avant que la carte de base existe.
+
+**Le point de nouage rouge = un curseur unique et mobile (le regard qui se pose).** Il ne
+se multiplie pas avec les boucles : il y en a **un seul**, qui **circule** sur les nouages
+par défaut (le point de vie qui anime la forme) et se **fixe** sur le nouage d'une boucle
+quand on la tient — puis repart circuler quand on la relâche. C'est l'attention clinique
+portée dans l'interaction : elle flotte tant que rien ne l'appelle, elle se pose quand un
+fil la retient (on tient un fil à la fois). Deux régimes selon le contexte : sur la **vue
+patient** (5 nouages), le point est **fonctionnel** — se poser sur un nouage déroule les
+données recueillies qui densifient cette boucle (le point est l'ancre par laquelle on ouvre
+la boucle, au lieu exact où tension et densité se rencontrent) ; sur le **dashboard** (3) et
+l'**interface** (2), il est **ornemental** — il circule pour donner vie, sans rien
+sélectionner. Le déplacement du point est doux (il glisse d'un nouage à l'autre, jamais de
+téléportation — cohérent avec le fil vivant).
+
+**Trois niveaux = trois contextes d'usage** (le nombre de lobes indexe le zoom clinique) :
+**2 lobes = l'interface** (N.T., la marque au repos, le point de contact utilisateur ↔
+CONTINUUM) · **3 lobes = le dashboard / la vision globale** (la cohorte, le balayage) ·
+**5 lobes = la vision patient** (les cinq axes déployés pour un parcours singulier). Plus on
+descend vers le singulier, plus le fil se noue — le général est simple, l'individu est riche.
 
 ### Les variantes à essayer (Claude Design)
 
@@ -1182,9 +1205,12 @@ Pour **chaque** variante, décliner deux registres de tracé :
   le principe).
 
 Lignage **Encre** (à appliquer à toutes) : tracé **noir** (le fil, le lien) ; **rouge**
-réservé — comme le sanctuaire — au **point de nouage**, c'est-à-dire au lieu exact du
-basculement (là où l'on croit devoir couper, là où en fait ça tient). Un seul point
-rouge, le nœud, sur un fil noir continu. Fond papier clinique (blanc froid, pas crème).
+réservé — comme le sanctuaire — au **point de nouage**, le lieu du basculement (là où l'on
+croit devoir couper, là où en fait ça tient). **Un seul point rouge, mobile** : il ne se
+multiplie pas avec les boucles — il **circule** sur les nouages et se **pose** sur celui de
+la boucle qu'on tient (voir la note d'interaction en fin de section). Fond papier clinique
+(blanc froid, pas crème). Les cinq boucles sont du **même trait** (le soin ne se distingue
+pas par la couleur — §ci-dessus).
 
 > **[à trancher à l'œil]** laquelle bascule vraiment (court → long) sans qu'on ait à
 > l'expliquer, et dans quel registre (organique / géométrique). Tester les sept dans
@@ -1299,9 +1325,10 @@ rouge, le nœud, sur un fil noir continu. Fond papier clinique (blanc froid, pas
   **les nœuds = 5 liens** (familial, amoureux, ami, travail + **soin**, toujours présents).
   Chaque nœud = **deux dimensions orthogonales** : **densité** (taille de boucle = matière
   déposée, descriptif, sert au contournement) et **tension** (état = desserrer/resserrer,
-  lu depuis le ressenti patient). **Boucle soin à part** : *la nôtre, pas la sienne* (rouge
-  vs noir), seule **asymétrique** (densité + tension calculées depuis le recours §15), donc
-  **la boucle à surveiller** — grosse = surpsychiatrisation, petite = abandon/guérison ;
+  lu depuis le ressenti patient). **Boucle soin à part** : *la nôtre, pas la sienne* —
+  distinction **mécanique, pas chromatique** (les cinq boucles de même trait ; le soin est
+  la seule dont densité + tension sont **calculées** depuis le recours §15), donc **la boucle
+  à surveiller** — grosse = surpsychiatrisation, petite = abandon/guérison ;
   le bon mouvement = **transfert de densité** (le soin décroît quand les boucles de vie
   croissent). Geste : **nourrir le fil, jamais nouer de l'extérieur** ; **deux gestes**
   seulement (serrer/desserrer un nœud existant, accompagner un nœud latent — **jamais
