@@ -169,18 +169,60 @@ Au Collègue, la diffraction est rare, à susciter (l'utilisateur est seul). Au 
 c'est le **milieu natif** (points quotidiens, réunions, partenaires) qui **se perd à
 l'oral** — la case le capte au lieu de le provoquer.
 
-### Équilibre — *« L'équilibre qui respire »*
+### Équilibre — *« L'équilibre qui respire »* — acte de nouage **et** état, en boucle
 Pas « c'est cousu ». **« Les liens tiennent souples, aucun élastique n'a claqué, ceux
 qui étaient trop tendus ont été reposés à temps — et rien ne s'est rompu dans
 l'abandon. »** L'équilibre peut inclure une **déliaison réussie** (un lien desserré,
-détendu, accompagné). « Ne rien lâcher » ≠ « tout garder » : ça veut dire *aucun fil ne
-se défait sans qu'on l'accompagne*. « Ne rien faire » / « attendre » sont des équilibres
-valides **s'ils sont construits**, pas des sorties par défaut.
+détendu, accompagné). « Ne rien lâcher » ≠ « tout garder » : *aucun fil ne se défait sans
+qu'on l'accompagne*. « Ne rien faire » / « attendre » sont des équilibres valides **s'ils
+sont construits**, pas des sorties par défaut.
 
-**Clôturer un SIID n'est jamais une coupe.** Ce n'est pas *finir* le suivi — c'est
-renouer le fil ailleurs (CMP, autonomie, semi-autonomie). L'autonomie du patient n'est
-pas la fin du lien, c'est son fruit (« la compétence n'est pas de prêter, c'est de
-reprendre »). L'outil ne présente jamais une clôture comme une fin.
+**Deux faces indissociables.** (1) Un **acte de nouage** : le moment où l'équipe (médecin
++ coordinateur) noue en une synthèse *toutes* les données — factuelles, lecture clinique,
+ce que l'alliance et la temporalité ont permis, le patient et l'entourage comme **matière
+vivante**. Le patient n'est **pas co-auteur** (l'équipe rédige) ; il est intégré comme
+source, au titre de ce que l'alliance a ouvert. (2) Un **état** : l'équilibre interne, la
+stabilité psychique du patient à ce moment.
+
+**La spirale.** L'état est à la fois le *résultat* du nouage (on a bien tissé → il est
+plus stable) **et** la *condition* du nouage suivant (parce qu'il est plus stable, on peut
+regarder et nouer autrement qu'au départ — « ça ne sera pas le même état qu'à la base »).
+Cause et effet sur le même objet, à deux instants : une spirale, pas un point. C'est le
+nœud gordien — à chaque tour le fil n'est plus le même.
+
+**Point de rebouclage, pas terminus.** L'état **varie dans le temps et rétroagit sur les
+autres champs** : un équilibre atteint déplace la Situation, le Ressenti, la Demande qu'on
+lira au tour suivant. L'Équilibre n'est donc **pas le dernier des six** — c'est le point
+qui **renvoie au début, transformé** : il produit un état qui redevient une Situation
+déplacée. C'est l'organe qui **réalise l'intrication** (§3) : la grille n'est pas une
+séquence qui finit, c'est une boucle que l'Équilibre fait tourner.
+
+**Le projet est l'Équilibre rédigé vers l'avant** — pas un septième terme. Nouer vers
+l'avant (le projet : ce qu'on vise, avec qui) et tenir maintenant (ce qui est stable) sont
+un seul geste, deux directions. La version tabulée « immédiat / moyen / long terme »
+morcelle en tranches ce qui se rédige en continu.
+
+**L'équilibre interne se perçoit et se dépose** (sanctuaire, dans les mots du clinicien) —
+**jamais un score, jamais une échelle** (ce serait le cliché). La machine voit *que*
+l'état a bougé (via le recours au soin, §15 — un fait), **jamais l'état lui-même**. Et le
+rebouclage est un **geste clinique** (c'est le soignant qui repart de l'état atteint pour
+relire la situation) : l'outil garde la trace de l'état daté et **rend la spirale
+visible**, il ne la fait pas tourner à la place du soignant.
+
+**Point de vigilance maximale pour la plume** (§5) : l'Équilibre étant le nouage de toutes
+les couches, c'est le seul endroit où la plume travaille sur *tout* — et donc où la
+tentation de la laisser « conclure » est la plus forte. C'est là qu'elle doit montrer sans
+conclure le plus strictement : elle transcrit le nouage rédigé par l'équipe, elle ne noue
+pas.
+
+**Clôturer un SIID n'est jamais une coupe.** Ce n'est pas *finir* le suivi — c'est renouer
+le fil ailleurs (CMP, autonomie, semi-autonomie). L'autonomie du patient n'est pas la fin
+du lien, c'est son fruit (« la compétence n'est pas de prêter, c'est de reprendre »).
+L'outil ne présente jamais une clôture comme une fin. Garde-fou : un projet (l'équilibre
+rédigé vers l'avant) reste une **hypothèse de travail** (daté, révisable, cédant devant le
+fait qui résiste), **jamais un engagement signé opposable** au patient — sinon la
+co-construction devient un contrat, c'est-à-dire la contrainte revenue par la porte de
+l'accord.
 
 ---
 
@@ -199,6 +241,17 @@ Code couleur, structurel et non décoratif :
 
 L'œil ne doit **jamais** confondre un fait avec un jugement, ni la machine avec le
 soignant.
+
+**Le sanctuaire est collégial, pas solitaire.** Le point non-validable ne se rend pas à
+*un* humain (le regard isolé qui plaque sa gestalt trop vite) mais à **plusieurs regards
+en tension** — la structure même de la grille (divergence des lectures §4, hypothèses
+plurielles §2). L'outil *prépare* cette décision (il pose les angles côte à côte, tient
+les hypothèses plurielles) ; il ne la prend pas, ne constitue pas le collège, ne déclare
+jamais qu'il a « statué ». Et la décision collégiale reste soumise à la loi des
+hypothèses de travail : **datée, révisable, cédante devant le fait qui résiste** — un
+collège n'est pas un oracle, c'est une tension tenue. Sinon il redevient le protocole qui
+statue et se fige (le « Groupe » ininterrogeable, §8). Voir §18 pour le principe de
+gouvernance dont c'est l'application.
 
 ---
 
@@ -273,6 +326,12 @@ Discipline (transposée du prompt de *Le collègue*) :
 Garde-fou : une belle déduction sur une mauvaise perception = une **erreur clinique bien
 écrite**, plus dangereuse qu'une erreur maladroite. La qualité de la synthèse dépend
 entièrement de la qualité des prémisses déposées → §8, §1.
+
+**Point de vigilance maximale : l'Équilibre.** C'est le seul champ où la plume travaille
+sur *toutes* les couches à la fois (§2) — donc où la tentation de la laisser conclure est
+la plus forte (une synthèse finale *appelle* une conclusion). C'est précisément là qu'elle
+doit montrer sans conclure le plus strictement : elle transcrit le nouage rédigé par
+l'équipe, elle ne noue pas elle-même.
 
 ---
 
@@ -401,6 +460,39 @@ Critère de partage :
 > **Case pour ce qui se coche (un fait est là ou pas). Prose pour ce qui se pense (un
 > pourquoi ne se coche pas).** Dès qu'un champ demande un jugement, il sort de la
 > checklist ; dès qu'il demande un fait, il y entre.
+
+### Deux régimes de saisie, pas un
+
+« Structure fixe / contenu libre » n'est pas une loi universelle : c'est le régime d'*un*
+type de champ. Il en existe un second, symétrique. Le choix entre eux ne dépend pas de la
+finesse recherchée mais de **qui remplit et de la nature de la donnée** :
+
+- **Structure fixe / contenu libre** (prose guidée) — pour ce qui se **pense** et se
+  dépose par celui qui a le regard (le sanctuaire, la traversée). La liberté est la
+  condition de la finesse.
+- **Structure fixe / contenu fixe** (case directive) — pour ce qui se **récolte** : les
+  invariants factuels rapportés par des exécutants peu formés. Ici la contrainte de la
+  case **filtre la donnée à la source** et garantit sa qualité (sans guidage, l'exécutant
+  ramène du bruit non filtré qui brouille la machine). La directivité n'appauvrit pas —
+  elle fait, par la forme, le tri que le dépositaire ne sait pas faire.
+
+|  | donnée **factuelle** | donnée qui se **pense** |
+|---|---|---|
+| **exécutant peu formé** | **case directive** (la contrainte filtre) | *interdit* — on ne demande pas une lecture clinique à qui n'a pas le regard (la case du centre expert = le cliché) |
+| **clinicien** | case ou prose | **prose libre / sanctuaire** |
+
+C'est la frontière perception/déduction (§1) vue côté saisie : le **factuel se récolte**
+(directif, filtré par la case), le **perçu se dépose** (libre, protégé par le sanctuaire).
+**Interdit dur** : jamais une *lecture clinique* en régime directif à un exécutant.
+
+**Régime indexé sur le moment, pas sur le grade.** La case directive se remplit **seul**
+(récolte rapide) ; le contenu libre se dépose en **synthèse collective** (pensé, avec
+recul, diffracté). Le choix ne dépend pas d'un statut de personne — cohérent avec §4
+(aucun regard ne prime). **Une exception : le médecin coordinateur du SIID peut déposer
+seul**, au titre de la **responsabilité médicale** (c'est un fait juridique — qui *répond*,
+pas qui *a raison*). Ce n'est pas une hiérarchie de lecture ; c'est un droit lié à la
+fonction, à régler dans le système de permissions. Pas de sous-statut « plus provisoire » :
+toutes les hypothèses sont déjà datées et révisables (§2).
 
 ---
 
@@ -546,6 +638,41 @@ la logistique.
 
 ---
 
+## 14 bis. La fiche de premier entretien (couche de récolte) — instrument distinct
+
+Le service dispose déjà d'une **fiche de premier entretien** (conçue par le coordinateur)
+: identité, orientation, situation sociale, mesure de protection, IDEL, MDPH, accord de
+partage d'informations, consentement aux visites. C'est un **excellent instrument
+administratif de premier contact** — le socle réglementaire et logistique que la doctrine
+clinique survolait.
+
+**Ce n'est pas le négatif de CONTINUUM : c'est sa couche de récolte.** Elle occupe le
+régime « structure fixe / contenu fixe » (§10) — du factuel récolté par des exécutants,
+où la directivité **filtre à la source**. Elle est juste *dans son régime*, et ne devient
+toxique que *si on la fond* dans la carte clinique :
+- importer son **tableau projet** (immédiat / moyen / long terme) réintroduirait la
+  **séquentialité** que la grille bannit — le projet est l'Équilibre rédigé en continu
+  (§2), pas trois cases temporelles.
+
+En revanche, on ne bannit **rien** sauf incohérence. Ses cases factuelles — **IDEL oui/non,
+nom, coordonnées** — sont parfaitement légitimes : c'est du fait, ça se coche (§10). La
+distinction à tenir : la case récolte l'**existence** du lien (factuel, cochable) ; elle ne
+touche **jamais** sa **valence/tension** (l'IDEL est-il un lien qui tient, à desserrer… —
+clinique, déposée, **jamais un signe fixe**, §13). Deux informations différentes sur le
+même IDEL, deux régimes.
+
+**Deux instruments, deux régimes, une clé.** La fiche **ouvre le dossier** (identité,
+admin, social, consentements) ; la carte CONTINUUM **lit la trajectoire** (les six champs,
+le sanctuaire, les hypothèses). Point de contact unique : l'**IPP** (et le consentement au
+partage). On ne clinicise pas la fiche, on n'administrativise pas la carte. Le
+coordinateur tient naturellement la couche que le clinicien n'a pas à concevoir — c'est
+une répartition des rôles v1, pas une lacune.
+
+Ce que la fiche règle, à consigner : une partie de §18 (consentement au partage,
+protection juridique) et l'amont de la vue lundi (§11).
+
+---
+
 ## 15. Modèle de données (esquisse)
 
 ### Ligne-patient (unité)
@@ -562,21 +689,94 @@ la logistique.
 - Diffraction = regards attribués, gardés contrastés ; `sans_partage` booléen.
 - Ressources = zones libres, dynamiques, sans signe (§13).
 
-### Typage SIID (paramètre de lecture, pas verdict)
-- **aigu** (sortie d'hospitalisation) — **NAP** (observance) — **chronique** (stable mais
-  fragile). Rythme adapté à la clinique, pas de seuil unique.
+### Typage SIID — dérivé du mouvement, pas déclaré
+- **aigu** (recours intense, fil tendu) — **NAP** (observance) — **chronique** (stable,
+  recours faible et tenu bas). Le type **n'est pas un champ qu'on coche** : il se **lit
+  dans le mouvement capté** (§ capteur ci-dessous). Un aigu devient chronique stable quand
+  son recours a baissé *et tient* bas dans le temps ; un chronique se retend et redevient
+  aigu si son recours remonte et reste haut. **Le différentiel propose le retypage** (il
+  fait ressortir « ce patient a changé de régime ») ; **le clinicien lit dans quel sens**
+  (une baisse de recours est une stabilisation *ou* un décrochage — §a ci-dessous). Le
+  type se dérive du fait, sa validation reste un regard. Ça tue le Goodhart par le typage :
+  on ne peut plus faire passer un aigu en chronique d'un clic pour éteindre ses alertes,
+  puisqu'il faudrait que le recours ait réellement baissé.
 
-### Couche factuelle (machine — lit le journal, ne juge jamais)
-Auto-remplissable, faits seulement :
-- dernier contact (silence : « il y a N jours ») ;
-- glissement de modalité (domicile → téléphone) ;
-- actes non aboutis qui s'accumulent ;
-- rythme / fréquence ;
-- échéancier séquentiel / NAP.
+### Couche factuelle = le capteur de fragmentation
+La couche factuelle n'est pas un tableau de bord : c'est un **capteur de discontinuité**.
+Les signaux ne sont pas divers — ce sont tous des mesures d'**un seul phénomène : la
+rupture de continuité en train de se produire.** Le silence = le fil qui se détend trop.
+Le glissement domicile→téléphone = le nœud qui coulisse dans le mauvais sens. Les actes
+non aboutis = le fil qui commence à échapper. C'est l'exergue devenue instrument.
 
-Elle ne dit jamais « il décroche » (interprétation = humain). Elle dit « dernier contact
-il y a 23 j » (fait). Elle couvre l'angle mort du réseau : l'isolé dont *rien n'arrive*.
-Ne se rempliront **jamais** seuls : les six champs interprétés (dépôt humain).
+**Intensité de recours au soin — proxy factuel de l'équilibre, jamais l'équilibre.**
+Dérivé du journal : la fréquence de contacts nécessaires (sortie d'hospit sans alliance =
+max ; 2×/semaine = élevé ; 1×/mois = faible). C'est un **fait**, pas une lecture.
+
+Cinq bornes, toutes nécessaires (l'indicateur se retourne si l'une saute) :
+
+- **(a) Fait, jamais « stable ».** L'outil dit « faible recours », **jamais « stable »** :
+  un faible recours peut être une stabilité *ou* un décrochage (alliance rompue, on ne
+  l'accroche plus — même chiffre, états opposés). Distinguer les deux est un geste clinique
+  (sanctuaire). Le recours est un fait qui *appelle* une lecture, jamais une lecture.
+- **(b) Relatif au rythme du type, jamais absolu.** L'alerte ne se déclenche pas sur une
+  durée fixe mais sur un **écart au rythme attendu de ce patient** : 3 mois de silence =
+  alerte pour un aigu, rythme normal pour un chronique stable (aucune alerte — ne pas lui
+  proposer plus de soin qu'il n'en a besoin). Un capteur de discontinuité *doit* être
+  relatif : la continuité n'a pas la même forme pour chaque fil.
+- **(c) Le sens de la variation prime la valeur.** Un recours qui **descend** raconte un
+  desserrage (stabilisation ou décrochage) ; qui **remonte**, une reprise ou une crise. La
+  valeur seule ne dit rien — c'est le **mouvement** qui est clinique. Le rouge **n'est pas
+  mauvais** (un aigu *doit* être rouge, c'est le bon état du capteur) ; c'est le rouge
+  **figé** qui parle (le nœud qui ne coulisse plus, l'aigu qui devrait s'être détendu et
+  ne se détend pas). L'outil montre le mouvement daté ; il ne dit jamais s'il est
+  stabilisation ou rupture.
+- **(d) Il affiche, il ne hiérarchise pas.** C'est un **dashboard** — il est normal que
+  des infos s'affichent (couleurs, silences, tensions). Ce qu'on refuse n'est pas
+  l'affichage, c'est que l'outil **décide de l'urgence à ta place** ou te pousse vers une
+  conclusion (« ce patient est prioritaire, traite-le »). Montrer l'état des fils = oui ;
+  hiérarchiser et prescrire = non. Au trimestriel (§16), le balayage fait ressortir les
+  **divergences type / trajectoire** (un aigu encore rouge trois trimestres = type et fait
+  divergent → revoir le projet, mouvement systémique) — mais il **ne dispense jamais de la
+  revue exhaustive** : le « vert » veut dire « probablement à rythme normal », jamais « pas
+  la peine de regarder ».
+- **(e) Jamais agrégé (Goodhart).** L'indicateur est un **thermomètre patient par
+  patient**, lu par un humain, **jamais moyenné en performance de service**. « Nos recours
+  moyens baissent, bon signe » est la phrase qui tue : un recours qui baisse peut être dix
+  décrochages. Optimiser le recours, c'est optimiser l'abandon. Le capteur mesure des
+  fils, un par un ; il ne produit **aucun score de service**.
+
+**Deux couleurs de nature différente, à ne pas confondre.**
+- **couleur factuelle** — dérivée du recours par la machine (le fil se tend / se détend,
+  calculé) ;
+- **couleur déposée** — l'**inquiétude** posée par le clinicien parce qu'il *sent* que ça
+  décroche, **même quand le factuel est vert** (sanctuaire). C'est la perception qui court
+  devant le fait.
+L'**écart entre les deux est le signal le plus précieux** : un patient vert au factuel mais
+déposé « inquiet » = le décrochage perçu avant qu'il ne se voie dans les chiffres (§a).
+
+**L'inquiétude déposée = mémoire de l'inquiétude, diffractée.** Elle décharge l'inquiétude
+qui tourne en tâche de fond (§0) et la rend **consultable par tous** (§12 bis) : elle cesse
+d'être captive de celui qui sait (souvent deux têtes seulement), elle **survit à son
+absence**. Elle obéit à la loi des hypothèses de travail (§2) : **datée, attribuée,
+révisable — et elle se lève.** Une inquiétude figée devient une **étiquette qui condamne**
+(on ne regarde plus le patient qu'à travers une inquiétude périmée — le piège du ch. 12 du
+livre). L'affect de vigilance se dépose comme un **acte daté** (« le 3 mars, ça
+m'inquiète »), jamais comme un attribut permanent.
+
+**Registre visuel : pas de feu tricolore.** Le vert/orange/rouge est le langage du tableau
+de bord hospitalier — il pue la performance et active la lecture bon/mauvais qu'on refuse.
+Le bon registre est **Encre** (§19) : des **états du fil** en noir/rouge sur papier, la
+tension se disant par la **matière du tracé** (épaisseur, tension, rouge-encre au point de
+nouage qui se déplace), jamais par un code de gravité.
+
+**« Ne pas surpsychiatriser » réalisé.** L'**absence d'alerte est un acte clinique**, pas
+un trou de surveillance : ne pas alerter sur le chronique stable à 3 mois respecte son
+besoin réel. Le silence de l'outil est une **position**, comme le vide nommé (§6). La
+plupart des systèmes alertent *plus* pour se couvrir ; celui-ci alerte *moins* quand c'est
+clinique.
+
+Ne se rempliront **jamais** seuls : les six champs interprétés (dépôt humain). La machine
+voit *que* l'état a bougé (le recours), jamais l'état lui-même (§2).
 
 ### Faisabilité vérifiée sur `Suivi_d_activités_SIID_2026.xlsx`
 
@@ -623,7 +823,13 @@ comme le prouve la feuille « parcours » restée à zéro.
 - **Mardi matin (synthèses)** — les cas en bascule / bloqués ; la synthèse patient =
   support de séance.
 - **Trimestriel (revue)** — continuer / **renouer ailleurs** (jamais « clôturer » comme
-  une fin). Le « métronome » existe déjà ; l'outil le **nourrit**, ne le réinvente pas.
+  une fin). Le tour des ~50-60 patients se fait **avec le capteur de fragmentation affiché**
+  (§15) : le balayage fait ressortir d'un coup d'œil les **divergences type / trajectoire**
+  (qui est aigu, qui décroche, qui reste rouge trop longtemps) pour que la revue exhaustive
+  ne se noie pas dans la masse — **sans dispenser de repasser tous les patients**, verts
+  compris. C'est là que le capteur sert vraiment : un instrument de tri visuel *tiré*, pas
+  une alerte poussée. Le « métronome » existe déjà ; l'outil le **nourrit**, ne le
+  réinvente pas.
 
 Priorité de prototypage : **la carte d'abord** (la forme juste), puis la vue lundi.
 
@@ -654,6 +860,31 @@ Règle : ne pas sur-concevoir la v1 en pensant à la v2.
   valeur que si on lui donne vie) et expose au risque CNIL. L'outil **aide à**
   anticiper ; il ne prédit pas.
 
+### Principe de gouvernance (dépasse le SIID — position sur l'IA clinique en général)
+
+Trois positions existent sur la validation de l'IA clinique. Le **solutionniste** : tout
+est validable, il suffit de la bonne métrique. Le **sceptique** : rien n'est validable,
+méfions-nous. La position tenue ici est la **troisième** : *certaines choses se valident,
+d'autres non — la compétence est de tracer la ligne, et de mettre de l'humain exactement
+là où ça ne se valide pas.*
+
+- **Valider ce qui se valide.** Là où une métrique est légitime, l'établir avec rigueur.
+- **Là où aucune métrique ne suffit, rendre la décision à l'humain — mais pas à *un*
+  humain.** Un seul human-in-the-loop est un point de faille (le jugement isolé, biaisé,
+  qui plaque sa gestalt). On met un **collège de regards en tension** — la diffraction
+  appliquée à la gouvernance : plusieurs perspectives côte à côte pour décider ce
+  qu'aucune grille ni aucun individu ne peut trancher seul.
+- **Le collège n'est pas un oracle.** Sa décision reste datée, révisable, cédante devant
+  le fait qui résiste (loi des hypothèses de travail, §2). Un collège qui « statue » et se
+  fige redevient le protocole ininterrogeable (§8) — le verdict du comité au lieu du
+  verdict de la machine, parfois pire.
+
+C'est le sanctuaire (§3) transposé de la clinique à la gouvernance : la même loi, un cran
+plus haut. L'outil *prépare* la décision collégiale (il diffracte, juxtapose, tient les
+hypothèses plurielles) ; il ne constitue jamais le collège et ne décide jamais qu'il a
+statué. En v1, l'unité a déjà ses réunions — le collège est un principe que l'outil *rend
+possible*, pas une instance qu'il *impose*.
+
 ---
 
 ## 19. Identité visuelle — le logo
@@ -682,6 +913,221 @@ geste :
   desserrer et faire glisser le nœud un peu plus loin ».
 
 Le logo fait commettre au spectateur l'erreur d'Alexandre, puis la lui fait dépasser.
+
+### Le logotype à substitution — le nom se transforme sans se mutiler
+
+Le nœud (dans sa forme à 2 boucles infinies) **remplace le C et le O de CONTINUUM** — il
+n'est pas posé à côté du nom, il en est le début. Quand il s'en détache pour aller vivre
+dans l'app, il **emporte C et O**, et il reste **N.T.** (espace de travail numérique, sans
+le e) / **CONT** (diminutif de CONTINUUM). Le retrait du logo ne laisse **pas un trou** : il
+laisse un mot qui a du sens. Le nom entier se comporte comme le nœud gordien — on en retire
+une partie et ce qui reste n'est pas un fragment mutilé, c'est une **nouvelle forme
+complète**. La typographie *fait* la thèse : couper=mutiler (mort) vs transformer=un
+continuum en un autre (vivant). Le principe fondateur est inscrit jusque dans la façon dont
+le logotype se décompose.
+
+### Un seul fil, trois niveaux de repli (récursif)
+
+Il n'y a pas trois logos ni trois « transformations » : il y a **une seule forme à trois
+niveaux de déploiement**, un fil unique dont le contexte détermine *combien* de boucles
+sont ouvertes :
+- **2 boucles** — la signature (le C+O du titre) ; l'identité au repos.
+- **3 boucles** — la forme de travail dans l'app (aucun patient sélectionné) ; le compagnon
+  présent, qui se déplace (esprit du logo Claude vivant).
+- **5 boucles** — patient sélectionné : les cinq axes (familial, amoureux, ami, travail,
+  soin). Le nœud *devient* le nœud-patient.
+
+**Rien ne se transforme ni n'apparaît : le contexte déplie ce qui préexiste.** Les 5 sont
+repliées dans la 3, elle-même repliée dans la 2. Le passage n'est jamais une coupe ni une
+création de boucle — c'est un **dépliement**. C'est la contrainte anti-coupe portée à
+l'absolu : on ne coupe pas *et* rien ne naît ; vivre = se déplier. C'est le **nœud latent
+(§ nœud-patient) appliqué au logo lui-même, récursivement** : la marque au repos contient
+déjà, repliés, tous les axes de tout patient possible — l'universalité des axes est inscrite
+jusque dans les deux boucles du titre.
+
+**Une seule mécanique d'animation dans tout le système : le repli / déploiement d'un fil
+continu.** Elle produit *tout* — la transformation 2→3→5, le nœud latent (boucle repliée à
+presque rien), le **transfert de densité** (une boucle se replie pendant qu'une autre se
+déploie — la circulation, § ci-dessus), la **tension** (une boucle qui se resserre). Le
+logo est vivant : il se déplace et se déforme, et sa déformation **obéit à la grammaire
+clinique** (elle n'est jamais décorative — le logo animé *est* le nœud-patient en mouvement,
+boucle soin en rouge selon le recours §15).
+
+### Bistabilité et latence — deux lectures d'un seul geste
+
+Le logo porte **deux propriétés perceptives, orthogonales, non redondantes** — parce que
+l'outil repose sur deux principes distincts :
+- **Bistabilité** = l'axe **couper / nouer**. Regard court « un nœud à couper » (Alexandre)
+  → regard long « un lien qu'on desserre, jamais qu'on tranche ». Encode *couper=mort /
+  transformer=vivant* (la thèse temporelle : continuité contre coupe).
+- **Latence** = l'axe **présent / déployé**. La forme repliée *pressent* ses boucles pliées,
+  prêtes à s'ouvrir. Encode *les axes préexistent, on ne les crée pas* (la thèse
+  anti-projection : révéler, jamais fabriquer).
+
+Elles ne s'opposent pas, elles se **composent sur le geste unique** (plier/déplier un fil) :
+plier une boucle jusqu'au point de latence, c'est *desserrer à l'extrême sans jamais
+couper* — **la latence est ce que devient la bistabilité poussée à sa limite** (même au
+maximum du desserrage on ne coupe pas, on plie). Deux lectures du même fil qui se plie et
+se déplie sans se rompre.
+
+**Critère de réussite du logo** (dans Claude Design) = **les deux sur un seul fil**, pas
+l'une *ou* l'autre : (1) le regard court veut le couper, le regard long voit qu'il se
+desserre (bistabilité) ; (2) la forme la plus repliée *appelle* son dépliement — on pressent
+d'autres boucles pliées dedans (latence). Un logo qui a l'une sans l'autre a raté la moitié
+du sens. Écueil de dessin : le repli **comprime, il n'efface pas** — si les boucles pliées
+se dissolvent dans un trait lisse (un simple symbole d'infini), la cohérence conceptuelle
+existe sans la vérité perceptive. On doit toujours *pressentir* les boucles pliées, à chaque
+niveau.
+
+### Le logo est le diagramme de l'indicateur
+
+Le nœud coulant n'est pas qu'une métaphore de continuité : c'est le **schéma de fonction**
+de l'outil. Le nœud = l'intensité de prise en charge à un moment ; le faire **coulisser**
+vers un bout = desserrer (espacer) ; vers l'autre = resserrer (rapprocher) ; « respecter
+l'équilibre du fil » = ne pas resserrer un chronique stable pour se rassurer (§15,
+« ne pas surpsychiatriser »). Et **couper le nœud = identifier le recours à la stabilité**
+(« faible recours = terminé, on lâche ») — le réflexe d'Alexandre, qui tue, car le faible
+recours peut être un décrochage (§15a). Le regard long voit qu'on ne coupe pas : on fait
+**glisser**. La bistabilité du logo *est* la distinction clinique fondamentale de l'outil :
+**desserrer (coulisser en tenant) ≠ couper (lâcher en croyant avoir fini).**
+
+### Le nœud-patient (v2 — visuel qui déplie)
+
+En v2, un **seul** nœud (pas soixante) se **détache et vient se caler à côté du patient
+qu'on regarde** — animé, personnalisé. Il a **deux ordres, d'ontologie différente** (ne
+jamais les confondre) :
+
+**Le fil = les ressources internes.** Sa matière, son épaisseur, sa vitalité racontent ce
+*depuis quoi* la personne peut nouer : une passion, l'autonomie, un appui en soi, une
+capacité gardée. Ce ne sont **pas des liens** — c'est le sol d'où les liens deviennent
+possibles (ressource interne → aller vers le lien à l'autre → retour à soi renforcé). Le
+fil se lit **qualitativement** (vivant / fatigué / à bout), **jamais gradué** (« vitalité
+3/5 » referait le poids banni, transféré sur le fil). Il est riche de ce qu'on y **dépose**
+(« cette passion qui le tient », « son autodérision intacte »), pas d'un chiffre.
+
+**Les nœuds = les liens externes** : les 4 sphères du *Collègue* (familial, amoureux, ami,
+travail) + la sphère **soin**. Universelles → **toujours toutes présentes**, jamais
+amputées (ne pas supprimer la boucle amoureuse d'un isolé : c'est *sa* boucle, pas à nous
+de juger qu'elle n'a pas lieu d'être — protection contre la projection).
+
+Chaque nœud porte **deux dimensions visuelles orthogonales et indépendantes** (les quatre
+combinaisons existent — grande boucle à nœud détendu, petite à nœud serré, etc.) :
+- **Densité = taille de la boucle** — *combien de matière est déposée sur cet axe*.
+  Descriptif (où est le contenu), **pas un poids ni une valeur**. Toutes les boucles
+  restent apparentes, les moins nourries en petit, **jamais masquées** : c'est ça qui
+  garantit que la densité n'oriente pas au détriment du reste. Fonction : **indicateur de
+  contournement** — quand un nœud est trop serré et qu'on ne peut rien y faire, la carte
+  montre les autres axes vers lesquels déplacer le travail *en attendant que celui-ci se
+  détende*. Met en lumière ce qui **existe et peut s'explorer** — jamais ce qu'il *faut*,
+  jamais bien/mal.
+- **Tension = état du nœud** — *faut-il desserrer ou resserrer la tension psychique à cet
+  endroit*. Direction de travail, pas constat. Déposée par le clinicien, lue **depuis le
+  ressenti du patient** (§2, position patient) après quelque temps de suivi (le patient
+  éprouve → le clinicien lit la direction ; on ne fait pas décréter au patient qu'il faut
+  desserrer, on ne décrète pas sans son éprouvé). États : **tenu / desserré / à desserrer**
+  (le lien qui étouffe, §13) / **latent** (minuscule, perçu comme possible mais pas encore
+  senti par la personne). Distinct : la **boucle non-lue** (l'axe est là, mais personne n'a
+  encore regardé) = le non-renseigné (§6), pas une perception.
+
+**La boucle soin est à part — c'est la nôtre, pas la sienne.** Les quatre boucles de vie
+sont les axes du *patient* (sa famille, ses amours, ses amis, son travail). Le **soin est
+notre intervention dans sa vie**, pas un pan de son existence propre — il ne faut pas
+suggérer que la psychiatrie est une sphère de sa vie au même titre que l'amour. Distinction
+visuelle : **boucle soin en rouge** (l'intervention, la main humaine — lignage Encre),
+boucles de vie en **noir**. Et c'est la **seule boucle asymétrique** : sa densité *et* sa
+tension sont **calculées** depuis le recours au soin (§15) — la machine y touche les deux
+dimensions, là où les quatre autres sont entièrement déposées. Donc c'est **la boucle à
+surveiller**, car la seule qui se remplit / se vide *sans décision clinique* (mécaniquement,
+avec le nombre de visites) : **grosse = surpsychiatrisation** (on se prend pour le centre
+de sa vie — notre intensité prise pour une donnée sur lui), **petite = abandon** (on l'a
+lâché) *ou* guérison (ses autres boucles portent) — le clinicien lit le sens (§15a).
+
+**Le bon mouvement = transfert de densité — un principe général.** La densité **circule
+entre toutes les boucles**, dans tous les sens : une perte d'emploi (travail qui se
+dédensifie) dont la densité migre vers la famille ; un deuil qu'un ami vient absorber ; une
+rupture dont la matière passe au travail. La vie *est* cette redistribution permanente ;
+le nœud-patient la donne à voir. Le couple **soin↔vie n'en est qu'un cas particulier** —
+celui où *notre* boucle (soin, rouge) doit **décroître au rythme où ses boucles de vie
+croissent** : le soin passe la main. Une boucle soin qui maigrit *parce que* les autres ont
+grossi = réussite ; qui maigrit sans que les autres grossissent = abandon ; qui grossit
+sans fin = surpsychiatrisation. C'est le relai (§12 bis) et la clôture-qui-renoue (§2)
+rendus visibles — mais le mécanisme (une boucle cède, une autre reçoit) vaut partout, pas
+seulement pour le soin.
+
+**L'équilibre n'est pas l'uniformité — c'est une circulation soutenable, relative à la
+personne.** « Densité plus ou moins équilibrée entre les boucles » ne veut pas dire
+« tendant vers l'égal » (ce serait la symétrie normative bannie) : ça veut dire une
+**répartition qui tient**, sans qu'une boucle soit écrasée de densité pendant que le fil
+s'effondre ailleurs. Certaines boucles restent **hors circuit** — pas d'accès, pas de
+besoin, parfois pour toujours (§ sans échéance) ; ce n'est pas un trou dans l'équilibre,
+c'est une boucle que la circulation ne traverse pas *pour cette personne*. Un fil peut être
+parfaitement équilibré avec deux boucles denses et trois latentes, si cette répartition
+tient et lui convient. Le **déséquilibre** n'est donc jamais « une boucle vide » — c'est
+une **distribution qui menace le fil** (tout concentré sur un axe qui lâche, ou le soin qui
+enfle pendant que le fil s'appauvrit). Problème de distribution, jamais de présence. C'est
+l'état du fil (§2).
+
+**Le geste central : nourrir le fil, pas nouer de l'extérieur.** On ne fabrique jamais un
+nœud du dehors (induire) ; on **nourrit le fil** (la ressource interne) pour qu'il ait de
+lui-même l'élan d'aller vers ses nœuds. Conséquence clinique que seule la distinction
+fil/nœud rend lisible : un **fil vivant sans nœud** (l'isolé porté par une passion) ≠ un
+**fil épuisé sans nœud** (plus de quoi aller vers personne) — même carte de liens,
+détresses opposées, gestes opposés (laisser le fil vivant cheminer / nourrir d'abord le fil
+à bout). Fil et nœud se **renforcent en boucle** : un lien noué re-nourrit le fil, qui peut
+aller nouer plus loin — et ce re-nourrissement n'est pas un moment de plus, c'est **l'état
+du fil qui devient équilibré** (= l'Équilibre, §2 ; le fil équilibré et le champ Équilibre
+sont le même objet, vu comme matière ou comme champ).
+
+**Sans échéance — la temporalité est strictement celle du patient.** Un nœud latent se
+densifie quand la personne le rencontre : *parfois jamais, parfois une vie, parfois un an,
+parfois dix ans*. Ce n'est **pas un objectif ni un délai** — le nœud-patient est un objet
+**sans échéance**, l'inverse structurel du tableau projet (immédiat/moyen/long terme, §14
+bis) : il refuse non seulement les cases temporelles mais la temporalité imposée elle-même.
+
+**Le « minimum d'équilibre » est global, pas par boucle.** Tout le monde a besoin d'un
+minimum d'équilibre — mais *entre* ses boucles, pas dans chacune. L'équilibre n'exige pas
+que chaque axe soit densifié (ce serait la symétrie normative bannie) ; il exige qu'il y
+ait, au total, assez de densité répartie pour que le fil tienne, **quels que soient les
+axes**. Un isolé sans amour ni amis mais tenu par une passion et le soin peut être
+équilibré. « Parfois jamais » concerne *une* boucle ; « un minimum d'équilibre » concerne
+*le fil entier* — les deux se tiennent parce qu'ils sont à deux échelles. C'est l'état du
+fil (§2).
+
+**Grammaire d'animation** (de fond aujourd'hui, spec de mouvement pour animer le logo
+demain — *pas* des boutons en interface, qui figeraient le geste clinique en menu). **Deux
+gestes** — on ne crée jamais de nœud (le créer serait induire ; le nœud est toujours déjà
+là, latent) :
+- **serrer / desserrer** — ajuster la tension d'un nœud que le patient a déjà densifié.
+  *Resserrer* = retendre / renforcer un lien **existant** (jamais en créer un). Geste du
+  clinicien sur un axe vivant.
+- **accompagner** — pour le nœud latent : ne toucher à rien, **maintenir la boucle ouverte
+  et tenir compagnie au fil** pendant que la personne le parcourt, jusqu'à ce qu'elle sente
+  le nœud — si elle le sent — et décide, ou non, de lui donner un peu de densité, à sa
+  temporalité et selon ce qui est faisable. Le geste où l'on fait le *moins*, et le plus
+  difficile : présent sans induire. C'est la graine du *café et le tabac* — on jardine le
+  fil, on ne fait pas pousser.
+
+**Interdits :**
+- **Pas de poids relatif (valeur), pas de score.** La *taille* de boucle = densité de
+  matière déposée (descriptif, légitime — ci-dessus) ; ce qui reste banni, c'est le
+  **poids** au sens de *valeur / importance du lien* (« ce lien compte plus »), qui
+  hiérarchiserait les axes et **raterait la valence** (famille qui porte et famille qui
+  écrase auraient le même « poids »). On montre *où est la matière* et *quel geste sur
+  chaque nœud* — jamais *combien un lien vaut*. Aucune dimension n'est chiffrée : densité
+  et tension se lisent, ne se notent pas.
+- **Pas de symétrie normative.** Boucles égales suggéreraient qu'il *faut* que les cinq
+  tirent pareil — faux. L'équilibre n'est pas la rondeur (il est global, §ci-dessus).
+- **La boucle latente / non-lue OUVRE, ne juge pas.** Jamais un déficit (rouge, barré,
+  « à combler »). Le nœud latent pousse à *réfléchir à aller voir* l'axe qu'on aurait sauté
+  (relance par l'absence, §11) ; montré au patient, il devient **miroir
+  d'auto-interrogation** (soin par la forme, logique *Collègue*).
+- **Jamais de ciseaux.** Les symboliser sur la corde **arme le réflexe d'Alexandre** —
+  l'inverse de la thèse. Le risque de rupture se dit par la **souffrance du fil** (il
+  s'amincit, pâlit, se tend) — ce qui appelle **desserrer de ce côté**, jamais trancher.
+
+Registre **Encre** : noir/rouge sur papier, la tension dans la matière du fil, pas en feu
+tricolore. **C'est de la v2** — en v1, la forme pauvre en vue liste suffit ; ne pas passer
+trois semaines sur l'animation avant que la carte de base existe.
 
 ### Les variantes à essayer (Claude Design)
 
@@ -799,8 +1245,71 @@ rouge, le nœud, sur un fil noir continu. Fond papier clinique (blanc froid, pas
 - Équilibre = **souplesse maintenue** ; clôture = renouer, jamais couper.
 - **IPP obligatoire** ; identité aux extrémités.
 - **« Prédire » proscrit** ; l'outil **aide à**, ne fait pas.
+- **Gouvernance** : valider ce qui se valide ; là où aucune métrique ne suffit, un
+  **collège de regards en tension** (pas un humain isolé), lui-même daté/révisable/cédant.
+  Sanctuaire (§3) transposé à la gouvernance ; l'outil *prépare* la décision, ne la prend
+  pas.
 - Logo = **nœud gordien bistable** ; le principe anti-coupe n'est écrit nulle part, il est
   dans la marque.
+- **Système visuel unifié** (§19) : **logotype à substitution** (le nœud = C+O de
+  CONTINUUM ; son retrait laisse **N.T.** / **CONT** — le nom se transforme sans se
+  mutiler). **Un seul fil, trois niveaux de repli récursifs** : 5 axes repliés dans la
+  forme à 3, elle-même repliée dans la 2 (signature) — rien n'apparaît, le contexte
+  *déplie* ce qui préexiste (anti-coupe à l'absolu : on ne coupe pas *et* rien ne naît).
+  **Une seule mécanique d'animation** : plier/déplier un fil continu — produit 2→3→5, nœud
+  latent, transfert de densité, tension. **Bistabilité + latence** = deux lectures
+  orthogonales du geste unique (couper/nouer + présent/déployé) ; la latence = la
+  bistabilité poussée à sa limite (desserrer à l'extrême = plier, jamais couper). Critère
+  de réussite = les deux sur un seul fil ; le repli comprime, n'efface pas.
+- **Transfert de densité = principe général** (§19) : la densité circule entre *toutes* les
+  boucles ; soin↔vie n'en est qu'un cas (notre boucle décroît quand les siennes croissent).
+  Équilibre = **circulation soutenable relative à la personne**, jamais uniformité ;
+  déséquilibre = distribution qui menace le fil, jamais boucle vide.
+- **Deux régimes de saisie** (§10) : contenu *libre* pour ce qui se pense (déposé en
+  **synthèse collective**) / contenu *fixe*, case directive, pour ce qui se récolte (**seul**,
+  factuel — la contrainte filtre). Régime indexé sur le **moment, pas le grade** (§4
+  intact). Exception : le médecin coordinateur dépose seul au titre de la **responsabilité
+  médicale** (droit de fonction, pas hiérarchie de lecture).
+- **Fiche de premier entretien** (§14 bis) = couche de **récolte** distincte (admin,
+  social, consentements) ; reliée à CONTINUUM par l'**IPP** seul ; ne pas importer son
+  tableau projet (séquentialité). On ne bannit rien sauf incohérence : ses cases factuelles
+  (IDEL, nom, tél) sont légitimes — la case récolte l'**existence**, jamais la **valence**
+  du lien (§13).
+- **Équilibre** (§2) = **acte de nouage + état interne**, en **spirale** (l'état est
+  résultat *et* condition du nouage suivant) ; **point de rebouclage, pas terminus**
+  (réalise l'intrication) ; le **projet = l'Équilibre rédigé vers l'avant** (pas de 7ᵉ
+  terme) ; patient = **matière, pas co-auteur** ; l'équilibre interne se **dépose, jamais
+  gradué** ; projet = hypothèse de travail, **jamais contrat signé opposable**.
+- **Capteur de fragmentation** (§15) : signaux = mesures d'un seul phénomène (la
+  discontinuité) ; **recours au soin** = proxy factuel de l'équilibre ; 5 bornes —
+  (a) fait jamais « stable » ; (b) relatif au rythme du type jamais absolu ; (c) le
+  **sens de la variation** prime la valeur (le rouge n'est pas mauvais, le rouge **figé**
+  parle) ; (d) **tiré non poussé** (balayage au trimestriel, révélateur de divergence
+  type/trajectoire, le vert ne dispense pas de regarder) ; (e) **jamais agrégé**
+  (Goodhart).
+- **Deux couleurs** : factuelle (dérivée du recours) / **déposée** (l'inquiétude,
+  sanctuaire) ; l'écart = la perception qui devance le fait. Inquiétude déposée = mémoire
+  diffractée, **datée/révisable/se lève** (sinon étiquette qui condamne).
+- **Typage dérivé du mouvement**, pas déclaré : le différentiel **propose** le retypage,
+  le clinicien **lit** le sens (guérison vs décrochage). Tue le Goodhart par le typage.
+- **Registre visuel = Encre**, pas feu tricolore ; la tension dans la matière du fil.
+- **Logo = diagramme de l'indicateur** (§19) : le nœud coulant = le recours qui glisse ;
+  couper = confondre faible recours et stabilité (Alexandre). **Nœud-patient (v2)** — deux
+  ordres : **le fil = ressources internes** (déposées qualitativement, jamais graduées) /
+  **les nœuds = 5 liens** (familial, amoureux, ami, travail + **soin**, toujours présents).
+  Chaque nœud = **deux dimensions orthogonales** : **densité** (taille de boucle = matière
+  déposée, descriptif, sert au contournement) et **tension** (état = desserrer/resserrer,
+  lu depuis le ressenti patient). **Boucle soin à part** : *la nôtre, pas la sienne* (rouge
+  vs noir), seule **asymétrique** (densité + tension calculées depuis le recours §15), donc
+  **la boucle à surveiller** — grosse = surpsychiatrisation, petite = abandon/guérison ;
+  le bon mouvement = **transfert de densité** (le soin décroît quand les boucles de vie
+  croissent). Geste : **nourrir le fil, jamais nouer de l'extérieur** ; **deux gestes**
+  seulement (serrer/desserrer un nœud existant, accompagner un nœud latent — **jamais
+  créer**) ; **sans échéance** (temporalité du patient) ; **minimum d'équilibre global**,
+  pas par boucle. **Jamais de poids/valeur, jamais de ciseaux, jamais de symétrie
+  normative.**
+- **« Ne pas surpsychiatriser » réalisé** : l'absence d'alerte est un **acte clinique** ;
+  le silence de l'outil est une position.
 
 ---
 
@@ -809,11 +1318,15 @@ rouge, le nœud, sur un fil noir continu. Fond papier clinique (blanc froid, pas
 1. **Enseignement — jusqu'où ?** Entraîner le *dépôt* dans la traversée (rapide) — et/ou
    entraîner le *regard* clinique lui-même (le sanctuaire ; non enseignable par
    prescription, au mieux entraînable comme *Le collègue* entraîne sans soigner) ?
-2. **Auto-remplissage** — ✅ liste figée sur l'Excel de départ (§15). Reste à décider
-   comment structurer les événements de couture aujourd'hui noyés dans le champ
-   Commentaire (« RELAI CMP », « SYNTHESE »…).
-3. **Synthèse patient** — registre et cadre exacts (objet remis au patient).
-4. **Logo** — organique vs géométrique, à trancher à l'œil sur maquette.
+2. **Événements de couture** — comment structurer ce qui est aujourd'hui noyé dans le
+   champ Commentaire du journal (« RELAI CMP », « SYNTHESE »…) pour en faire le fil de
+   continuité (§15).
+3. **Synthèse patient** — registre et cadre exacts (objet remis au patient / support de la
+   co-construction de l'Équilibre, §2/§5).
+4. **Logo** — organique vs géométrique, à trancher à l'œil sur maquette (§19).
+
+> Tranché depuis : le **retypage** n'est plus une question ouverte — il est dérivé du
+> différentiel capté, proposé par le mouvement et validé par le regard (§15).
 
 ---
 
