@@ -265,6 +265,13 @@ Le capteur de fragmentation (§15) — tous les signaux mesurent **un seul phén
 **Aucune projection n'agrège entre patients.** Le recours est un thermomètre patient
 par patient (borne e) ; le modèle n'offre ni vue ni fonction d'agrégat.
 
+**Boucle soin — deux registres (§19).** La boucle soin porte le soin *et* le soi : c'est
+le rapport du soi à lui-même, pas un axe posé à côté de la personne. L'ouvrir donne accès
+aux ressources du soin et du soi — les deux ensemble. Le soi n'est **pas** un axe séparé :
+pas de sixième boucle, pas de centre, mais une lecture DE la boucle soin. La géométrie ne
+matérialise qu'un axe soin ; le soi y vit en projection, comme sa doublure. L'empiètement du
+soin sur le soi est montré, jamais conclu (§19).
+
 ### 6.2 Propositions (immuables, datées)
 
 ```

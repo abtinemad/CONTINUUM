@@ -1227,6 +1227,16 @@ pas supprimée — elle change de main, de l'automatisme au clinicien. *(C'est p
 vigilance, retirée de la boucle, que la Vigie — §18 bis — reloge comme lecture : la boucle
 montre le volume, la Vigie dit sur- ou sous-investi, sur le soin jamais sur le patient.)*
 
+**Soi ⟷ Soin — le soin est le rapport à soi.** La boucle soin se nomme Soi ; un n qui respire
+doucement la fait lire tantôt Soi, tantôt Soin. Le soin n'est pas un axe posé à côté de la
+personne comme le travail ou la famille : c'est le rapport du soi à lui-même. L'ouvrir donne
+accès aux ressources du soin et du soi — les deux ensemble, parce qu'on ne soigne pas quelqu'un
+à côté de lui. Le n qui va et vient dit une chose vraie et dangereuse : le soin peut empiéter
+sur le soi (l'identité-patient qui déborde, la maladie qui colonise). Il est montré — le n
+respire — jamais conclu : jamais figé en verdict « tu es ton soin ». Cela ne déplace pas la
+personne au centre : elle reste la tresse entière (§19 tient) ; le soi ne s'installe pas hors
+des axes, il vit dans la boucle soin, comme sa doublure.
+
 **L'asymétrie est montrée, jamais conclue.** Taille = volume de récolte, jamais valeur de la
 personne : **gros ≠ « fort », mince ≠ « faible »**. Mince = angle mort à explorer, pas
 déficit. Sans cette règle, l'œil score sans le vouloir.
