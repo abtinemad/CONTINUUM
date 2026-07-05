@@ -309,11 +309,11 @@ n'insère jamais** (invariant 2) : la signature *est* l'acte de dépôt humain ;
 n'a fait qu'afficher un brouillon éphémère — même logique que le retypage (elle propose,
 l'humain dépose). Avant signature : rien en base. Après : le record.
 
-### 6.4 Le miroir de l'agent (Vigie ③ — privé, jamais agrégé)
+### 6.4 Le miroir de l'agent (Vigie — réflexif individuel privé, jamais agrégé)
 
 La trace de la rédaction — ce que la plume a proposé, ce que le soignant a **gardé, coupé
 ou reformulé** — est conservée pour **le soignant seul**, comme matière de réflexivité
-(§18 bis, échelle ③). C'est le seul résidu persistant du brouillon, et il n'appartient
+(§18 bis — le miroir de l'agent). C'est le seul résidu persistant du brouillon, et il n'appartient
 qu'à son auteur.
 
 ```
@@ -328,10 +328,10 @@ miroir_agent (
 
 Append-only comme le reste. **Portée strictement privée** : lisible par le seul
 `utilisateur_id` connecté — non par discrétion mais par **absence de chemin** (RLS
-stricte, aucune vue croisée, aucune fonction d'agrégat), comme le sanctuaire et le climat
-(§18 bis ①). Le **miroir institutionnel** est un **autre objet**, bâti sur les données
-cliniques du **dashboard** (§6.1), **jamais** sur l'aspiration des miroirs privés : les
-deux ne partagent aucune source.
+stricte, aucune vue croisée, aucune fonction d'agrégat), comme le sanctuaire et le **Lien**
+(§18 bis). Le **Lien** (§11) est un **autre objet**, agrégé anonyme, nourri par une lecture
+muette des écrits — **jamais** par l'aspiration des miroirs privés : le collectif et le privé
+ne partagent aucune source.
 
 Deux gardes non négociables :
 - **Réflexion, pas score.** Le miroir montre ce que tu as traversé ; il ne te note jamais
@@ -441,6 +441,11 @@ commodité :
    validation énoncé par énoncé (reconnaissance + surprise, coupe = masque), signature =
    dépôt `compte_rendu`. Le brouillon ne se stocke pas ; seule la trace du **miroir agent**
    (privée, §6.4) persiste.
-6. **Miroir institutionnel** — objet distinct, bâti sur les données cliniques du dashboard
-   (§6.1), jamais sur les miroirs privés. À concevoir à part, sous les gardes de la Vigie
-   (abstention d'issue, pas de surveillance des soignants).
+6. **Le Lien** (Vigie collective, §18 bis) — le nœud vu côté soignant : objet **agrégé
+   anonyme**, **deux lectures** (**affective** = climat / **réflexive**), lu à la maille de
+   l'**unité** (en v1). Appartenance **scellée** (non exposée au chemin de lecture générique) :
+   sans en être, impossible de lire. Nourri par une **lecture muette** des écrits (projections
+   §6.1 : affect + posture réflexive), **jamais** par les miroirs privés (§6.4). Les
+   **référents** (qui connaît un patient) sont un simple **repère dérivé** — lu de « qui a
+   déposé sur ce patient », jamais un champ assigné. Sans score, abstention d'issue ; les deux
+   lectures côte à côte, jamais un ratio.

@@ -969,30 +969,53 @@ influence) ; le **dépôt brut intouché** (elle lit autour, ne réécrit ni ne 
 l'**abstention d'issue** — elle ne mesure jamais le résultat du soin sur le patient (ce serait
 le score-verdict qu'elle existe pour refuser). Elle mesure notre trace, pas l'issue.
 
-### Les trois échelles
+### Les objets de la Vigie
 
-Un seul objet, trois échelles, délibérément non reliées entre elles.
+La Vigie regarde le soin depuis **deux surfaces** — le **Lien** (côté soignant, collectif) et
+le **patient** (surface §19) —, plus un **miroir privé** pour le soignant.
 
-**① Le climat.** Le pendant collectif : une météo affective agrégée, anonyme, de ceux qui
-déposent. Métadonnée seule, jamais de contenu. **Visibilité = participation** : qui dépose
-voit, qui n'utilise pas ne voit rien — et *aucune vue institutionnelle n'existe*, pas cachée
-mais inexistante, comme le sanctuaire est protégé par l'absence d'un chemin et non par un
-réglage. La hiérarchie est verrouillée dehors par construction : rien à surveiller d'en haut.
-Les noms des affects restent chiffrés tant qu'on ne les a pas traversés. *Décrypter, pas
-surveiller.* Le climat dit une chose : tu n'es pas seul.
+**Le Lien.** Le nœud du patient (§19) vu de l'autre côté : là où le patient voit *le
+problème*, le soignant voit *les liens qu'il peut tisser pour l'aider à desserrer le nœud*.
+C'est le pendant collectif — **anonyme et agrégé** à la maille de l'unité, hérité du *climat
+institutionnel* (Oury) —, lu sur **deux registres** :
+- **affectif — le climat** : la météo de l'équipe, comment on va ;
+- **réflexif** : la posture collective, sur-agit-on, se fige-t-on.
 
-**② Le patient.** La surface vive obéit à l'ontologie du §19 : elle montre **notre trace** —
-le volume de récolte, la taille des boucles, l'endroit où l'on s'arrête — et **ne nomme jamais
+Et un simple **repère** y vit : les **référents** — qui connaît un patient, pour se tourner
+vers la bonne personne vite. Il **émerge** des dépôts (celui qui écrit plusieurs fois sur un
+patient en devient un), jamais assigné d'en haut ; on le **montre**, on ne le mesure pas.
+
+**Son étanchéité.** Le Lien ne se lit jamais d'en haut : on ne le lit **qu'en étant dedans**
+(la maille de l'unité, en v1). L'appartenance est **scellée par construction**, non exposée au
+chemin de lecture générique : sans en être, impossible de lire. C'est le sanctuaire transposé
+au collectif — **protégé par l'absence de chemin, pas par un réglage**. *Visibilité =
+participation* : qui dépose voit, qui n'utilise pas ne voit rien. Les noms restent chiffrés
+tant qu'on ne les a pas traversés. *Décrypter, pas surveiller.*
+
+**L'affectif individuel n'est pas un objet.** Pas de carnet d'humeur à tenir — ce serait une
+action de plus, l'inverse de la Vigie. L'affect du soignant est lu **en silence** dans ce
+qu'il écrit déjà (une projection, §6.1), qui ne sert qu'à nourrir le **climat** anonyme et ne
+lui rend **jamais** un verdict : la couche qui mesure ne fait jamais face au soignant. Mesure
+auto-effaçante intacte.
+
+**Le miroir de l'agent** — le réflexif individuel, **privé**. La trace de ce que le soignant a
+gardé, coupé, reformulé (§6.4), lisible par lui seul (absence de chemin) : réflexion, jamais
+score. Il **ne se déverse jamais dans le Lien** — le collectif se bâtit sur la lecture muette
+des écrits, pas sur l'aspiration des miroirs privés. Et il ne va pas seul : miroir privé et
+Lien sont un **couple** — la réflexivité solitaire isole, le collectif re-horizontalise.
+
+**Le patient.** La surface vive obéit à l'ontologie du §19 : elle montre **notre trace** — le
+volume de récolte, la taille des boucles, l'endroit où l'on s'arrête — et **ne nomme jamais
 l'intérieur** du patient. Surinvesti / sous-investi est un énoncé sur *le soin*, pas sur le
-patient : la Vigie nomme *notre* posture, où l'on a mis le poids, où l'on a laissé un creux ;
-la boucle montre le volume, la Vigie lit la posture, ni l'une ni l'autre ne nomme le patient.
-Le jugement clinique reste entièrement humain. *(La branche compte rendu, ci-dessous, est le
-seul endroit où la machine lit le sens — sous signature.)*
+patient. Le jugement clinique reste entièrement humain. *(La branche compte rendu, ci-dessous,
+est le seul endroit où la machine lit le sens — sous signature.)*
 
-**③ L'agent.** Un miroir privé, hors hiérarchie, pour le soignant seul. Ici le lecteur est le
-traversé : le chiffrement phénoménologique s'applique entier. Et il ne va jamais seul — il est
-**couplé au climat** : la réflexivité solitaire isole, désenchante, paralyse ; le collectif
-re-horizontalise. Le miroir et le climat sont un couple obligé, pas une commodité.
+**L'intrication.** L'affectif et le réflexif se touchent — une équipe à cran déborde sur le
+soin, une équipe apaisée essaime sa sérénité. Mais *que* les deux se touchent est une vérité
+**à porter par l'humain**, jamais à calculer : tirer la flèche « service à cran donc mauvais
+soin » scorerait l'équipe *et* mesurerait l'issue d'un coup — les deux interdits ensemble. Les
+deux registres se lisent **côte à côte**, jamais fondus en un ratio. Comme l'intrication de la
+grille (§2).
 
 ### La branche compte rendu (échelle patient — ouverte)
 
@@ -1032,7 +1055,10 @@ cadre ; les tenir vivants est le travail.
 
 - Pas de score sur l'état mental du patient.
 - Pas de mesure d'efficacité ou d'issue du soin.
-- Pas de vue institutionnelle, pas de tableau de bord sur les soignants.
+- Pas de **surplomb** : aucune vue qui lise un climat d'en haut, identifie un soignant ou le
+  note. Le Lien n'en est pas un — scellé, anonyme, sans score, lu du dedans
+  seulement : structurellement incapable de surveiller. L'interdit vise le surplomb, jamais le
+  miroir horizontal qu'on rejoint.
 - Elle ne nomme jamais l'intérieur à la place de qui que ce soit.
 
 ---
@@ -1063,6 +1089,19 @@ geste :
   desserrer et faire glisser le nœud un peu plus loin ».
 
 Le logo fait commettre au spectateur l'erreur d'Alexandre, puis la lui fait dépasser.
+
+### Le lien préexiste — révélation, jamais guérison
+
+La bascule du logo bistable — regard court « un nœud », regard long « c'est un lien » — est un
+déplacement du **regard**, pas un changement d'**état** du patient. Le lien ne se fabrique pas :
+il **préexiste**, le regard long le révèle (*à la base c'était un lien qu'on voyait comme un
+nœud*). *Nouer = transformer = vivant* veut dire transformer un nœud en un **autre** nœud — le
+nouage qui continue —, **jamais** dénouer : un nœud qui « se dénoue » serait *résolu = fini =
+une issue*, exactement la mesure que la Vigie mure (§18 bis, abstention d'issue). Le même
+interdit, remonté jusque dans la géométrie : le logo **montre sans conclure** dans sa forme
+même. **Révélation, jamais guérison.** Et ce fil, vu côté soignant, c'est le **Lien** (§18 bis) : le nœud sous un autre angle
+— non plus *le problème* du patient, mais *les liens que le soignant peut tisser* pour l'aider
+à desserrer le nœud.
 
 ### Le logotype à substitution — le nom se transforme sans se mutiler
 
@@ -1449,10 +1488,15 @@ pas par la couleur — §ci-dessus).
 - **La Vigie** (§18 bis) — instrument de **réflexivité institutionnelle** contre la
   surpsychiatrisation : surveille **le soin et le soignant, jamais le sujet** (réflexivité, pas
   diagnostic). Nom **scellé** (*vigilance ≠ surveillance*). Restaure l'**arrêt réflexif** que
-  le sur-agir détruit. **Trois échelles** non reliées — **climat** (météo affective anonyme,
-  *visibilité = participation*, aucune vue institutionnelle **n'existe**), **patient**
-  (ontologie §19 ; surinvesti/sous-investi = énoncé sur *le soin*, jamais sur le patient),
-  **agent** (miroir privé, **couplé au climat** obligatoirement). **Deux mécanismes** :
+  le sur-agir détruit. **Le Lien** (côté soignant, collectif) = le nœud vu de l'autre côté ; **anonyme, agrégé**
+  à la maille de l'unité (lu du dedans, protégé par l'absence de chemin ; *visibilité =
+  participation*). Deux lectures : **affective** (*le climat* : comment on va) et **réflexive**
+  (comment on tient le soin). Un repère : les **référents** (qui connaît un patient — émerge
+  des dépôts, jamais assigné ; montré, pas mesuré). **Affectif individuel** = **lecture
+  muette** (projection §6.1), pas un carnet d'humeur. **Miroir de l'agent** = réflexif
+  individuel privé, **couplé au Lien**, ne s'y déverse jamais. **Patient** : ontologie §19
+  (surinvesti/sous-investi = énoncé sur *le soin*, jamais sur le patient). **Intrication**
+  affectif↔réflexif : deux lectures côte à côte, **jamais un ratio**. **Deux mécanismes** :
   séparation des rôles (score muré, jamais verdict) + chiffrement phénoménologique (montre la
   lumière, ne nomme pas à la place). **Invariants** : mesure auto-effaçante, dépôt brut
   intouché, **abstention d'issue** (jamais de mesure d'efficacité). **Deux dérives**
