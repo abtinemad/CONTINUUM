@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CONTINUUM — le fil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600&family=IBM+Plex+Sans:wght@400;600&family=Inter:wght@400;600&family=Nunito:wght@400;600;700&family=Spectral:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#E9ECEF; --ink:#15191E; --red:#8E1C2B; --ink-soft:#565E66; --ink-faint:rgba(21,25,30,.14);
@@ -14,6 +17,7 @@
     /* la lettre obéit au fil : linéale humaniste monolinéaire à bouts ronds, épaisseur ≈ celle du nœud.
        Le serif modulait et contredisait le monolinéaire — abandonné. Proxy système en attendant la police-fil. */
     --wordface:"Nunito","Quicksand","Avenir Next","Avenir","Century Gothic","Futura","Trebuchet MS",system-ui,sans-serif;
+    --labelface:var(--wordface);   /* police des labels (togglable dans l'atelier) */
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
@@ -24,7 +28,8 @@
   #fil{stroke:var(--ink);fill:none}
   #filR{fill:var(--ink);stroke:var(--ink);stroke-width:.7;stroke-linejoin:round}
   #pt{fill:var(--red)}
-  #labels text{fill:var(--ink-soft);font-family:var(--mono)}
+  #labels text{fill:var(--ink-soft);font-family:var(--labelface,var(--wordface));font-weight:700}
+  .atelier select{font-family:var(--mono);font-size:11px;color:var(--ink-soft);background:transparent;border:1px solid var(--ink-faint);border-radius:6px;padding:4px 7px;cursor:pointer}
   #gk svg,.gkbox svg,.pfbox svg{width:100%;height:100%;overflow:visible;display:block}
 
   .wrap{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:5vh 6vw 4vh}
@@ -81,6 +86,7 @@
   .atelier input[type=range]{width:104px;accent-color:var(--ink)}
   .atelier output{min-width:3.4ch;color:var(--ink);font-family:var(--mono);font-size:11px}
   .atelier output.sw{min-width:15px;width:15px;height:15px;border-radius:3px;border:1px solid var(--ink-faint);padding:0}
+  .atelier output.cnum{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);min-width:20px;padding:0 0 0 4px}
   .arow.plumeOnly.off{opacity:.35;pointer-events:none}
   .ghost{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;background:transparent;border:1px solid var(--ink);color:var(--ink);padding:9px 14px;border-radius:2px;cursor:pointer;transition:background .25s,color .25s}
   .ghost:hover{background:var(--ink);color:var(--paper)}
@@ -131,7 +137,6 @@
           <clipPath id="ptClip"><circle id="ptClipC" r="0"/></clipPath>
         </defs>
         <g id="grp">
-          <g id="labels" font-size="12.5" letter-spacing="1" opacity="0"></g>
           <g mask="url(#cut)">
             <path id="fil" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
             <path id="filR" style="display:none"/>
@@ -139,9 +144,11 @@
           <g id="overs"></g>
           <circle id="ptHalo" fill="#E9ECEF"/>
           <circle id="pt" r="8.5"/>
+          <ellipse id="ptIris" fill="#FFFFFF" pointer-events="none" opacity="0" clip-path="url(#ptClip)"/>
           <ellipse id="ptPup" fill="#15191E" pointer-events="none" clip-path="url(#ptClip)"/>
           <circle id="ptCatch" fill="#F4F1EC" pointer-events="none" opacity="0" clip-path="url(#ptClip)"/>
         </g>
+        <g id="labels" font-size="10" letter-spacing="0" opacity="0"></g>
       </svg>
       <div class="switch" id="switch">
         <button data-s="0" class="on">Interface</button>
@@ -156,34 +163,37 @@
         <div class="arow">
           <span class="alab">plume</span>
           <div class="switch mini" id="swPlume">
-            <button data-v="0" class="on">constante</button>
-            <button data-v="1">vivante</button>
+            <button data-v="0">constante</button>
+            <button data-v="1" class="on">vivante</button>
           </div>
         </div>
         <div class="arow">
           <label>épaisseur fixe <input type="range" id="rW" min="6" max="16" step="0.5" value="12"><output id="oW">12</output></label>
-          <label>réserve <input type="range" id="rG" min="0" max="4" step="0.1" value="1.8"><output id="oG">1.8</output></label>
+          <label>réserve <input type="range" id="rG" min="0" max="4" step="0.1" value="1.5"><output id="oG">1.5</output></label>
         </div>
         <div class="arow">
           <label>données (patient) <input type="range" id="rD" min="0" max="100" step="1" value="50"><output id="oD">10.0</output></label>
         </div>
         <div class="arow">
-          <label>point <input type="range" id="rP" min="0.8" max="2.8" step="0.1" value="2.1"><output id="oP">2.1</output></label>
-          <span class="alab">regard</span>
-          <div class="switch mini" id="swTex">
-            <button data-v="0">plat</button>
-            <button data-v="1" class="on">pupille</button>
-          </div>
+          <label>point <input type="range" id="rP" min="0.8" max="2.8" step="0.1" value="2.5"><output id="oP">2.5</output></label>
+          <label>iris <input type="range" id="rIris" min="0" max="8" step="0.5" value="0.5"><output id="oIris">0.5</output></label>
         </div>
         <div class="arow">
-          <label>rouge <input type="range" id="rR" min="0" max="100" step="1" value="33"><output id="oR" class="sw"></output></label>
-          <label>encre <input type="range" id="rI" min="0" max="100" step="1" value="25"><output id="oI" class="sw"></output></label>
+          <label>rouge <input type="range" id="rR" min="0" max="100" step="1" value="85"><output id="oR" class="sw"></output><output id="oRn" class="cnum">85</output></label>
+          <label>encre <input type="range" id="rI" min="0" max="100" step="1" value="36"><output id="oI" class="sw"></output><output id="oIn" class="cnum">36</output></label>
         </div>
         <div class="arow">
           <label>bec <input type="range" id="rB" min="0" max="360" step="5" value="225"><output id="oB">225°</output></label>
         </div>
-        <div class="arow plumeOnly off" id="rowPlume">
-          <label>contraste <input type="range" id="rC" min="1" max="3" step="0.05" value="2.00"><output id="oC">2.00</output></label>
+        <div class="arow plumeOnly" id="rowPlume">
+          <label>contraste <input type="range" id="rC" min="1" max="3" step="0.05" value="2.50"><output id="oC">2.50</output></label>
+        </div>
+        <div class="arow">
+          <span class="alab">police&nbsp;labels</span>
+          <select id="fontSel">
+            <option data-face='"Nunito","Quicksand",system-ui,sans-serif' selected>Nunito (ronde · la nôtre)</option>
+            <option data-face='"Spectral",Georgia,serif'>Spectral (serif douce)</option>
+          </select>
         </div>
         <div class="arow">
           <button class="ghost" id="freeze" title="Exporte l'état-clé le plus proche, sans respiration ni balancement.">figer l'état → svg</button>
@@ -221,8 +231,8 @@
           <p class="rtag">Patient · 5 boucles</p>
           <h2>Les cinq axes de vie.</h2>
           <p>Familial, amoureux, ami, travail, soin. Toujours les cinq — chaque boucle nouée à sa base, jamais supprimée.</p>
-          <p>Le point rouge se <span class="r">pose</span> sur le nœud d'une boucle quand tu la tiens : il ouvre les données qui la densifient. Il flotte tant que rien ne l'appelle.</p>
-          <div class="note"><b>densité</b> = taille de la boucle · <b>tension</b> = desserrer / resserrer. Le soin ne se distingue pas par la couleur, mais parce qu'il est calculé, pas déposé.</div>
+          <p>Le point rouge se <span class="r">pose</span> sur le nœud d'une boucle quand tu la tiens : il ouvre les données qui la densifient. Il flotte tant que rien ne l'appelle. Posé, son regard s'ouvre par moments vers la plus petite boucle — l'angle mort qu'on n'a pas encore exploré : il élargit, il ne détourne pas.</p>
+          <div class="note"><b>taille de boucle</b> = le volume de ce qu'on a récolté sur cet axe (descriptif, jamais un poids). <b>Épaisseur du fil</b> = ce qu'on sait d'elle — notre récolte, pas ce qu'elle vaut. La boucle <b>soin</b> est une boucle de données comme les autres : même trait, pas de calcul à part.</div>
         </div>
       </div>
     </div>
@@ -246,7 +256,7 @@
 
   /*==CORE==*/
   var CX=210, CY=210, N=440, TAU=Math.PI*2;
-  var INK="#15191E", RED="#8E1C2B";
+  var INK="#1F222A", RED="#AD333F";   // base encre@36 / rouge@85 (rampes) — resynchro à l'init
   // --- couleurs réglables à l'œil, mais SUR UNE RAMPE contrainte (la cohérence est tenue) ---
   // rouge : uniquement le sacré (profond, saturé — jamais corail ni alarme). encre : uniquement la température (reste quasi-noire).
   var RED_STOPS=["#781A28","#8E1C2B","#A62A38","#B23A44"], INK_STOPS=["#0E1014","#15191E","#2A2F38","#474D57","#6A6F79"];
@@ -381,7 +391,7 @@
   function lobeCount(s){ return nodesAt(s).length; }
 
   // ==== TRACÉ — réglages de l'atelier ====
-  var SET={ plume:false, w:12, gap:1.8, contrast:2.0, nib:225*Math.PI/180, ptr:1.3, ptex:true };
+  var SET={ plume:true, w:12, gap:1.5, contrast:2.5, nib:225*Math.PI/180, ptr:1.3, ptex:true };
   var POOL=20; // patchs dessus-dessous simultanés (transitoires de morphose compris)
 
   // repère mobile : normales unitaires + angle de tangente (courbe fermée)
@@ -609,9 +619,36 @@
   var frames=[].slice.call(document.querySelectorAll(".frame"));
   var NS="http://www.w3.org/2000/svg";
 
-  var LAB=["familial","amoureux","ami","travail","soin"], labelNodes=[];
-  for(var k0=0;k0<5;k0++){ var tx=document.createElementNS(NS,"text");
-    tx.textContent=LAB[k0]; tx.setAttribute("text-anchor","middle"); labels.appendChild(tx); labelNodes.push(tx); }
+  var LAB=["Familiale","Sociale","Professionnelle","Amoureuse","Soi"];
+  var labelNodes=[], labelPaths=[], labelTP=[], soinN=null, _pet=null;
+  function petals(){                                   // 5 pétales (creux de rayon) + rang horaire depuis le haut — géométrie fixe, calculé une fois
+    if(_pet) return _pet;
+    var Q=KF[2], n=Q.length, R=[], rmn=1e9, rmx=-1e9, i;
+    for(i=0;i<n;i++){ var r=Math.hypot(Q[i][0]-CX,Q[i][1]-CY); R.push(r); if(r<rmn)rmn=r; if(r>rmx)rmx=r; }
+    var thr=rmn+(rmx-rmn)*0.45, sep=[];
+    for(i=0;i<n;i++){ var a=R[(i-1+n)%n], b=R[i], c=R[(i+1)%n]; if(b<=a && b<=c && b<thr) sep.push(i); }
+    var ang=[], tipAt=[];
+    for(var k=0;k<sep.length;k++){ var i0=sep[k], i1=sep[(k+1)%sep.length], tr=-1, tip=Q[i0], kk=i0, g=0, step=0, ts=0;
+      do{ if(R[kk]>tr){tr=R[kk];tip=Q[kk];ts=step;} kk=(kk+1)%n; step++; }while(kk!==i1 && ++g<n);
+      tipAt[k]=ts;
+      var aa=Math.atan2(tip[1]-CY,tip[0]-CX)+Math.PI/2; while(aa<0)aa+=2*Math.PI; while(aa>=2*Math.PI)aa-=2*Math.PI;
+      ang.push({k:k,a:aa}); }
+    var srt=ang.slice().sort(function(A,B){return A.a-B.a;}), rank=[];
+    for(var s=0;s<srt.length;s++) rank[srt[s].k]=s;
+    _pet={sep:sep, rank:rank, tipAt:tipAt}; return _pet;
+  }
+  var PET=petals();
+  for(var k0=0;k0<PET.sep.length;k0++){
+    var rnk=PET.rank[k0], li=(rnk-2+5)%5, word=LAB[li];
+    var pth=document.createElementNS(NS,"path"); pth.setAttribute("id","lpath"+k0); pth.setAttribute("fill","none"); pth.setAttribute("stroke","none");
+    labels.appendChild(pth); labelPaths.push(pth);
+    var tx=document.createElementNS(NS,"text"); tx.setAttribute("text-anchor","middle");
+    var tp=document.createElementNS(NS,"textPath"); tp.setAttribute("href","#lpath"+k0);
+    tp.setAttributeNS("http://www.w3.org/1999/xlink","xlink:href","#lpath"+k0);
+    if(li===4){ tp.appendChild(document.createTextNode("Soi")); var _nn=document.createElementNS(NS,"tspan"); _nn.textContent="n"; _nn.setAttribute("id","soinN"); _nn.setAttribute("fill",RED); tp.appendChild(_nn); soinN=_nn; }
+    else tp.appendChild(document.createTextNode(word));
+    tx.appendChild(tp); labels.appendChild(tx); labelNodes.push(tx); labelTP.push(tp);
+  }
 
   // pool de patchs dessus-dessous (trous dans le masque + brins de dessus)
   var holeEls=[], inkEls=[];
@@ -672,14 +709,24 @@
     for(var i=0;i<eps.length;i++) eps[i].innerHTML = sceneSVG(KF[0], KN[0][0], 1, "e"+eps[i].dataset.e, 8.5);
     refreshPoint();
   }
-  var ptRad=8.5, pupR=3, blinkStart=-99, blinkDur=0.3, nextBlink=2.5;
-  var wFixed=12, wData=10, EYE=2.1, eyeK=1, clickPulse=0; // épaisseur fixe / données ; œil neutre + dynamique
+  var ptRad=8.5, pupR=3, blinkStart=-99, blinkDur=0.3, nextBlink=2.5, pupFade=1;
+  var wFixed=12, wData=10, EYE=2.5, eyeK=1, clickPulse=0; // épaisseur fixe / données ; œil neutre + dynamique
+  var irisThick=0.5, eyeX=0, eyeY=0, eyePlaced=false;   // iris (socle 0.5, figé) ; position lissée de l'œil (anti-téléportation)
+  var flipping=false, flipStart=0, flipDur=1.7, flipAxis=0, inspFade=0, lastInter=0, IDLE_IN=14;  // retournement (2 tours) + inspection (boucle tenue) + horloge d'inactivite
+
+  // §19 v2 — GARDIEN DE L'ANGLE MORT : la plus petite boucle restée (hors celle qu'on tient),
+  // = le moins-documenté. Lit la taille de lobe (ASYM[5].s), jamais un état de la personne.
+  function angleMort(held){
+    var sf=(typeof ASYM!=='undefined' && ASYM[5] && ASYM[5].s) || [1,1,1,1,1], b=-1, bv=1e9;
+    for(var i=0;i<sf.length;i++){ if(i===held) continue; if(sf[i]<bv){ bv=sf[i]; b=i; } }
+    return b;
+  }
   var gx=0, gy=0, aimScreen=3.927, cursorAngle=3.927, pointerActive=false, nibBase=225*Math.PI/180, spinDeg=0, reflBase=3.93;
   function refreshPoint(){
     var r=8.5*EYE; ptRad=r; pupR=r*0.36;
     pt.setAttribute("r", r.toFixed(2));
     pt.setAttribute("fill", SET.ptex ? "url(#ptSphere)" : RED);
-    ptHalo.setAttribute("r", (r*1.10).toFixed(2)); // filet papier : sépare l'œil du fil
+    ptHalo.setAttribute("r", (r*1.06).toFixed(2)); // filet papier : sépare l'œil du fil
     ptHalo.setAttribute("fill", "#E9ECEF");
     ptPup.setAttribute("fill", INK);
     ptPup.setAttribute("opacity", SET.ptex ? "1" : "0"); // plat = pas de pupille
@@ -743,53 +790,132 @@
 
     // regard : cible = curseur (converti en repère local) si pointeur, sinon dérive autonome
     var gtx, gty;
-    if(pointerActive && SET.ptex){ var la=cursorAngle-spinRad; gtx=Math.cos(la)*0.62; gty=Math.sin(la)*0.62; }
-    else { gtx=0.60*Math.sin(T*0.6); gty=0.48*Math.sin(T*0.44+1.2); }
+    // L'œil ne suit PAS la souris (vue patient) : il fait son travail — dérive autonome + angle mort.
+    gtx=0.60*Math.sin(T*0.6); gty=0.48*Math.sin(T*0.44+1.2);
+    // Posé sur une boucle (concentration) → le regard s'ouvre par moments vers l'angle mort.
+    // Le corps ne bouge pas ; seul le regard dérive, puis revient. Élargir, jamais détourner.
+    if(ptParked!==null && SET.ptex){
+      var _am=angleMort(ptParked);
+      if(_am>=0){
+        var _nd=nodesic(), _an=_nd[_am], _p0=_nd[ptParked];
+        var _da=Math.atan2(_an[1]-_p0[1], _an[0]-_p0[0]);
+        var _g=Math.sin(T*0.5); _g = _g>0 ? _g*_g*_g : 0;        // coup d'œil bref, récurrent (~13 s), doux
+        var _amp=0.5*_g;
+        gtx = gtx*(1-_g) + Math.cos(_da)*_amp;
+        gty = gty*(1-_g) + Math.sin(_da)*_amp;
+      }
+    }
     var ek=reduce?1:0.08; gx+=(gtx-gx)*ek; gy+=(gty-gy)*ek;
 
-    var P=redXY();
-    ptHalo.setAttribute("cx",P[0].toFixed(1)); ptHalo.setAttribute("cy",P[1].toFixed(1)); ptHalo.setAttribute("r",(ptRad*1.10).toFixed(2));
+    var _tgt=redXY();
+    if(!eyePlaced){ eyeX=_tgt[0]; eyeY=_tgt[1]; eyePlaced=true; }
+    var _ke=reduce?1:0.14; eyeX+=(_tgt[0]-eyeX)*_ke; eyeY+=(_tgt[1]-eyeY)*_ke;
+    var P=[eyeX,eyeY];
+    ptHalo.setAttribute("cx",P[0].toFixed(1)); ptHalo.setAttribute("cy",P[1].toFixed(1)); ptHalo.setAttribute("r",(ptRad*1.06).toFixed(2));
     pt.setAttribute("cx",P[0].toFixed(1)); pt.setAttribute("cy",P[1].toFixed(1)); pt.setAttribute("r",ptRad.toFixed(2));
     ptClipC.setAttribute("cx",P[0].toFixed(1)); ptClipC.setAttribute("cy",P[1].toFixed(1)); ptClipC.setAttribute("r",ptRad.toFixed(2));
-    var bf=1, cxp=P[0], cyp=P[1], breath=1;
+    var bf=1, cxp=P[0], cyp=P[1], breath=1, rx=pupR, ry=pupR, pupAng=0, pupVis=true;
     if(SET.ptex && !reduce){
-      var rad2=gx*gx+gy*gy; if(rad2>0.9){ var kk=Math.sqrt(0.9/rad2); gx*=kk; gy*=kk; rad2=0.9; }
-      var gz=Math.sqrt(1-rad2);
+      // regard porté par un vecteur 3D (rgx,rgy,gzv). Trois états, distingués par le signe de gzv :
+      //  · repos (aucune boucle)  → gzv>0 : l'œil FAIT FACE à l'utilisateur (dérive douce). Vers l'intérieur seulement après longue inactivité.
+      //  · boucle tenue           → gzv<0 : l'œil regarde vers l'INTÉRIEUR de l'écran (le nœud, la boucle), effleurant les limbes.
+      //  · clic                   → deux tours de globe, puis bascule vers l'état ci-dessus.
+      var rgx=gx, rgy=gy, rad2=rgx*rgx+rgy*rgy;
+      if(rad2>0.9){ var kk=Math.sqrt(0.9/rad2); rgx*=kk; rgy*=kk; rad2=0.9; }
+      var gzv=Math.sqrt(1-rad2);                              // défaut : face à l'utilisateur
+      var idleFor=T-lastInter;                                // temps écoulé depuis la dernière interaction
+      var _ci=Math.atan2(P[1]-CY, P[0]-CX);                   // azimuth : de l'œil vers l'EXTÉRIEUR — vers la boucle tenue, pas le centre (repère local)
+      var wantInsp=(ptParked!==null && !flipping)?1:0;
+      inspFade += (wantInsp-inspFade)*0.03;
+      if(flipping){
+        var el=T-flipStart, ax=Math.cos(flipAxis), ay=Math.sin(flipAxis);
+        if(el<flipDur){                                      // DEUX tours propres (sens aléatoire) → l'œil traverse les limbes 4 fois
+          var fa=(el/flipDur)*4*Math.PI, planar=Math.sin(fa)*0.92;
+          rgx=planar*ax; rgy=planar*ay; gzv=Math.cos(fa);
+        } else {                                             // nystagmus post-rotatoire amorti (bien visible), puis l'inspection prend le relais vers l'intérieur
+          var st=el-flipDur;
+          if(st>=0.9){ flipping=false; }
+          else { var osc=Math.sin(st*20)*0.40*Math.exp(-st*4.5);
+                 rgx=gx+osc*ax; rgy=gy+osc*ay;
+                 var _r2=Math.min(0.9,rgx*rgx+rgy*rgy); gzv=Math.sqrt(1-_r2); }
+        }
+      } else if(inspFade>0.002){                             // BOUCLE TENUE : regard vers l'intérieur, balayant la boucle, effleurant le limbe puis passant derrière
+        var az=_ci+0.35*Math.sin(T*0.23);                    // léger balayage autour de la direction de la boucle
+        var _depth=0.30*Math.sin(T*0.31)+0.06;               // gzv cible ∈ [−0.24,+0.36] : pupille majoritairement AU LIMBE, pointée vers la boucle ; plonge derrière par intermittence
+        var _lat=Math.sqrt(Math.max(0,1-_depth*_depth));
+        rgx=rgx*(1-inspFade)+Math.cos(az)*_lat*inspFade;
+        rgy=rgy*(1-inspFade)+Math.sin(az)*_lat*inspFade;
+        gzv=gzv*(1-inspFade)+_depth*inspFade;
+      } else if(idleFor>IDLE_IN){                             // REPOS PROLONGÉ : l'œil s'autorise par moments à regarder vers l'intérieur, puis revient
+        var _ramp=Math.min(1,(idleFor-IDLE_IN)/6), _dv=Math.sin(T*0.11+2.0);
+        if(_dv>0.72){ var _dd=(_dv-0.72)/0.28*_ramp; gzv=gzv*(1-_dd)+(-0.9)*_dd; }
+      }
       breath=1+0.24*Math.sin(T*0.7);
       if(T>nextBlink){ blinkStart=T; nextBlink=T+2.2+Math.random()*3.6; }
       var bt=T-blinkStart;
       if(bt<blinkDur){ bf = bt<blinkDur*0.34 ? 1-bt/(blinkDur*0.34) : (bt-blinkDur*0.34)/(blinkDur*0.66); }
-      var rx=Math.max(0.01,pupR*breath*gz*bf), ry=Math.max(0.01,pupR*breath*bf);
-      cxp=P[0]+gx*ptRad; cyp=P[1]+gy*ptRad; var ang=Math.atan2(gy,gx)*180/Math.PI;
+      var _gl=Math.hypot(rgx,rgy,gzv)||1; rgx/=_gl; rgy/=_gl; gzv/=_gl;   // regard = point unitaire sur la sphère → projection exacte (toutes animations), jamais de coupe
+      pupVis = gzv>0.02;                                    // visible seulement sur la face avant
+      rx=Math.max(0.01,pupR*breath*Math.max(0,gzv)*bf); ry=Math.max(0.01,pupR*breath*bf);
+      var _pe=pupR*breath+irisThick+ptRad*0.16, _cosR=Math.sqrt(Math.max(0,1-(_pe/ptRad)*(_pe/ptRad)));   // rayon effectif = iris + marge PROPORTIONNELLE (ptRad*0.16) → gap constant quelle que soit la taille de l'oeil, aucune coupe au limbe
+      pupFade = (gzv>0)?1:0;                                                              // face avant visible / face arrière occultée par le globe — pas de fondu
+      cxp=P[0]+rgx*ptRad*_cosR; cyp=P[1]+rgy*ptRad*_cosR; pupAng=Math.atan2(rgy,rgx)*180/Math.PI;   // projection sphérique : le centre est tiré de cosρ → le bord effleure le limbe sans le franchir
       ptPup.setAttribute("cx",cxp.toFixed(1)); ptPup.setAttribute("cy",cyp.toFixed(1));
       ptPup.setAttribute("rx",rx.toFixed(2)); ptPup.setAttribute("ry",ry.toFixed(2));
-      ptPup.setAttribute("transform","rotate("+ang.toFixed(1)+" "+cxp.toFixed(1)+" "+cyp.toFixed(1)+")");
+      ptPup.setAttribute("transform","rotate("+pupAng.toFixed(1)+" "+cxp.toFixed(1)+" "+cyp.toFixed(1)+")");
+      ptPup.setAttribute("opacity", pupFade.toFixed(3));
     } else {
       ptPup.setAttribute("cx",P[0].toFixed(1)); ptPup.setAttribute("cy",P[1].toFixed(1));
       ptPup.setAttribute("rx",pupR.toFixed(2)); ptPup.setAttribute("ry",pupR.toFixed(2));
-      ptPup.setAttribute("transform","");
+      ptPup.setAttribute("transform",""); ptPup.setAttribute("opacity","1"); pupFade=1;
     }
-    // reflet : lumière PROPRE et fixe (extérieure) — ne suit ni la souris ni le bec. Reste fixe à
-    // l'écran même quand l'œil tourne ; c'est la pupille qui glisse dessous (couplage minime).
+    // iris (option) : anneau coloré SOUS la pupille, centré sur ELLE (synchronisé, il bouge avec la
+    // pupille), réglable (0 = invisible), clippé à l'œil.
+    if(SET.ptex && irisThick>0.05 && pupVis){
+      ptIris.setAttribute("cx",cxp.toFixed(1)); ptIris.setAttribute("cy",cyp.toFixed(1));
+      var _iro=Math.min(pupR*breath+irisThick, ptRad-0.6);                              // rayon de l'iris, borné au globe (curseur poussé au max)
+      ptIris.setAttribute("rx",Math.max(0.01,_iro*Math.max(0,gzv)*bf).toFixed(2)); ptIris.setAttribute("ry",Math.max(0.01,_iro*bf).toFixed(2));   // foreshortenée comme la pupille
+      ptIris.setAttribute("transform","rotate("+pupAng.toFixed(1)+" "+cxp.toFixed(1)+" "+cyp.toFixed(1)+")");
+      ptIris.setAttribute("opacity",pupFade.toFixed(3));
+    } else ptIris.setAttribute("opacity","0");
+    // reflet spéculaire : UNE seule source de lumière, imaginée dans la direction de la souris (ou de
+    // l'inclinaison du bec au repos). Le point brillant orbite vers la lumière sur la cornée — aucun
+    // mélange (donc aucun saut), aucun clignement. C'est de la lumière, pas du regard.
     if(SET.ptex){
-      var reflLight = reflBase + (reduce?0:0.14*Math.sin(T*0.09));
-      var la2 = reflLight - spinRad;
-      var glx=P[0]+Math.cos(la2)*ptRad*0.50+gx*ptRad*0.15, gly=P[1]+Math.sin(la2)*ptRad*0.50+gy*ptRad*0.15;
+      var _Ld = aimScreen - spinRad;                       // direction de la lumière, repère du globe (dans grp)
+      var _off = ptRad*0.52;                               // le highlight se pose vers la lumière, sur la cornée
+      var glx = P[0] + Math.cos(_Ld)*_off;
+      var gly = P[1] + Math.sin(_Ld)*_off;
       ptCatch.setAttribute("cx",glx.toFixed(1)); ptCatch.setAttribute("cy",gly.toFixed(1));
       ptCatch.setAttribute("r",(pupR*0.34).toFixed(2));
-      ptCatch.setAttribute("opacity",(0.95*bf).toFixed(2));
+      ptCatch.setAttribute("opacity","0.95");
     } else ptCatch.setAttribute("opacity","0");
 
     var lo=smooth((currentS-1.4)/0.5);
     labels.setAttribute("opacity", lo.toFixed(3));
     if(lo>0.02){
-      var nd=nodesic();
-      for(var q=0;q<5 && q<nd.length;q++){
-        var x=nd[q][0], y=nd[q][1], dx=x-CX, dy=y-CY, L=Math.sqrt(dx*dx+dy*dy)||1;
-        var lx=(x+dx/L*30), ly=(y+dy/L*30+4);
-        labelNodes[q].setAttribute("x",lx.toFixed(1));
-        labelNodes[q].setAttribute("y",ly.toFixed(1));
-        labelNodes[q].setAttribute("transform","rotate("+(-spinDeg).toFixed(2)+" "+lx.toFixed(1)+" "+ly.toFixed(1)+")");
+      var PET=petals(), lp=livePts(), n=lp.length, INSET=13;    // labels rentrés vers le cœur (hors du fil)
+      var sr=spinDeg*Math.PI/180, cs=Math.cos(sr), sn=Math.sin(sr);
+      for(var k=0;k<PET.sep.length;k++){
+        var i0=PET.sep[k], i1=PET.sep[(k+1)%PET.sep.length], AR=[], idx=i0, g=0, dx, dy, ex, ey, rr, kf;
+        do{ dx=lp[idx][0]-CX; dy=lp[idx][1]-CY; ex=CX+dx*cs-dy*sn; ey=CY+dx*sn+dy*cs;
+            rr=Math.hypot(ex-CX,ey-CY)||1; kf=(rr-INSET)/rr; AR.push([CX+(ex-CX)*kf, CY+(ey-CY)*kf]); idx=(idx+1)%n; }while(idx!==i1 && ++g<n);
+        dx=lp[i1][0]-CX; dy=lp[i1][1]-CY; ex=CX+dx*cs-dy*sn; ey=CY+dx*sn+dy*cs;
+        rr=Math.hypot(ex-CX,ey-CY)||1; kf=(rr-INSET)/rr; AR.push([CX+(ex-CX)*kf, CY+(ey-CY)*kf]);
+        // lissage 3 points : adoucit les cassures près du croisement (torsion abandonnée)
+        var SM=AR.slice(), a;
+        for(a=1;a<AR.length-1;a++) SM[a]=[(AR[a-1][0]+AR[a][0]+AR[a+1][0])/3,(AR[a-1][1]+AR[a][1]+AR[a+1][1])/3];
+        AR=SM;
+        var f=Math.min(PET.tipAt[k], AR.length-1);                            // ancré au bord le plus loin du centre (la pointe) — figé, suit le nœud sans coulisser
+        var d="M"+AR[0][0].toFixed(1)+" "+AR[0][1].toFixed(1), sofar=0;
+        for(a=1;a<AR.length;a++){ d+="L"+AR[a][0].toFixed(1)+" "+AR[a][1].toFixed(1);
+          if(a<=f) sofar+=Math.hypot(AR[a][0]-AR[a-1][0],AR[a][1]-AR[a-1][1]); }
+        labelPaths[k].setAttribute("d", d);
+        labelTP[k].setAttribute("startOffset", sofar.toFixed(1));
+      }
+      if(soinN){                                             // le "n" de Soin : respire calmement (Soi <-> Soin), en rouge
+        var _nf = reduce ? 1 : 0.5 + 0.5*Math.sin(T*0.7);    // respiration douce (~9 s)
+        soinN.setAttribute("opacity", _nf.toFixed(2));
       }
     }
 
@@ -802,17 +928,22 @@
   }
 
   function select(s){
-    targetS=s; ptParked=null;
+    targetS=s; ptParked=null; eyePlaced=false; lastInter=T;
     switchBtns.forEach(function(b){ b.classList.toggle("on",(+b.dataset.s)===s); });
     frames.forEach(function(f){ f.classList.toggle("on",(+f.dataset.f)===s); });
   }
   switchBtns.forEach(function(b){ b.addEventListener("click",function(){ select(+b.dataset.s); }); });
 
   knotSvg.addEventListener("click",function(e){
-    blinkStart=T; clickPulse=0.15; // clin d'œil + petit sursaut vivant quand on touche le regard
-    if(lobeCount(currentS)<5) return;
+    blinkStart=T; clickPulse=0.15; lastInter=T; // clin d'œil + petit sursaut vivant quand on touche le regard
+    if(!reduce){ flipping=true; flipStart=T; flipAxis=Math.random()*2*Math.PI; }   // le clic fait tournoyer l'œil (sens aléatoire) — TOUTES les vues
+    if(lobeCount(currentS)<5) return;            // seule la vue patient pose l'œil sur une boucle
     var r=knotSvg.getBoundingClientRect();
     var mx=(e.clientX-r.left)/r.width*420, my=(e.clientY-r.top)/r.height*420;
+    // le groupe est tourné de spinDeg : ramener le clic dans le repère des nœuds (dé-tourner de -spinRad)
+    var spinRad=spinDeg*Math.PI/180;
+    var _cc=Math.cos(-spinRad), _ss=Math.sin(-spinRad), _mdx=mx-CX, _mdy=my-CY;
+    mx=CX+_mdx*_cc-_mdy*_ss; my=CY+_mdx*_ss+_mdy*_cc;
     // nœud le plus proche du clic
     var nd=nodesic(), best=0, bd=1e9;
     for(var i=0;i<nd.length;i++){ var d=Math.hypot(nd[i][0]-mx,nd[i][1]-my); if(d<bd){bd=d;best=i;} }
@@ -822,7 +953,7 @@
   knotSvg.addEventListener("mousemove",function(e){
     var r=knotSvg.getBoundingClientRect();
     cursorAngle=Math.atan2(e.clientY-(r.top+r.height/2), e.clientX-(r.left+r.width/2));
-    pointerActive=true;
+    pointerActive=true; lastInter=T;
   });
   knotSvg.addEventListener("mouseleave",function(){ pointerActive=false; });
 
@@ -872,12 +1003,17 @@
   bindRange("rC","oC",function(v){ SET.contrast=v; },function(v){ return v.toFixed(2); });
   bindRange("rB","oB",function(v){ nibBase=v*Math.PI/180; },function(v){ return v+"°"; });
   bindRange("rP","oP",function(v){ EYE=v; refreshPoint(); },function(v){ return v.toFixed(1).replace(/\.0$/,""); });
-  bindSwitch("swTex","ptex");
+  bindRange("rIris","oIris",function(v){ irisThick=v; },function(v){ return v.toFixed(1).replace(/\.0$/,""); });
+  var fontSel=document.getElementById("fontSel");
+  if(fontSel){ fontSel.addEventListener("change",function(){
+    var o=fontSel.options[fontSel.selectedIndex];
+    document.documentElement.style.setProperty("--labelface", o.getAttribute("data-face"));
+  }); }
   // curseurs couleur (rampes contraintes)
   var oRsw=document.getElementById("oR"), oIsw=document.getElementById("oI");
-  document.getElementById("rR").addEventListener("input",function(){ setRed(this.value/100); oRsw.style.background=RED; });
-  document.getElementById("rI").addEventListener("input",function(){ setInk(this.value/100); oIsw.style.background=INK; });
-  applyRedGrad(); oRsw.style.background=RED; oIsw.style.background=INK;
+  document.getElementById("rR").addEventListener("input",function(){ setRed(this.value/100); oRsw.style.background=RED; document.getElementById("oRn").textContent=this.value; });
+  document.getElementById("rI").addEventListener("input",function(){ setInk(this.value/100); oIsw.style.background=INK; document.getElementById("oIn").textContent=this.value; });
+  setRed(0.85); setInk(0.36); oRsw.style.background=RED; oIsw.style.background=INK; document.getElementById("oRn").textContent="85"; document.getElementById("oIn").textContent="36";
 
   // figer l'état : export SVG canonique (état-clé le plus proche, sans respiration ni balancement)
   document.getElementById("freeze").addEventListener("click",function(){
