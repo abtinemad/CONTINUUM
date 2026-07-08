@@ -781,7 +781,8 @@
   var targetS=0, currentS=0, T=0, hop=0, ptParked=null;
   // DASHBOARD (Vigie) : l'œil entre dans une boucle (barycentre) et en ressort. Passage = franchir le fil, comme une corde à sauter.
   var dashLobe=-1, moveT=-9, moveFrom=[210,210], moveTo=[210,210], moveKind='over', moveDur=0.62; var eyeUnder=false;
-  var DASH_MODE=['compose','read','compose'];
+  var DASH_MODE=['compose','read','compose'];   // §19 : « deux lobes composent, un seul lit ». Le mode est la nature du lobe, non une humeur
+                                                 // de l'œil : la lentille est l'organe de la seule Vigilante (idx1), pas un réglage disponible partout.
   var SCOUT={size:0.66, posX:-0.20, posY:0.02, dur:0.7, oriMin:-1, oriMax:12, montRest:-2, flipFrom:50};
   var scoutT=-9, wasScouting=false;   // mode DANS le lobe (§19, bloc B) : composer / lire. read=Vigilante = la boucle À DROITE (la plus grande, idx de tri 1 ; le tri top→droite→gauche interdit droite ET idx 2). Entrer dans le lobe read → scrutin (scouter).
   // ---- OUDJAT (2-lobes) : clic sur un lobe -> l'oeil parcourt le fil (sens selon le cote) -> la monture se pose ----
