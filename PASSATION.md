@@ -4,6 +4,21 @@
 > **Socles permanents** (à lire avant de rouvrir un sujet) : mécanique du logo →
 > `passations/logo_mecanique.md`.
 
+## 2026-07-09 — Phase 0 : la DDL des quatre domaines (schéma **exécuté**)
+Le schéma cesse d'être un texte : il est monté sur un PostgreSQL 16 réel et prouvé par une suite
+d'impossibilités — **16 gestes, 16 TENU, `ROLLBACK`** (`db/run_db_test.sh`). Commits `f3bbf9f` (DDL +
+tests) et `a6779c8` (`schema.md` aligné). Le fond : les quatre domaines sont **quatre schémas**
+(`identite` / `recolte` / `depot` / `machine`) + un cinquième, `lecture`, où vivent les vues de la
+machine · **invariant 2 → absence** : le rôle machine n'a pas `USAGE` sur `depot`, le nom ne se résout
+pas (preuve : `denied for schema depot` au test 1 vs `denied for table depots` au test 3) · loi §0 n°4,
+**la clé se pose, l'attribut se corrige** → `patients`/`patients_identite`, `agents`/`agents_fiche` ·
+troisième cadre **`responsabilite_medicale`** et la coupe **signé / formulé** (la grille fermée au
+coordinateur aussi) · l'attribution à la racine, `auteur_id = agent_connecte()` par RLS (`SET LOCAL
+continuum.agent_id`, sinon la base refuse) · `ref_id` polymorphe **scindé**, `type_valide` sorti de la
+prose · **la seule garde de code** : l'app se connecte comme `soignant`/`machine`, jamais propriétaire ni
+superutilisateur. `CONTINUUM.md` **non touché** (le §10 reste faux : autre fil). Détail vérifié contre le
+dépôt, la DDL citée ligne à ligne, et le prochain geste (l'UI) → `passations/2026-07-09_phase0_ddl.md`.
+
 ## 2026-07-09 — la récolte, les guichets, le condensé (schéma tranché)
 Session d'accord, pas de conception : sept points épars de la doctrine ou du logo, un seul sujet — la
 récolte. `schema.md` patché (9 édits, `patch_schema_recolte.py`, dry-run par défaut, mis en stage —
