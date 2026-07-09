@@ -27,10 +27,21 @@ Trois lois dérivées :
    applique les corrections : le bruit de saisie se masque, reste auditable. En
    **dépôts** (domaine 2), la projection ne masque rien : chaque pli s'affiche — la
    coquille clinique n'existe pas, il n'y a que des états datés du regard.
-3. **Le sanctuaire est une absence de chemin, pas une permission.** Le rôle machine ne
-   possède pas `INSERT` sur le domaine des dépôts. La provenance est structurelle
-   (le domaine d'écriture), jamais un attribut de ligne — un champ `source` serait
-   falsifiable ; une absence de chemin ne l'est pas.
+3. **Le sanctuaire est une absence de chemin, pas une permission.** Le rôle machine
+   n'a pas `USAGE` sur le **schéma** des dépôts : il ne peut pas résoudre le nom de la
+   table. Ce n'est pas un `INSERT` refusé — c'est un guichet introuvable. Un droit
+   retiré se re-donne ; un chemin absent, non. La provenance est structurelle (le
+   domaine d'écriture), jamais un attribut de ligne — un champ `source` serait
+   falsifiable.
+   *Conséquence tenue en Phase 0 : les quatre domaines sont **quatre schémas**, et la
+   machine lit 0-1-2 par des vues (schéma `lecture`) non inscriptibles par construction.*
+4. **La clé se pose ; l'attribut se corrige.** Corriger, c'est insérer une ligne qui
+   référence la précédente : un attribut corrigible ne peut donc **pas** être une clé
+   primaire (deux lignes, un IPP). Toute entité mouvante se coupe en deux — la **clé
+   nue**, posée une fois, et la **fiche chaînée**, corrigible. Ce n'est pas une
+   commodité d'implémentation : c'est la loi §0 qui l'exige. Une chaîne, jamais un
+   arbre : on corrige la queue, jamais une version périmée — sans quoi « suivre la
+   queue » n'a plus de sens.
 
 ---
 
@@ -69,14 +80,26 @@ lecture). Le mot cru vit donc au **domaine 2**.
 ## 2. Domaine 0 — Identité (les extrémités)
 
 ```
-patients_identite (
-  ipp             text PRIMARY KEY,      -- la clé unique, non négociable (§15)
+patients (
+  ipp        text PRIMARY KEY,           -- la clé unique, non négociable (§15).
+  ouvert_le  timestamptz                 -- Donnée BRUTE : posée par le SIH, saisie ou
+)                                        -- importée. Jamais engendrée par l'outil.
+
+patients_identite (                      -- la fiche : mouvante, donc chaînée (loi 4)
+  id              uuid PRIMARY KEY,
+  ipp             text NOT NULL → patients,
   nom, prenom     text,
   date_naissance  date,
   secteur         text,
-  corrige_id      uuid NULL              -- mécanique de correction du domaine 1
+  corrige_id      uuid NULL,             -- → la ligne corrigée, même IPP (FK composite)
+  saisi_par       uuid → agents, saisi_le timestamptz
 )
 ```
+
+- Le nom se corrige ; **l'IPP, non** — tout le dossier y est accroché. Un IPP faux est un
+  dossier faux : cela se répare hors ligne, comme migration, jamais par un clic.
+- Deux index partiels tiennent la chaîne : une seule tête par IPP, et **une seule
+  correction par ligne corrigée** (chaîne, jamais fourche).
 
 - Tout le reste du système ne connaît **que l'IPP**. L'identité nominative se résout
   à l'affichage (saisie, sortie), jamais dans le moteur. Pseudonymisation par
@@ -127,8 +150,18 @@ projection**, comme le reste.
 parametres_patient (ipp, date_entree date, rythme_attendu_jours int, corrige_id, …)
 consentements      (ipp, partage_infos bool, visites bool, date, corrige_id)
 diagnostic_leger   (ipp, code text, libelle text, corrige_id)
-agents             (id, nom, fonction, medecin_coordinateur bool)   -- référentiel opérationnel
+
+agents       (id uuid PRIMARY KEY, cree_le)                    -- la clé nue, stable à jamais
+agents_fiche (id, agent_id → agents, nom, fonction,
+              medecin_coordinateur bool, corrige_id, saisi_le)  -- la fiche, chaînée
 ```
+
+- Même coupe qu'au domaine 0, et pour la même raison : `depots.auteur_id` doit pointer
+  vers un identifiant **qui ne bouge jamais**, alors que la fonction d'un agent change.
+  Un dépôt immuable ne peut pas référencer une ligne corrigible.
+- `medecin_coordinateur` est donc un **fait corrigible**. Le droit de fonction se lit à
+  la **queue** de la chaîne : le jour où quelqu'un d'autre coordonne, il coordonne — et le
+  précédent ne coordonne plus. Aucune ligne de code ne change.
 
 - `rythme_attendu_jours` paramètre le capteur (borne b, §15 : relatif au rythme, jamais
   absolu). Alimenté par `PATIENTS SEQUENTIELS` pour les NAP. Les nombres sont permis
@@ -155,20 +188,45 @@ formulation de la passation).
 
 ```
 depots (
-  id           uuid PRIMARY KEY,
-  ipp          text NOT NULL,
-  depose_le    timestamptz NOT NULL,
-  auteur_id    uuid NOT NULL,                 -- « datée ET attribuée » (§2)
-  cadre        text CHECK (cadre IN ('seul','synthese_collective')),   -- §10
-  nature       text NOT NULL,                 -- catalogue ci-dessous
-  champ_cible  text NULL,                     -- pour vide_info / gestation
-  position     text NULL,                     -- source du regard (voir catalogue)
-  facette      text NULL,                     -- demande : surface / reelle
-  acteur_id    uuid NULL,
-  ref_id       uuid NULL,                     -- dépôt révisé / levé, ou proposition validée
-  contenu      text                           -- prose ; NULL permis pour gestation seule
+  id                  uuid PRIMARY KEY,
+  ipp                 text NOT NULL,
+  depose_le           timestamptz NOT NULL,
+  auteur_id           uuid NOT NULL,          -- « datée ET attribuée » (§2)
+  cadre               text NOT NULL,          -- seul · synthese_collective ·
+                                              -- responsabilite_medicale (§10)
+  nature              text NOT NULL,          -- catalogue ci-dessous
+  champ_cible         text NULL,              -- pour vide_info / gestation
+  position            text NULL,              -- source du regard (voir catalogue)
+  facette             text NULL,              -- demande : surface / reelle
+  acteur_id           uuid NULL,
+  ref_depot_id        uuid NULL,              -- dépôt révisé ou levé   (domaine 2)
+  ref_nature          text NULL,              -- sa nature, forcée par FK composite
+  ref_proposition_id  uuid NULL,              -- proposition validée    (domaine 3)
+  type_valide         text NULL,              -- aigu · nap · chronique — jamais deviné
+  contenu             text                    -- prose ; NULL permis pour gestation seule
 )
 ```
+
+**Trois cadres, jamais trois grades.** Le cadre nomme **le moment**, pas la personne :
+`seul` (la voiture, le domicile) · `synthese_collective` (la salle, plusieurs regards en
+tension) · `responsabilite_medicale` (le coordinateur, seul, qui *répond*). L'exception du
+§10 cesse d'être une permission applicative — qui ne peut que restreindre, jamais accorder
+au-delà d'un `CHECK` — et s'inscrit **dans le record**, datée et visible : dans un an on
+saura d'un coup d'œil quelles lectures sont sorties d'une salle et lesquelles d'une seule
+tête. Le nouage reste reconnaissable.
+
+**`ref_id` était polymorphe** (« dépôt révisé / levé, **ou** proposition validée ») : deux
+tables, deux domaines, une colonne — donc aucune FK, donc un uuid nu, donc un champ
+falsifiable, ce que la loi 3 bannit. Scindé. `ref_nature` est **dénormalisée mais non
+falsifiable** (FK composite `(ref_depot_id, ipp, ref_nature) → (id, ipp, nature)`) : elle
+achète en structure trois gardes qui seraient sinon du code — *une levée ne lève qu'une
+hypothèse, une inquiétude ou une gestation* ; *une révision révise le même registre* ; et
+*« `ref_id` obligatoire sauf premier typage »* devient un index unique partiel, au lieu
+d'un « premier » que nul ne sait définir en SQL.
+
+**`type_valide` sort de la prose.** Rangé dans le `contenu`, la projection `type_courant`
+obligerait la machine à **lire la phrase** — la comparaison sémantique sur la surface vive
+que §4 (d) rejette. Ce n'est pas un nombre : c'est une valeur qu'un humain a déposée.
 
 **Colonnes : du texte, des dates, des références. Rien d'autre.** Aucune colonne
 numérique n'existe sur un dépôt (invariant contresigné) : pas de score, pas de poids,
@@ -187,7 +245,7 @@ demander **aucune validation** au soignant.
 |---|---|---|---|---|
 | `observation` | **le mot cru** — registre propre, ni sanctuaire ni traversée | — (le rangement est une projection, §6.1) | prose libre : ce qui a été vu, entendu, rapporté. **Entière, jamais découpée** — le découpage se recalcule à côté d'elle. Souvent projective, souvent fausse — et c'est du **signal** : le mot cru parle de qui regarde autant que de qui est regardé (§1). **Jamais promue en lecture** | déposée **seul** (`cadre = 'seul'`) ; le terme est celui de l'hôpital : *les observations permettent de formuler une situation*. **Reformulable avec sa source, jamais fondue** (invariant 18) |
 | `situation` | traversée | — | prose : le réel brut, cité, non lissé — **formulée**, non récoltée | |
-| `lecture_clinique` | **SANCTUAIRE** | position **obligatoire** ∈ `medecin · equipe · entourage · structure` (source-agnostique, §4) | prose : **le mécanisme qui traverse, jamais l'étiquette** ; registre hypothétique, tenu, daté | `ref_id` = lecture révisée (chaîne visible) |
+| `lecture_clinique` | **SANCTUAIRE** | position **obligatoire** ∈ `medecin · equipe · entourage · structure` (source-agnostique, §4) | prose : **le mécanisme qui traverse, jamais l'étiquette** ; registre hypothétique, tenu, daté | `ref_depot_id` = lecture révisée (chaîne visible) ; se dépose en `synthese_collective`, ou en `responsabilite_medicale` par le seul coordinateur |
 | `hypothese` | **SANCTUAIRE** | — | prose | `ref_id` = hypothèse révisée ; se lève par `levee` |
 | `ressenti` | traversée | position **obligatoire** ∈ `patient · equipe · entourage` (trois positions, jamais fusionnées) | prose | |
 | `demande` | traversée | facette ∈ `surface · reelle` | prose : la demande dégagée sous l'enveloppe | |
@@ -198,8 +256,8 @@ demander **aucune validation** au soignant.
 | `gestation` | **SANCTUAIRE** | `champ_cible` (+ position éventuelle) | **NULL permis** (« rester nu », §6) | ouvre l'état « hypothèses en cours » ; se lève par `levee`. **Seul dépôt à effet machine** : suspend la relance sur ce champ (§11). La machine voit *qu'il* existe, jamais ce qui gestationne |
 | `inquietude` | **SANCTUAIRE** | — (portée patient) | prose datée (« le 3 mars, ça m'inquiète ») | se lève par `levee` — sinon étiquette qui condamne (§15). **La couleur déposée = il existe une inquiétude ouverte** |
 | `lien_travail` | **SANCTUAIRE** (la lecture de tension est clinique, §13) | `acteur_id` **obligatoire** | **prose libre** : la tension et la direction (coudre, tenir, desserrer, recoudre ailleurs) vivent **dans les mots, jamais en enum** — un enum de directions serait le signe fixe que §13 bannit. Les directions servent d'amorces grises à l'écran, jamais de valeurs stockées | `ref_id` = lecture de lien révisée |
-| `validation_typage` | traversée | — | `type ∈ aigu · nap · chronique` **+ prose du sens lu** (stabilisation *ou* décrochage — la valeur seule ne dit rien, §15a/c) | `ref_id → proposition machine` **obligatoire**, sauf premier typage à l'indication. Contrainte structurelle : on ne retype pas d'un clic — il faut que le mouvement l'ait proposé (tue le Goodhart par le typage) |
-| `levee` | suit le registre du dépôt levé | — | prose du motif (le fait qui a résisté ; l'inquiétude dissipée) | `ref_id` **obligatoire** → `hypothese · inquietude · gestation`. Lever n'est pas effacer : deux actes datés, tous deux visibles |
+| `validation_typage` | traversée | — | `type_valide ∈ aigu · nap · chronique` (colonne, jamais deviné de la prose) **+ prose du sens lu** (stabilisation *ou* décrochage — la valeur seule ne dit rien, §15a/c) | `ref_proposition_id → proposition machine` **obligatoire**, sauf premier typage à l'indication — tenu par **index unique partiel** (au plus un typage sans proposition par patient). On ne retype pas d'un clic : il faut que le mouvement l'ait proposé (tue le Goodhart par le typage) |
+| `levee` | suit le registre du dépôt levé | — | prose du motif (le fait qui a résisté ; l'inquiétude dissipée) | `ref_depot_id` **obligatoire** → `hypothese · inquietude · gestation`, **vérifié par la structure** (`ref_nature` sous FK composite) ; une seule levée par dépôt levé. Lever n'est pas effacer : deux actes datés, tous deux visibles |
 | `compte_rendu` | traversée | — | prose : la synthèse de prise en charge, **reformulée** puis **validée énoncé par énoncé** et signée | pas de `ref_id` machine (le brouillon est éphémère, §6.3) ; la **signature EST l'acte de dépôt** (`auteur_id` = signataire, `depose_le` = signature) — immuable comme tout dépôt ; la machine ne l'insère jamais (invariant 2) |
 
 Contraintes d'exemple (le repo fera le DDL complet) :
@@ -208,25 +266,52 @@ Contraintes d'exemple (le repo fera le DDL complet) :
 CHECK (nature <> 'ressenti'          OR position IN ('patient','equipe','entourage'))
 CHECK (nature <> 'lecture_clinique'  OR position IS NOT NULL)
 CHECK (nature <> 'lien_travail'      OR acteur_id IS NOT NULL)
-CHECK (nature <> 'levee'             OR ref_id IS NOT NULL)
+CHECK (nature <> 'levee'             OR (ref_depot_id IS NOT NULL
+                                         AND ref_nature IN ('hypothese','inquietude','gestation')))
 CHECK (nature = 'gestation'          OR contenu IS NOT NULL)
 
 -- le régime tient au CADRE, jamais à l'étiquette (§10 : indexé sur le moment, pas le grade)
--- La GRILLE EST FORMULÉE, pas récoltée : S / R / D / Diff / É et la Clinique se nouent
--- en collège, à partir des `observation` du pentalobe. La récolte EST la diffraction
--- (chaque angle déposé seul, sans voir les autres) ; le champ Diffraction est le moment
--- où le collège les pose côte à côte. C'est §12 bis : le relai est la condition de la
--- diffraction.
-CHECK (nature NOT IN ('situation','ressenti','demande','diffraction',
-                      'lecture_clinique','equilibre','compte_rendu','validation_typage')
-       OR cadre = 'synthese_collective')                            -- le nouage ne se dépose jamais seul
+--
+-- La coupe n'est pas entre le médecin et les autres : elle est entre ce qui se SIGNE et ce
+-- qui se FORMULE.
+--
+-- Ce qui se FORMULE — la grille — n'existe QUE parce que plusieurs regards l'ont faite.
+-- `diffraction` déposée seul est un homme qui se relit ; `equilibre` déposé seul est le
+-- nouage rendu à un regard unique. Fermé à TOUT LE MONDE, le coordinateur compris : si
+-- l'on peut formuler seul, le trilobe cesse d'être un collège, c'est un bureau.
+CHECK (nature NOT IN ('situation','ressenti','demande','diffraction','equilibre')
+       OR cadre = 'synthese_collective')
+
+-- Ce qui se SIGNE engage une responsabilité, donc une personne : la signature EST l'acte
+-- de dépôt (§5) — un compte rendu à quatre mains n'est pas un compte rendu.
+CHECK (nature NOT IN ('lecture_clinique','compte_rendu','validation_typage')
+       OR cadre IN ('synthese_collective','responsabilite_medicale'))
+
+-- Et le cadre du coordinateur n'est pas une porte de service :
+CHECK (cadre <> 'responsabilite_medicale'
+       OR nature IN ('lecture_clinique','compte_rendu','validation_typage'))
+
 -- Pas de CHECK symétrique sur la famille observation : elle se dépose seul (le geste du
 -- matin) comme en synthèse (on cite un mot cru dans la salle). La contrainte est d'un
 -- seul côté. Un CHECK qui n'interdit rien serait une garde décorative — pire que rien.
--- exception unique : le médecin coordinateur dépose seul au titre de la responsabilité
--- médicale (§10 — droit de fonction, pas hiérarchie de lecture). Permission applicative,
--- invariant 13 ; jamais un contournement du CHECK par une autre nature.
 ```
+
+**Un `CHECK` dit *ce qui* passe ; il ne peut pas dire *qui*** — il ne regarde qu'une ligne.
+Le droit de fonction est donc une **politique de ligne** (RLS), à deux conditions
+indissociables :
+
+```sql
+POLICY depots_depot_attribue ON depots FOR INSERT
+  WITH CHECK (auteur_id = agent_connecte()                       -- 1. nul ne dépose sous le nom d'un autre
+              AND (cadre <> 'responsabilite_medicale'            -- 2. et ce cadre exige la fonction,
+                   OR est_coordinateur(auteur_id)))              --    lue à la QUEUE de la chaîne de fiches
+```
+
+La première condition n'est pas un ornement : sans elle, écrire l'uuid du coordinateur dans
+`auteur_id` suffirait à emprunter son droit, et la seconde serait décorative. C'est
+**l'invariant 18 tenu à la racine** plutôt qu'à l'écran : l'attribution *est* la garde.
+Conséquence pour l'app : `SET LOCAL continuum.agent_id = '…'` à l'ouverture de chaque
+transaction. **La base refuse un écrit anonyme.**
 
 **Le même soignant, deux gestes.** Mardi 8 h, seul, au domicile : il **récolte** — mot
 cru, `observation` (ou `hypothese`, ou `inquietude` : même famille, même régime). Mardi
@@ -445,7 +530,7 @@ Le test reste : *est-ce que ceci CLASSE, CHIFFRE ou CONCLUT à la place de l'hum
 | # | Invariant | Tenu par |
 |---|---|---|
 | 1 | Rien ne s'écrase, rien ne s'efface | **structure** — `REVOKE UPDATE, DELETE` sur toutes les tables au runtime |
-| 2 | La machine n'écrit jamais un dépôt | **structure** — rôle machine sans `INSERT` sur `depots` |
+| 2 | La machine n'écrit jamais un dépôt | **absence** — rôle machine sans `USAGE` sur le schéma `depot` : le nom ne se résout pas. *Un `REVOKE INSERT` laisse la table nommable, donc un `GRANT` la rouvre : ce serait une permission, non une absence.* La machine lit 0-1-2 par les vues du schéma `lecture`, non inscriptibles par construction (CTE de tête) |
 | 3 | La machine ne suggère jamais de lecture clinique, même « évidente » | **structure + code** — aucun chemin ; `pistes` bornées hors sanctuaire, testées |
 | 4 | Aucun nombre sur un dépôt (seuls nombres = des dates) | **structure** — les colonnes n'existent pas |
 | 5 | Aucune échéance nulle part | **structure** — aucune colonne « pour quand » ; les dates disent quand une chose *a eu lieu* |
@@ -456,12 +541,12 @@ Le test reste : *est-ce que ceci CLASSE, CHIFFRE ou CONCLUT à la place de l'hum
 | 10 | Correction masquée en récolte, jamais en dépôts | **code testé** — deux fonctions de projection distinctes |
 | 11 | Acteur : ni vue inversée, ni attribut porté, ni maintenance propre | **structure + absence** — schéma nu + aucune API inverse (SQL brut joignable : assumé) |
 | 12 | Plume : **cite** le sanctuaire — la `lecture_clinique` — verbatim ou se tait ; **reformule** le déposé hors sanctuaire (dont l'`observation`, **sans jamais fondre les auteurs**) ; refuse sous seuil ; **ne noue jamais la Clinique** — elle n'est *jamais générée*, même assistée (§3) | **code + pratique** — prompt discipliné (registre-garde suffixé), tests de refus |
-| 13 | Contenu libre déposé en synthèse collective, sauf médecin coordinateur (droit de fonction, pas hiérarchie de lecture) | **code** — permission applicative sur `cadre` |
+| 13 | Ce qui se **formule** (la grille) se dépose en synthèse collective — **fermé au coordinateur aussi**. Ce qui se **signe** (`lecture_clinique`, `compte_rendu`, `validation_typage`) lui est ouvert seul, sous le cadre `responsabilite_medicale` qui l'**inscrit dans le record** | **structure** — deux `CHECK` (signé / formulé) + RLS sur la fonction, lue à la queue de la chaîne de fiches. *Une permission applicative ne peut que restreindre : elle n'accorde jamais au-delà d'un `CHECK`. L'exception devait donc s'écrire, pas se contourner.* |
 | 14 | Le vert ne dispense jamais de regarder (revue exhaustive au trimestriel) | **pratique** — hors schéma, nommé pour ne pas être oublié |
 | 15 | Brouillon = dérivé **éphémère**, jamais stocké (loi §0) ; garde de génération « sans source = non généré » | **code + test** — pas de table, garde à la génération |
 | 16 | Compte rendu → acte tracé par **signature humaine** seulement ; la machine ne l'insère jamais | **structure** — rôle machine sans `INSERT` sur `depots` (invariant 2) ; signature = dépôt `compte_rendu` |
 | 17 | Miroir agent : **privé par absence de chemin** (RLS, aucune vue croisée, aucun agrégat) ; réflexion, jamais score | **structure + code** — RLS sur `utilisateur_id` + aucune fonction d'agrégat |
-| 18 | **La machine ne fond jamais les auteurs.** Elle peut reformuler une `observation` ; elle ne peut pas la détacher de qui l'a écrite ni de quand. Jamais « l'équipe » | **structure + code** — `auteur_id` et `depose_le` voyagent avec l'énoncé, du dépôt à l'écran ; aucun chemin de fusion. *L'attribution est la garde, pas le verbatim : « l'équipe décrit une intolérance à la frustration » est un cliché bien écrit (§5) ; « Karima, le 3 mars : … ; Céline, le 5 : … » est vivant.* La Vigilante ne peut pas garder ce point : elle lit ce qui sort des lobes, pas ce qui y entre |
+| 18 | **La machine ne fond jamais les auteurs.** Elle peut reformuler une `observation` ; elle ne peut pas la détacher de qui l'a écrite ni de quand. Jamais « l'équipe » | **structure + code** — `auteur_id = agent_connecte()` par RLS : **nul ne dépose sous le nom d'un autre**, la garde est à la racine et non à l'écran. `auteur_id` et `depose_le` voyagent ensuite avec l'énoncé, du dépôt à l'écran ; aucun chemin de fusion. *L'attribution est la garde, pas le verbatim : « l'équipe décrit une intolérance à la frustration » est un cliché bien écrit (§5) ; « Karima, le 3 mars : … ; Céline, le 5 : … » est vivant.* La Vigilante ne peut pas garder ce point : elle lit ce qui sort des lobes, pas ce qui y entre |
 | 19 | **Aucun état courant sur le perceptif.** Pas de « dernière valeur » : la **série est l'objet** | **absence** — la correction par projection n'existe qu'aux domaines 0 et 1. Vouloir mourir le matin et rire le soir : deux dépôts, deux dates, tous deux vrais, jamais réconciliés |
 | 20 | **Aucun axe n'est stocké sur un dépôt.** Le rangement est une projection, recalculable | **absence** — la colonne n'existe pas. En domaine 2 rien ne s'efface : un axe faux le resterait. La machine ne porte que ce qu'elle peut recalculer |
 
@@ -506,8 +591,13 @@ commodité :
    sur les données réelles du journal, en itération avec le regard, jamais en chambre.
 3. **Moteur de couverture des portes** — l'unique opération sémantique : à
    implémenter borné (couverture, pas lecture) et à tester comme frontière.
-4. **Permissions** — `cadre`, droit du médecin coordinateur, rôles `soignant` /
-   `machine` / migration.
+4. ~~**Permissions**~~ — **tranché en Phase 0** : trois rôles (`continuum_soignant` /
+   `continuum_machine` / `continuum_migration`), trois cadres, droit du coordinateur en
+   RLS. Reste **une** garde de code, nommée pour ne pas s'y dissoudre : *l'application se
+   connecte comme `soignant` ou `machine`, jamais comme propriétaire ni superutilisateur.*
+   Le propriétaire garde tous ses droits, le superutilisateur passe partout : les
+   invariants 1 et 2 valent exactement aussi longtemps que cette discipline. Aucune DDL
+   ne peut la tenir.
 5. **Pipeline de rédaction** — brouillon éphémère (garde « sans source = non généré »),
    validation énoncé par énoncé (reconnaissance + surprise, coupe = masque), signature =
    dépôt `compte_rendu`. Le brouillon ne se stocke pas ; seule la trace du **miroir agent**
