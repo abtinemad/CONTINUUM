@@ -378,3 +378,55 @@ constantes `ASYM[5].s`.
 Rien d'autre. Pas de trilobe, pas d'eval, pas d'animation. Le premier écran qui **refuse
 une donnée** tranchera les points ouverts mieux que la prose : *si un champ réclame une
 glose, c'est le champ qui est mal fait* (§8).
+
+---
+
+## 5. Corrections après relecture — 09/07 (`3931ee4`, `a3e7974`, `3fa22b6`)
+
+> Un fil se corrige par un acte daté qui référence, jamais par réécriture de ce qui précède.
+> Ces quatre points amendent le §1 ci-dessus ; ils ne l'effacent pas. Trois commits, après que
+> la doctrine a rejoint le schéma (`3931ee4`) puis deux relectures à froid.
+
+**(a) `observation` sort du sanctuaire — l'attribution est la garde, pas le verbatim** (`a3e7974`).
+Le §1c gravait `observation` en **SANCTUAIRE**, « citée verbatim, jamais reformulée ». La coupe était
+fausse : ce dont on avait besoin, c'est « la machine ne **fond** jamais les auteurs » — j'avais gravé
+« la machine ne **reformule** jamais ». Ce n'est pas la même propriété. Le verbatim ne protège de rien ;
+l'**attribution** protège. `observation` a donc son **registre propre** (ni sanctuaire, ni traversée) :
+la machine peut la **reformuler, ranger, mettre en mots** — jamais la **détacher de qui l'a écrite ni de
+quand** (invariant 18, réécrit : *`auteur_id` + `depose_le` voyagent avec l'énoncé*). Le **sanctuaire
+reste la `lecture_clinique`** : citée ou tue, **jamais générée, même assistée** (§3). Invariant 12 précisé
+en conséquence.
+
+**(b) La grille est formulée, pas récoltée** (`a3e7974`). `situation`, `ressenti`, `demande`,
+`diffraction` rejoignent le nouage (`CHECK` cadre↔nature : `synthese_collective`). Le **pentalobe
+récolte** des `observation` ; le **collège formule** S / R / D / Diff / É à partir d'elles. La **récolte
+*est* la diffraction** — chaque angle déposé seul, sans voir les autres ; le champ **Diffraction** est le
+moment où le collège les pose côte à côte (§12 bis). Tranche l'hypothèse laissée ouverte au §2.2
+(« la grille est-elle le produit de la métabolisation ? » — oui) et absorbe le §2.1 (Ressenti/Diffraction :
+récolte *et* métabolisation, à deux moments).
+
+**(c) La Vigilante a deux moments, et n'évalue jamais la cohérence** (`a3e7974`). Elle avait un écart
+(Affectif ↔ Réflexif, au trilobe) ; elle en a **deux** : **brut ↔ formulé** *à la formulation* (elle met
+en mots, en clair, le matériau du pentalobe posé à côté de la grille en cours), Affectif ↔ Réflexif *au
+trilobe*. Même organe, deux instants. Elle **écrit en clair, elle ne signale rien** : poser une analyse
+par-dessus serait un recouvrement de plus (§1, l'opération soustractive). Elle **n'évalue jamais la
+cohérence** — *le récit le plus cohérent est parfois le délire* (§2) ; un eval de cohérence récompenserait
+la clôture prématurée. Le **nom reste chiffré**. Elle a le droit de parler **parce qu'aucun guichet
+n'existe** pour y déposer (§4, second barrage) — projection `vigilante_recolte`, jamais un dépôt.
+
+**(d) Le fragment est une projection ; le rangement ne se valide pas** (`3fa22b6`). Corrige le §1e/§1f :
+`axes text[]` **quitte `depots`**. En domaine 2 rien ne s'efface — un axe gravé faux le resterait, et la
+densité **mentirait pour toujours**. Une observation longue (la sœur, le chômage, le refus de traitement)
+n'a pas *trois axes* : elle a **trois fragments** — des portions **verbatim**, rangées chacune sur un ou
+plusieurs axes ; le dépôt reste **entier, à un clic** ; les fragments **se chevauchent** (la plus petite
+unité qui *garde le sens*, pas la plus petite possible). Le découpage est **machine et recalculable** —
+*la machine ne porte que ce qu'elle peut recalculer* (§1m) —, donc **aucune validation** : une erreur de
+rangement ne coûte rien, tout reparaît dans le pentalobe. Ce qui congédie l'écran de validation annoncé
+au §1f et au §4 (« le rangement proposé → la validation »). Projections : `fragments`, `densites`
+(COUNT sur les fragments), `recouvrements` (*un* fragment sur deux axes, non deux cases), et
+`portions_non_couvertes` (ce que personne n'a su ranger → Vigilante). **Invariant 20** : aucun axe
+stocké sur un dépôt, tenu par **absence de colonne**.
+
+*Reste vrai au-dessus, inchangé :* la coupe déchargeable/non-déchargeable (§1m), l'anti-fusion dans le
+temps (§1i), le condensé qui n'est pas un texte (§1g). Les cinq questions ouvertes du §2 : (1) et (2)
+tranchées par (b) ; (3), (4), (5) toujours ouvertes.
