@@ -4,6 +4,16 @@
 > **Socles permanents** (à lire avant de rouvrir un sujet) : mécanique du logo →
 > `passations/logo_mecanique.md`.
 
+## 2026-07-09 — la récolte, les guichets, le condensé (schéma tranché)
+Session d'accord, pas de conception : sept points épars de la doctrine ou du logo, un seul sujet — la
+récolte. `schema.md` patché (9 édits, `patch_schema_recolte.py`, dry-run par défaut, mis en stage —
+commit par Abtine) : guichets **soignant / collège**, nature **`observation`** pour le mot cru, colonne
+**`axes text[]`**, régime au **cadre** et non à l'étiquette, et le condensé qui **cite, attribue, date —
+sans jamais fondre les auteurs** (invariants **18-19**). CORE byte-identique (SHA-256 depuis `git`),
+`run_test.sh` vert (18/18). `CONTINUUM.md` **non touché** : la doctrine grave après que le schéma est
+tranché. Détail, arbitrages, points ouverts et étapes 2-3 à graver →
+`passations/2026-07-09_recolte_condense.md`.
+
 ## 2026-07-09 — clôture du chantier (B) : bloc B inscrit, mockup gravé, six rectifications
 Chantier (B) **clos**. Six commits poussés sur `origin/main` :
 - `caa72dd` — **œil oudjat** en bilobé : clic sur un lobe → l'œil chevauche le fil un tour du ∞,
