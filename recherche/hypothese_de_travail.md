@@ -54,9 +54,10 @@ l'infini : un fil, deux boucles, le même geste vu à deux échelles.
 ## Le cycle, strate par strate
 
 **Métabolisation (patient).** La machine lit la récolte brute (5-lobes) et
-esquisse une **hypothèse clinique** — les axes de prise en charge qui orientent le
-soin (émergence, brouillon de la plume). Le **collège** l'annote (dépôt signé,
-`synthese_collective`) pour la faire évoluer. La triade **Affectif · Réflexif ·
+esquisse le **condensé** qui guide l'hypothèse clinique — les mots crus rangés par
+axe, cités, attribués, datés (émergence, brouillon de la plume). Elle n'esquisse
+**jamais l'hypothèse elle-même** : elle rassemble, elle ne noue pas (invariant 12).
+Le **collège** formule l'hypothèse et la signe (dépôt, `synthese_collective`). La triade **Affectif · Réflexif ·
 Vigilante n'est pas le produit fini** : c'est le **matériau** de l'hypothèse.
 L'Affectif (ce qu'on éprouve) et le Réflexif (ce qu'on raisonne) la nourrissent ;
 la **Vigilante scrute l'écart entre eux avant que l'hypothèse se fige**. La

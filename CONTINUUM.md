@@ -310,15 +310,19 @@ façon, **sans jamais interpréter le fond** (interpréter franchirait le sanctu
 
 Rejeté : **(d) comparaison sémantique par modèle** — franchit le sanctuaire.
 
-**La divergence ne se résout pas dans la carte** : elle se travaille en réunion, et ce
-qu'elle produit, c'est une hypothèse de travail plus précise — pas un gagnant. Après
-cette coupe, le §4 ne contient plus **aucune opération où la machine touche au *sens*
-d'une lecture** : elle pose (a), elle compte (b), elle ouvre plusieurs pistes (c). **— sur la surface vive.** Cette cécité au sens vaut pour la carte et l'indicateur,
-où rien ne gate la sortie avant qu'elle soit montrée. La seule exception est la **réflexion
-dérivée** (§5) : la machine y reformule le sens du déposé *parce qu'*une **signature** humaine
-la fait franchir vers un record. Le rejet de **(d)** tient toujours — une comparaison
-sémantique **montrée en direct**, sans gate, reste interdite ; reformuler le déposé **sous
-signature** est un autre geste.
+**La divergence ne se résout pas dans la carte** : elle se travaille en réunion, et ce qu'elle
+produit, c'est une hypothèse de travail plus précise — pas un gagnant. Après cette coupe, le §4 ne
+contient plus **aucune opération où la machine touche au *sens* d'une lecture** — sur la surface
+vive : elle pose (a), elle compte (b), elle ouvre plusieurs pistes (c).
+
+**Deux barrages, un seul principe.** La machine lit le sens **là où sa lecture ne peut pas devenir
+un record** : soit qu'une **signature** humaine barre la sortie — la réflexion dérivée, §5, où elle
+reformule le déposé —, soit qu'**aucun guichet n'existe** — la Vigilante (§18 bis), qu'on lit et où
+l'on ne dépose pas, faute d'opération pour le faire. Le second barrage est le plus dur : il ne se
+règle pas, il n'existe pas. Là où ni l'un ni l'autre ne tient — la carte, l'indicateur —, la machine
+reste **aveugle au sens**. Le rejet de **(d)** tient donc toujours : une comparaison sémantique
+montrée en direct, sans barrage, reste interdite ; reformuler le déposé sous signature, ou lire un
+écart qui ne peut se déposer nulle part, sont deux autres gestes.
 
 *Note — la divergence impliquant l'entourage a une couleur particulière.* L'entourage
 n'est pas un soignant : sa lecture engage la question de l'alliance et de la place de la
@@ -545,6 +549,12 @@ Composition (structure fixe, contenu libre) :
 1. **Le paquet** — la machine **rassemble** les mots crus épars (dossier urgences,
    rapport pompiers, ce que la famille a dit, mots de l'équipe) et les présente
    ensemble. Elle rassemble ; elle ne fait **pas** émerger la lecture (§1).
+   **Elle range, juxtapose et cite — elle n'écrit aucune prose sur le patient**, et
+   **ne dit jamais « l'équipe »** : chaque mot reste attribué et daté. Un condensé qui
+   fond les auteurs rend un cliché *bien écrit* (§5), et les mots déposés contiennent
+   déjà une émergence faite mal — il faut la **défaire**, pas la lisser. Le rangement
+   est une projection ; la **juxtaposition chronologique attribuée reste à un clic**, et
+   c'est elle la vérité (le désordre est ce avec quoi le regard travaille).
 
 2. **Ressources internes / externes** — **deux zones libres**, pas des cases par item.
    Des **amorces en gris** montrent le genre de chose à chercher (internes : autonomie,
@@ -976,11 +986,29 @@ métabolisé → méta*. Trois strates, un seul mouvement de digestion.
 
 **Récolte (5 lobes, par patient).** La donnée brute de terrain, par axe relationnel. Guichet des
 **soignants**. C'est le nœud-patient (§19). Deux natures s'y déposent : les **faits durs** —
-identité, coordonnées, droits (AAH…) : *ce sur quoi on ne peut pas se tromper* (domaine 0,
-correction par projection) —, et la **donnée perceptive et mouvante** — ce qui change selon la
-phase clinique, la temporalité familiale, le cheminement du patient, *et selon la perception de qui
-récolte* (domaine 1, corrigée par projection, jamais supprimée). **C'est cette seconde nature que
-l'analyse sémantique travaille** : la donnée dure n'en a pas besoin, la donnée vécue en dépend.
+identité, coordonnées, droits (AAH…) : *ce sur quoi on ne peut pas se tromper* (domaines 0-1,
+correction par projection) —, et le **mot cru** — l'`observation` : ce qui a été vu, entendu,
+rapporté, *selon la perception de qui récolte* (**domaine 2** : append, rien ne se masque).
+**C'est cette seconde nature que l'analyse sémantique travaille** : la donnée dure n'en a pas
+besoin, la donnée vécue en dépend.
+
+**Guichet, strate et domaine sont trois questions distinctes.** Le **domaine** dit l'encre (qui
+écrit, ce qui s'efface). La **strate** dit le degré de métabolisation. Le **guichet** dit la main —
+le soignant ou le collège —, et les deux écrivent dans le **même** flux : c'est « canal unique,
+deux guichets » (ci-dessous). Une strate traverse les domaines ; un guichet n'est pas une encre.
+
+**Mouvante n'est pas corrigible.** Un numéro de téléphone change parce qu'on a déménagé : la
+coquille se masque, personne ne veut la voir. Le mot cru change parce que le patient a bougé **ou
+parce que celui qui l'a écrit s'est trompé** — et il ne s'efface pas. Deux raisons indépendantes
+tombent sur la même contrainte : c'est un **acte tracé** (§3, jamais altéré) *et* sa fausseté est
+du **signal** — le mot projectif parle de qui regarde autant que de qui est regardé (§1, les mots
+crus des urgences, des pompiers, de la famille). L'effacer efface la matière de la lecture.
+
+**Le mot cru se dépose seul ; le nouage jamais.** Le même soignant, deux gestes : au domicile, seul,
+il **récolte** (`observation`, `hypothese`, `inquietude` — même famille, même régime) ; en synthèse,
+il **métabolise**, et sa `lecture_clinique` vaut alors pleinement, sans primer sur celle du médecin
+(§2). Ce n'est pas le grade qui change, c'est le **moment** (§10). Sans cette coupe, le geste du
+matin s'écrirait en lecture clinique — ce que l'**interdit dur** du §10 refuse.
 
 **Métabolisation (3 lobes, par patient).** Le revers : ce que l'équipe *pense* de ce qu'elle a
 récolté. Guichet des **coordinateurs**, en **synthèse collective signée**. Trois lobes :
@@ -1010,7 +1038,7 @@ entre patients (l'agrégat inter-patients est réservé à l'institutionnel, ano
 **synthèse d'équipe** — les données réfléchies à plusieurs, déposées par le guichet (ci-dessous).
 Le trilobe est donc alimenté **par le pentalobe** (via l'eval) **et par les nouages d'équipe** :
 un condensé de tout le brut, sur lequel l'équipe pense et re-dépose. *(Le cerveau de l'eval = celui
-du Collègue ; ses internes seront spécifiés depuis ses fichiers — [APPEL 4].)*
+du Collègue ; ses internes sont spécifiés dans `recherche/internes_eval.md`.)*
 
 **Ce que la métabolisation *construit* — le récit qui s'écrit.** Nourrie passe après passe, dans la
 continuité de la première (les synthèses reprennent le fil des réflexions cliniques), elle fait
@@ -1297,13 +1325,23 @@ récolte**, jamais un score d'elle : l'interdit du §19 bannit le chiffre sur l'
 elle nous note.
 
 **Les boucles = le volume de données rangées par axe** (familial, amoureux, ami, travail,
-soin). Un même élément peut nourrir deux boucles. Plus une boucle contient de matière
-déposée, plus elle grossit. Les cinq axes sont **universels → toujours toutes présentes**,
-jamais amputées (ne pas supprimer la boucle amoureuse d'un isolé : c'est *sa* boucle, pas à
-nous de juger qu'elle n'a pas lieu d'être — protection contre la projection).
+soin). Plus une boucle contient de matière déposée, plus elle grossit. Les cinq axes sont
+**universels → toujours toutes présentes**, jamais amputées (ne pas supprimer la boucle amoureuse
+d'un isolé : c'est *sa* boucle, pas à nous de juger qu'elle n'a pas lieu d'être — protection contre
+la projection).
+
+**Un même élément nourrit deux boucles, et c'est une donnée.** Le recouvrement n'est pas une bavure
+de rangement : le travail qui déborde sur la famille, le soin qui colonise le soi, le seul lien
+qui reste passant par les soignants. C'est un point de couture (§13). Sa forme est déjà là : deux
+boucles qui partagent de la matière **se croisent**, et le croisement est le lieu du basculement
+(serrage au regard court, passage au regard long). **Montré, jamais conclu** — comme le n qui
+respire.
 
 **Chaque boucle porte une seule dimension : sa taille = le volume de récolte sur cet axe.**
-Descriptif — *où est la matière qu'on a rangée* —, jamais un poids ni une valeur. La
+C'est une **loi du pentalobe**, non de la marque : au trilobe, la taille d'un lobe dit la **largeur
+du champ scruté** (la Vigilante est la plus grande parce qu'elle lit les deux autres, §18 bis) — un
+champ, jamais un volume déposé ; au bilobe, elle ne dit ni l'un ni l'autre. Descriptif — *où est la
+matière qu'on a rangée* —, jamais un poids ni une valeur. La
 **tension** (l'état du nœud, « à desserrer », « le lien qui étouffe », lue depuis son
 ressenti) **n'est plus portée par la géométrie** : c'était une lecture de son état intérieur,
 déposée par le clinicien — un verdict, de même catégorie que « il est à bout ». On ne
@@ -1406,7 +1444,7 @@ visible que le mode a basculé de *composer* à *scruter*. Œil nu = on compose 
 Réflexif) ; œil + lentille = on scrute (Vigilante). La lentille est la **vigilance humaine
 rendue visible**, jamais un verdict de machine ; elle **respecte le triptyque** (§3) — une
 forme, un voile, pas une quatrième couleur qui casserait rouge/encre/ardoise. *(Rendu exact —
-teinte, monture — = décision de maquette. [APPEL 5])*
+teinte, monture — au mockup : le scouter.)*
 
 **Ce que la lentille montre — l'écart, jamais sa moyenne.** Ce que la Vigilante scrute est le
 **différentiel Affectif↔Réflexif** (§18 bis) : l'écart entre ce que l'équipe *éprouve* et ce
@@ -1661,6 +1699,29 @@ pas par la couleur — §ci-dessus).
   métabolisation (triade **Affectif · Réflexif · Vigilante**, lobes) · 2 lobes = institutionnel
   anonyme (**Continuité / Fragmentation**, lumière/ombre). Le nombre de lobes indexe le degré
   de métabolisation, non le zoom. Canal unique / deux guichets ; le Lien ré-attaché aux strates.
+- **Guichet ≠ strate ≠ domaine** (§18 bis) : le guichet est la **main** (soignant / collège), la
+  strate le **degré de digestion**, le domaine l'**encre**. Les deux guichets écrivent dans le même
+  flux.
+- **Le mot cru — `observation`** (§18 bis, §10) : la donnée perceptive de la récolte est du
+  **domaine 2** (append, rien ne se masque) — **acte tracé** *et* signal (sa fausseté parle de qui
+  regarde). *Mouvante ≠ corrigible.* Elle se dépose **seul** ; le **nouage ne se dépose jamais
+  seul**. Sans `observation`, le geste du matin s'écrivait en lecture clinique — l'interdit dur.
+- **Le recouvrement d'axes est une donnée** (§19), pas une bavure ; sa forme est le **croisement**.
+  **Montré, jamais conclu.**
+- **`taille = volume de récolte` est une loi du pentalobe** (§19), non de la marque : au trilobe la
+  taille dit la **largeur du champ scruté**.
+- **Le condensé cite, attribue, date — il ne dit jamais « l'équipe »** (§11, §5). La machine range,
+  juxtapose, cite ; aucune prose sur le patient. Le **désordre attribué reste à un clic**.
+- **Deux barrages, un principe** (§4) : la machine lit le sens là où sa lecture ne peut devenir un
+  record — **signature** (la plume) ou **absence de guichet** (la Vigilante). Sinon, aveugle.
+- **La machine ne porte que ce qu'elle peut recalculer** (§0, §1) : agrégation et condensé sont
+  des projections (recalculables, sans auteur) ; **synthèse** et **réflexion** sont des dépôts
+  (elles ont eu lieu une fois). C'est la coupe perception/déduction, et c'est la coupe des domaines.
+  Le condensé est **éphémère pour la même raison qu'il est déchargeable**.
+- **Aucun état courant sur le perceptif** : la **série est l'objet**. Vouloir mourir le matin et
+  rire le soir : deux dépôts, deux dates, tous deux vrais, jamais réconciliés (anti-fusion, §4).
+- **Le rangement est proposé, validé, puis écrit.** La machine trie ; l'humain valide **avant** que
+  rien ne soit écrit (en domaine 2, rien ne se masque). Même motif que le retypage et la signature.
 
 ---
 
@@ -1669,9 +1730,11 @@ pas par la couleur — §ci-dessus).
 1. **Enseignement — jusqu'où ?** Entraîner le *dépôt* dans la traversée (rapide) — et/ou
    entraîner le *regard* clinique lui-même (le sanctuaire ; non enseignable par
    prescription, au mieux entraînable comme *Le collègue* entraîne sans soigner) ?
-2. **Événements de couture** — comment structurer ce qui est aujourd'hui noyé dans le
-   champ Commentaire du journal (« RELAI CMP », « SYNTHESE »…) pour en faire le fil de
-   continuité (§15).
+2. **Ressenti et Diffraction — récolte ou métabolisation ?** Un soignant peut rapporter ce
+   que le patient a dit ressentir : c'est du mot cru (`observation`). Mais §2 en fait des
+   champs de la grille. Question sœur : la grille est-elle le **produit** de la
+   métabolisation (le pentalobe récolte, le trilobe formule) ? Si oui, la coupe des
+   strates n'est ni le domaine ni l'encre : c'est le **geste** — récolter ou nouer.
 3. **Synthèse patient — versant patient.** Le versant *clinicien* (compte rendu de prise en
    charge) est cadré depuis (frontière-signature, §18 bis / §5). Reste ouvert : l'objet
    éventuellement **remis au patient** / support de co-construction de l'Équilibre (§2) —
@@ -1681,7 +1744,14 @@ pas par la couleur — §ci-dessus).
 > Tranché depuis : le **retypage** n'est plus une question ouverte — il est dérivé du
 > différentiel capté, proposé par le mouvement et validé par le regard (§15). L'**ontologie du
 > nœud-patient** est refondue et inscrite (§19, v2) ; le **compte rendu clinicien** est cadré
-> par la frontière-signature (§18 bis / §5) ; la **Vigie** a son § (§18 bis).
+> par la frontière-signature (§18 bis / §5) ; la **Vigie** a son § (§18 bis). Les **événements
+> de couture** (ancienne question 2) sont typés en récolte (`schema.md` §3) ; la **récolte** est
+> tranchée (guichets, `observation`, axes, condensé attribué — 09/07).
+
+> **Ouvert ailleurs**, hors §22 : le **savoir sur qui a écrit quoi** (« pourquoi Karima a écrit
+> ça ») — énoncé sur *le soin*, non sur le patient ; candidat au lobe **Réflexif**, sous le seuil
+> de dépôt (§2). Non arbitré. Sans lui, l'outil décharge la mémoire de travail de tous **sauf de
+> celui qui sait lire** — la fragmentation logée dans une personne (§12 bis).
 
 ---
 
