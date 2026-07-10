@@ -205,8 +205,12 @@ Manquent **trois** choses, à poser **avant le premier dépôt réel** (append-o
 - Le sexe administratif ≠ le prénom d'usage (deux données).
 - Le domaine 5 : DDL à écrire (5 schémas, plus 4).
 - Sept écrans non dessinés : trilobe, bilobe, synthèse, signature, tablette (= téléphone déplié).
-- Le filtre-qui-meurt et la divergence-vue reposent sur des **pratiques** — une pratique se perd en
-  18 mois. Rien ne les tient structurellement.
+- **Trois engagements non-exécutables** — ni la DDL ni un chemin-absent ne les tient. Ce ne sont pas
+  de la délibération : des pratiques (et une pratique se perd en 18 mois), à garder à l'œil.
+  - Le filtre-qui-meurt et la divergence-vue — rien ne les tient structurellement.
+  - La discipline de connexion : l'app ne se connecte **jamais** en propriétaire ni superuser. La DDL
+    ne peut pas l'imposer — le propriétaire contourne la RLS. Elle tient par la config de déploiement,
+    pas par le schéma.
 - `core.sh` : `dessin/01_file_active.html` est un nouveau consommateur du CORE, absent de
   `CONSOMMATEURS=(app_mockup.html)`. Sans l'y ajouter, la copie peut dériver en silence.
 - `lobeCount()` compte les **nœuds**, pas les lobes (bilobe → 1). Elle ment sur ce qu'elle mesure.
