@@ -164,6 +164,64 @@ const relacher = pg => tenirBoucle(pg, 0.5, 0.5);   // le centre : l'œil se dé
   tenu("I7 · le champ ne se présente pas", amorce.length > 0 && !GLOSE.test(amorce), amorce);
   tenu("I7 · personne ne présente le champ", (await pg.$$("label")).length === 0);
 
+  // ── LES TROIS COUVERTURES, LA GESTATION, LE VIDE_INFO ────────────────────────────
+  // Ces marques sont une PROJECTION (domaine 3), pas une certitude : le lexique qui les allume
+  // est un figurant, au même titre que `LEX`. Savoir si une prose a touché « la clinique » est un
+  // jugement sémantique, jamais un calcul. Le banc ne teste donc JAMAIS qu'elles s'allument sur
+  // le bon mot — il teste qu'elles n'ont AUCUN POUVOIR.
+  const pgC = await nav.newPage();
+  await pgC.emulateMediaFeatures([{ name: "prefers-reduced-motion", value: "reduce" }]);
+  await pgC.setViewport({ width: 1180, height: 960 });
+  await pgC.goto(CIBLE + "?nu", { waitUntil: "networkidle0" });
+  await attendre(1200);
+
+  const PROSE = "Visite à domicile. Il dit qu’il ne prend plus le traitement.";
+  await pgC.type("#txt", PROSE);
+  await attendre(250);
+  const acte = (a, i) => pgC.$$eval(`.actes a[data-a="${a}"]`, (n, k) => n[k].click(), i);
+
+  // I8 — les marques n'écrivent jamais dans le champ, et déposer un doute n'efface pas la prose.
+  //      « Le bruit est la donnée » : une IA qui organise la phrase efface le soignant, et c'est
+  //      justement lui qu'on récolte — ses projections alimentent le trilobe.
+  await acte("gest", 2); await attendre(350);
+  tenu("I8 · déposer un doute n'efface pas la prose en cours",
+       (await pgC.$eval("#txt", e => e.value)) === PROSE);
+
+  // I9 — la couverture ne conditionne JAMAIS le dépôt. Un bouton grisé par trois marques, c'est
+  //      la machine qui décide quand une observation est complète. Elle montre ; elle n'empêche pas.
+  tenu("I9 · le bouton n'est jamais grisé par une couverture",
+       (await pgC.$eval("#btDep", e => e.disabled)) === false);
+
+  // C6 — la `gestation` est la seule nature autorisée à rester nue
+  //      (`depots_contenu_sauf_gestation`, db/30). Elle se dépose sans un mot, et porte quand même
+  //      son auteur et son heure. Personne n'a jamais mal rempli un champ qu'il avait le droit de
+  //      laisser en gestation.
+  await pgC.$eval("#txt", e => { e.value = ""; e.dispatchEvent(new Event("input")); });
+  const avantG = await pgC.$$eval("ul.fil li", n => n.length);
+  await acte("gest", 1); await attendre(350);
+  const dernier = await pgC.$$eval("ul.fil li", n => {
+    const e = n[n.length - 1];
+    return { nu: !!e.querySelector(".depot.nu"), attr: e.querySelector(".attr").textContent, n: n.length };
+  });
+  tenu("C6 · une gestation se dépose nue, champ vide", dernier.n === avantG + 1 && dernier.nu);
+  tenu("C6 · et elle porte auteur, heure et nature",
+       /\S/.test(dernier.attr) && /\d/.test(dernier.attr) && /gestation/.test(dernier.attr), dernier.attr.trim());
+
+  // I10 — `vide_info` n'est pas la gestation. « J'ai regardé, il n'y avait rien » est un FAIT,
+  //      il se dit. Un fait ne se dépose pas en blanc.
+  const avantV = await pgC.$$eval("ul.fil li", n => n.length);
+  await acte("rien", 1); await attendre(300);
+  tenu("I10 · un vide_info ne se dépose pas en blanc",
+       (await pgC.$$eval("ul.fil li", n => n.length)) === avantV);
+
+  // C7 — et le dépôt ordinaire passe avec ZÉRO marque allumée. Sans ce contrôle, I9 se dirait
+  //      d'un bouton qui n'a jamais rien déposé.
+  await pgC.type("#txt", ".");
+  await pgC.click("#btDep"); await attendre(300);
+  tenu("C7 · un dépôt passe sans qu'aucune couverture soit allumée",
+       (await pgC.$$eval("ul.fil li", n => n.length)) === avantV + 1);
+  await pgC.close();
+
   // ══ IMPOSSIBILITÉS ════════════════════════════════════════════════════════════════
 
   // I1 — aucune boucle ne bouge sans qu'une passe ait tourné.

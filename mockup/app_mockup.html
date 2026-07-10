@@ -79,6 +79,19 @@
   /* La passe machine : ardoise. C'est un acte machine daté, jamais un dépôt. */
   .passe{font-family:var(--slate);font-size:10.5px;letter-spacing:.08em;color:var(--ink-soft);
          cursor:pointer;border-bottom:1px dotted var(--ink-faint)}
+  /* Les trois couvertures : ardoise. C'est la machine qui parle, et elle n'a aucun pouvoir. */
+  .couv{display:flex;gap:26px;flex-wrap:wrap;padding-left:var(--gout);margin-top:20px}
+  .mq{position:relative;font-family:var(--slate);font-size:10.5px;letter-spacing:.09em;
+      color:var(--ink-faint);cursor:default;padding-bottom:3px;border-bottom:1px solid transparent}
+  .mq.on{color:var(--ink-soft);border-bottom-color:var(--ink-faint)}
+  .actes{position:absolute;left:0;top:100%;margin-top:8px;display:none;flex-direction:column;gap:6px;
+         white-space:nowrap;font-weight:400;z-index:2}
+  .mq:hover .actes{display:flex}
+  .actes a{color:var(--ink-soft);text-decoration:none;border-bottom:1px dotted var(--ink-faint);cursor:pointer}
+  .actes a:hover{color:var(--ink)}
+  .nat{margin-left:10px;padding-left:10px;border-left:1px solid var(--ink-faint)}
+  .depot.nu{color:var(--ink-soft);font-style:italic}
+  ul.fil li.gest::before{border-left:1px dotted var(--ink-faint);background:none;width:0}
   .note-bas{font-family:var(--slate);font-size:11px;line-height:1.8;color:var(--ink-soft);
             border-top:1px solid var(--ink-faint);padding-top:16px;margin-top:8px}
   .note-bas b{color:var(--ink);font-weight:400}
@@ -1109,9 +1122,30 @@
             "Soi":/traitement|rendez-vous|cmp|soin|refus|excus|asseoir|ouvert|prend/i };
   var PASSE=null;
 
+  // ── Les trois couvertures ────────────────────────────────────────────────────────
+  // « Ce que tu fais · ce que tu vois · ce qu'il faudrait. » Trois marques, pas trois champs.
+  //
+  // `depots_grille_formulee_en_college` verrouille `situation` et `demande` sur
+  // `cadre='synthese_collective'` : l'infirmier NE PEUT PAS les déposer. Un guichet à trois
+  // champs produirait trois dépôts illégaux, ou une grille formulée par une main seule — et le
+  // trilobe cesserait d'être un collège pour devenir un bureau. Donc : UN dépôt, TROIS lectures.
+  //
+  // ⚠ Ces marques ne sont PAS déterministes. Savoir si une prose a touché « la clinique » est un
+  // jugement sémantique. Le lexique ci-dessous est un FIGURANT, du même statut que `LEX` : dans
+  // l'app c'est un modèle, borné à la couverture, jamais au sens. Ce qui est déterministe dans
+  // l'architecture d'éval, c'est la couverture STRUCTURELLE — le complément de ce qui a été
+  // rangé, calculable sur des positions de caractères. Pas ceci.
+  var COUV=[
+    {cle:"situation", mot:"l’intervention", fig:/domicile|visite|entretien|téléphon|cmp|rendez|passé|reçu|appel/i},
+    {cle:"clinique",  mot:"la clinique",    fig:/dit|refus|parl|pleur|angoiss|traitement|sommeil|mange|voix|présent/i},
+    {cle:"demande",   mot:"la direction",   fig:/faudrait|revoir|coordon|hospitalis|famille|orient|reprendre|surveill/i}
+  ];
+  function couvertures(txt){ return COUV.map(function(c){ return c.fig.test(txt||""); }); }
+
   function passer(){
     var frags=[];
     DEPOTS.forEach(function(d,di){
+      if(d.n==="gestation") return;          // rien à ranger : elle est nue, et c'est un acte
       // découpage grossier en propositions — la portion la plus petite QUI GARDE LE SENS.
       var parts=d.t.split(/(?<=[.;])\s+/);
       var off=0;
@@ -1198,7 +1232,16 @@
 
     if(s===2 && ptParked===null){                       // ── LE NŒUD : on écrit ──
       var fl=DEPOTS.map(function(d){
-        return '<li><p class="depot">'+ech(d.t)+'</p><p class="attr">'+ech(d.a)+' · '+quand(d.h)+'</p></li>';
+        // La gestation est la seule nature autorisée à n'avoir aucun contenu
+        // (`depots_contenu_sauf_gestation`). Elle ne s'affiche pas comme un dépôt raté :
+        // elle s'affiche comme un acte. « Personne n'a jamais mal rempli un champ qu'il avait
+        // le droit de laisser en gestation. »
+        var corps = d.n==="gestation"
+          ? '<p class="depot nu">ça travaille — '+ech(motDe(d.c))+'</p>'
+          : '<p class="depot">'+ech(d.t)+'</p>';
+        var typ = (d.n && d.n!=="observation") ? '<span class="nat">'+ech(d.n)+'</span>' : '';
+        return '<li'+(d.n==="gestation"?' class="gest"':'')+'>'+corps+
+               '<p class="attr">'+ech(d.a)+' · '+quand(d.h)+' '+typ+'</p></li>';
       }).join("");
       pan.innerHTML =
         '<p class="rtag">Récolte · le nœud · <b>on écrit ici</b></p>'+
@@ -1208,13 +1251,21 @@
         // qui est mal fait » vise la GLOSE. « L'indice ouvre un geste » autorise ceci.
         '<div class="champ"><textarea id="txt" rows="2" aria-label="Observation" '+
           'placeholder="Ce qui a été vu, entendu, rapporté"></textarea></div>'+
+        '<div class="couv" id="couv"></div>'+
         '<div class="barre">'+retard()+'<button id="btDep">Déposer</button></div>';
       var txt=$("txt");
-      txt.addEventListener("input",function(){ txt.style.height="auto"; txt.style.height=txt.scrollHeight+"px"; });
+      txt.value=BROUILLON;
+      majCouv();
+      txt.addEventListener("input",function(){
+        BROUILLON=txt.value;
+        txt.style.height="auto"; txt.style.height=txt.scrollHeight+"px";
+        majCouv();   // la marque suit la prose. Elle ne la corrige pas, ne la complète pas,
+      });            // n'écrit jamais dans le champ, et ne conditionne jamais le bouton.
       $("btDep").addEventListener("click",function(){
         // Le refus : le champ vide ne rejoint pas le fil. Rien ne l'explique.
         if(!/\S/.test(txt.value)){ txt.focus(); return; }
-        DEPOTS.push({a:QUI, t:txt.value, h:new Date()});
+        DEPOTS.push({a:QUI, n:"observation", t:txt.value, h:new Date()});
+        BROUILLON="";                        // signé : la prose quitte l'écran pour le fil
         rendre(); $("txt").focus();
         // Aucune boucle ne bouge. La passe n'a pas tourné.
       });
@@ -1250,6 +1301,43 @@
     pan.innerHTML='<p class="rtag">Institutionnel · l’infini</p>'+
       '<div class="note-bas">Continuité et Fragmentation — les deux faces d’une même présence. '+
       'L’œil se tient au centre et veille : sentinelle, non lecteur. Agrégat anonyme, montré jamais chiffré.</div>';
+  }
+
+  // La prose en cours n'est pas un dépôt — mais elle n'est pas rien non plus. Déposer un doute
+  // (`gestation`) ne doit pas effacer ce qu'on était en train d'écrire. Le brouillon vit dans
+  // l'écran, jamais dans la base : « rien n'est déposé tant qu'il n'a pas signé. »
+  var BROUILLON="";
+
+  function motDe(cle){ for(var i=0;i<COUV.length;i++) if(COUV[i].cle===cle) return COUV[i].mot; return cle; }
+
+  // Les marques s'allument, et n'ont AUCUN pouvoir. Le bouton n'est jamais grisé par elles :
+  // une couverture qui conditionne le dépôt, c'est la machine qui dicte quand une observation
+  // est complète. Elle montre. Elle ne conclut pas, et elle n'empêche pas.
+  function majCouv(){
+    var zone=$("couv"); if(!zone) return;
+    var t=$("txt")?$("txt").value:"", etats=couvertures(t);
+    zone.innerHTML = COUV.map(function(c,i){
+      return '<span class="mq'+(etats[i]?' on':'')+'" data-i="'+i+'">'+c.mot+
+             '<b class="actes"><a data-a="rien" data-i="'+i+'">j’ai regardé, rien</a>'+
+             '<a data-a="gest" data-i="'+i+'">ça travaille</a></b></span>';
+    }).join("");
+    zone.querySelectorAll("a").forEach(function(a){
+      a.addEventListener("click", function(e){
+        e.preventDefault();
+        var c=COUV[+a.dataset.i].cle, tx=$("txt");
+        if(a.dataset.a==="gest"){
+          // La seule nature qui reste NUE. Aucun texte demandé, aucun texte pris.
+          DEPOTS.push({a:QUI, n:"gestation", c:c, t:"", h:new Date()});
+        } else {
+          // `vide_info` porte un contenu : « j'ai regardé, il n'y avait rien » est un FAIT,
+          // il se dit. Le champ vide reste refusé — un fait ne se dépose pas en blanc.
+          if(!/\S/.test(tx.value)){ tx.focus(); return; }
+          DEPOTS.push({a:QUI, n:"vide_info", c:c, t:tx.value, h:new Date()});
+          BROUILLON="";
+        }
+        rendre();
+      });
+    });
   }
 
   // ── Qui écrit ─────────────────────────────────────────────────────────────────
