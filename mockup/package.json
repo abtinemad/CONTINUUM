@@ -2,12 +2,15 @@
   "name": "continuum-mockup",
   "version": "0.0.0",
   "private": true,
-  "description": "Mockup de l'app CONTINUUM et ses bancs. La géométrie (run_test.sh) tourne en node nu ; le banc de fidélité (tests/run_fidelite.sh) exige puppeteer.",
+  "type": "module",
+  "description": "Mockup de l'app CONTINUUM et ses bancs. La géométrie (run_test.sh) tourne en node nu ; le banc de fidélité (tests/run_fidelite.sh) exige puppeteer. Le moteur est le module unique noyau.js.",
   "scripts": {
     "test": "sh run_test.sh",
-    "fidelite": "sh tests/run_fidelite.sh"
+    "fidelite": "sh tests/run_fidelite.sh",
+    "typage": "tsc --noEmit"
   },
   "devDependencies": {
-    "puppeteer": "^24.0.0"
+    "puppeteer": "^24.0.0",
+    "typescript": "^7.0.2"
   }
 }

@@ -1,0 +1,18 @@
+{
+  "// ": "Banc typage : vérifie noyau.js à froid. checkJs lit les JSDoc de l'API publique ;",
+  "//  ": "il rougit si une signature ment. Pas de strict : la géométrie interne reste prouvée",
+  "//   ": "par testvrille, pas par des types. lib DOM car setInk/setRed touchent document.",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "noEmit": true,
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["ES2020", "DOM"],
+    "strict": false,
+    "noImplicitAny": false,
+    "skipLibCheck": true
+  },
+  "include": ["noyau.js"]
+}

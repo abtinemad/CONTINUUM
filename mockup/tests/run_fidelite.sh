@@ -9,10 +9,9 @@
 # 0 rendu sans avoir rien vérifié, c'est quatre erreurs qui simulent quatre vertus.
 set -e
 cd "$(dirname "$0")/.."
-./core.sh verifier          # un CORE dérivé → on ne teste rien
 node -e "require.resolve('puppeteer')" 2>/dev/null || {
   echo "banc NON EXÉCUTÉ — puppeteer absent. \`npm ci\` d'abord."
   echo "Un banc sauté n'est pas un banc vert."
   exit 2
 }
-node tests/fidelite.js
+node tests/fidelite.cjs

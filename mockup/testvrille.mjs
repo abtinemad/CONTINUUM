@@ -1,8 +1,9 @@
-var window={matchMedia:function(){return{matches:false}}};
-var SET={ plume:false, w:6, gap:1.8, contrast:1.85, nib:35*Math.PI/180 };
-var POOL=20;
-eval(require('fs').readFileSync('core.js','utf8'));
-var fs=require('fs'), fails=0;
+// Banc géométrie : importe le noyau (source unique) — il ne l'eval plus, plus de core.js dérivé.
+// Rien n'est stubé : le noyau n'utilise pas window (c'est l'hôte qui lit le dark-mode),
+// et SET/POOL viennent du noyau, à leurs valeurs canoniques du CORE.
+import { CX, CY, KF, KN, selfX, shapeAt, sceneSVG, POOL } from './noyau.js';
+import fs from 'fs';
+var fails=0;
 function ok(c,m){ console.log((c?'ok — ':'ÉCHEC — ')+m); if(!c)fails++; }
 
 // croisements par forme (CO=1 central, dashboard=3, patient=5)

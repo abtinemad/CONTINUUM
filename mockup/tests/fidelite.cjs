@@ -103,7 +103,9 @@ async function tenirBoucle(pg, fx, fy) {
 const relacher = pg => tenirBoucle(pg, 0.5, 0.5);   // le centre : l'œil se délie
 
 (async () => {
-  const nav = await puppeteer.launch({ args: ["--no-sandbox", "--disable-dev-shm-usage"] });
+  // --allow-file-access-from-files : app_mockup.html charge noyau.js en module ES ;
+  // un import ES sous file:// est bloqué par CORS sans ce drapeau.
+  const nav = await puppeteer.launch({ args: ["--no-sandbox", "--disable-dev-shm-usage", "--allow-file-access-from-files"] });
   const pg = await nav.newPage();
   const erreurs = [];
   pg.on("pageerror", e => erreurs.push(e.message));
