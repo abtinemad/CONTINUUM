@@ -2,6 +2,7 @@
 *.log
 **/core.js
 **/xv_*.svg
+node_modules/
 scratch/
 temp/
 tmp/

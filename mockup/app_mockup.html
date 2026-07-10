@@ -728,6 +728,13 @@
     // Le corps ne bouge pas ; seul le regard dérive, puis revient. Élargir, jamais détourner.
     if(ptParked!==null && SET.ptex){
       var _am=angleMort(ptParked);
+      // ── Ce que l'œil désigne, il le DIT ─────────────────────────────────────────────
+      // Un voyant lit la désignation dans l'inclinaison du regard. Un lecteur d'écran ne
+      // recevait rien : l'angle mort était réservé aux yeux. Il ne l'est plus.
+      // Ce n'est pas une conclusion — l'œil nomme l'axe vers lequel il se tourne, exactement
+      // ce que le dessin montre déjà. Et quand il ne désigne rien, il ne dit rien : le
+      // silence de l'outil est une position (§15), pas une chaîne vide à annoncer.
+      designer(_am);
       if(_am>=0){
         var _nd=nodesic(), _an=_nd[_am], _p0=_nd[ptParked];
         var _da=Math.atan2(_an[1]-_p0[1], _an[0]-_p0[0]);
@@ -736,7 +743,7 @@
         gtx = gtx*(1-_g) + Math.cos(_da)*_amp;
         gty = gty*(1-_g) + Math.sin(_da)*_amp;
       }
-    }
+    } else designer(-1);
     var ek=reduce?1:0.08; gx+=(gtx-gx)*ek; gy+=(gty-gy)*ek;
 
     if(interroLock){
@@ -1047,6 +1054,17 @@
   }
   function buildDuNoeud(i){ var nd=KN[2]; return i>=0&&i<nd.length ? buildIdxOf(nd[i],5) : -1; }
 
+  // La désignation de l'œil, rendue au lecteur d'écran. Écrite seulement quand elle change :
+  // la boucle de rendu tourne à 60 Hz, le DOM n'a pas à en savoir autant.
+  var _amDit = null;
+  function designer(am){
+    var v = (am>=0) ? ("l’œil se tourne vers " + axeDuBuild(buildDuNoeud(am))) : "";
+    if(v===_amDit) return;
+    _amDit = v;
+    if(v){ pt.setAttribute("role","img"); pt.setAttribute("aria-label", v); }
+    else { pt.removeAttribute("role"); pt.removeAttribute("aria-label"); }
+  }
+
   // ── Le grain : la forme du nœud quand rien n'a été récolté ────────────────────
   // `ASYM[5].s` ne disparaît pas ; il cesse d'être la TAILLE. Sans lui, le patient nu
   // s'afficherait en fleur parfaitement symétrique — la symétrie normative que le §19
@@ -1071,6 +1089,14 @@
     {a:"Karima", t:"Sa sœur pleure au téléphone. Elle dit qu’elle n’en peut plus, mais qu’elle ne lâchera pas."}
   ];
   DEPOTS.forEach(function(d,i){ d.h=new Date(Date.now()-(DEPOTS.length-i)*36e5); });
+
+  // ── Le patient nu : `?nu` ─────────────────────────────────────────────────────────
+  // Ce n'est pas un mode de test, c'est l'état le plus important de l'app et le plus rare
+  // à voir : personne n'a encore rien déposé. Le fil est au premier cran, les cinq boucles
+  // ne portent que leur grain, et l'œil ne désigne rien — parce qu'il n'y a pas d'angle mort
+  // quand tout l'est. C'est le seul écran où l'outil n'a strictement rien à dire, et c'est
+  // celui qu'il faut regarder le plus longtemps.
+  if(/[?&]nu\b/.test(location.search)) DEPOTS.length = 0;
 
   // ── La passe machine (domaine 3) ──────────────────────────────────────────────
   // Un acte machine DATÉ, jamais un dépôt. Rejouable ; le pentalobe lit la dernière.
