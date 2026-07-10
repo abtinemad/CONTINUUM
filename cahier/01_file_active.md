@@ -211,6 +211,4 @@ Manquent **trois** choses, à poser **avant le premier dépôt réel** (append-o
   - La discipline de connexion : l'app ne se connecte **jamais** en propriétaire ni superuser. La DDL
     ne peut pas l'imposer — le propriétaire contourne la RLS. Elle tient par la config de déploiement,
     pas par le schéma.
-- `core.sh` : `dessin/01_file_active.html` est un nouveau consommateur du CORE, absent de
-  `CONSOMMATEURS=(app_mockup.html)`. Sans l'y ajouter, la copie peut dériver en silence.
 - `lobeCount()` compte les **nœuds**, pas les lobes (bilobe → 1). Elle ment sur ce qu'elle mesure.
