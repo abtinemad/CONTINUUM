@@ -18,7 +18,7 @@ set -euo pipefail
 cd "$(dirname "$0")"
 
 CANON=continuum_mockup.html
-CONSOMMATEURS=(app_mockup.html)   # le canonique n'est pas son propre consommateur
+CONSOMMATEURS=(app_mockup.html dessin/01_file_active.html)   # le canonique n'est pas son propre consommateur
 
 case "${1:-verifier}" in
 verifier)
