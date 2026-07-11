@@ -15,7 +15,7 @@
 -- │     composite (id, ipp, nature) la force à valoir la nature réelle de la     │
 -- │     ligne visée. Elle achète en structure deux gardes qui seraient sinon     │
 -- │     du code : « une levée ne lève qu'une hypothèse, une inquiétude ou une    │
--- │     gestation » et « une révision révise le même registre ».                 │
+-- │     temporalité » et « une révision révise le même registre ».               │
 -- │ (3) `type_valide` : une colonne, jamais la prose. Rangé dans le `contenu`,   │
 -- │     la projection `type_courant` devrait **lire la phrase** — du sens lu     │
 -- │     sur la surface vive, ce que §4 (d) interdit. Ce n'est pas un nombre.     │
@@ -73,11 +73,11 @@ CREATE TABLE depot.depots (
   CONSTRAINT depots_nature_connue
     CHECK (nature IN (
       -- famille observation (déposée seul comme en synthèse) :
-      'observation','inquietude','vide_info','gestation','levee',
+      'observation','inquietude','vide_info','temporalite','levee',
       'lien_travail','indication',
       -- tournés vers l'avant (§ chaîne). Un dépôt, jamais une colonne : reprendre date,
       -- c'est déposer ; annuler, c'est lever. Le relais ferme par un nom (dans `contenu`,
-      -- déjà NOT NULL sauf gestation → pas de sortie dans le vide, sans règle neuve).
+      -- déjà NOT NULL partout → pas de sortie dans le vide, sans règle neuve).
       'rendez_vous','relais',
       -- le nouage (jamais seul) :
       'situation','ressenti','demande','diffraction','lecture_clinique',
@@ -120,9 +120,10 @@ CREATE TABLE depot.depots (
            OR nature IN ('lecture_clinique','compte_rendu','validation_typage')),
 
   -- ══ La prose ════════════════════════════════════════════════════════════════
-  -- « Rester nu » : seule la gestation peut n'avoir aucun contenu (§6).
-  CONSTRAINT depots_contenu_sauf_gestation
-    CHECK (nature = 'gestation' OR contenu IS NOT NULL),
+  -- Toujours argumenté : plus aucune nature ne reste nue. Le contenu est requis
+  -- partout — même la temporalité nomme le temps qu'elle demande et pourquoi.
+  CONSTRAINT depots_contenu_requis
+    CHECK (contenu IS NOT NULL),
 
   -- ══ La position — source du regard, jamais fusionnée ════════════════════════
   CONSTRAINT depots_position_ressenti
@@ -131,7 +132,7 @@ CREATE TABLE depot.depots (
     CHECK (nature <> 'lecture_clinique' OR "position" IN ('medecin','equipe','entourage','structure')),
   CONSTRAINT depots_position_nulle_ailleurs
     CHECK ("position" IS NULL
-           OR nature IN ('ressenti','lecture_clinique','vide_info','gestation')),
+           OR nature IN ('ressenti','lecture_clinique','vide_info','temporalite')),
 
   -- ══ La facette — la demande seule ═══════════════════════════════════════════
   CONSTRAINT depots_facette_demande
@@ -139,9 +140,9 @@ CREATE TABLE depot.depots (
   CONSTRAINT depots_facette_connue
     CHECK (facette IS NULL OR facette IN ('surface','reelle')),
 
-  -- ══ Le champ cible — le vide et la gestation visent un champ ════════════════
+  -- ══ Le champ cible — le vide et la temporalité visent un champ ══════════════
   CONSTRAINT depots_champ_cible_requis
-    CHECK ((nature IN ('vide_info','gestation')) = (champ_cible IS NOT NULL)),
+    CHECK ((nature IN ('vide_info','temporalite')) = (champ_cible IS NOT NULL)),
   CONSTRAINT depots_champ_cible_connu
     CHECK (champ_cible IS NULL
            OR champ_cible IN ('situation','clinique','ressenti','demande','diffraction')),
@@ -160,7 +161,7 @@ CREATE TABLE depot.depots (
   CONSTRAINT depots_levee_reference
     CHECK (nature <> 'levee'
            OR (ref_depot_id IS NOT NULL
-               AND ref_nature IN ('hypothese_clinique','inquietude','gestation','rendez_vous'))),
+               AND ref_nature IN ('hypothese_clinique','inquietude','temporalite','rendez_vous'))),
   -- Fermer une hypothèse clinique est un acte d'équipe : sa levée suit le collège.
   CONSTRAINT depots_levee_hypothese_clinique_en_college
     CHECK (nature <> 'levee'
