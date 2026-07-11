@@ -1,6 +1,6 @@
 -- CONTINUUM — Phase 0 · 70 · le dépôt vide
 --
--- `depots_contenu_sauf_gestation` ne vérifie que `IS NOT NULL`. Mesuré sur origin/main,
+-- `depots_contenu_requis` (db/30) ne vérifie que `IS NOT NULL`. Mesuré sur origin/main,
 -- base montée, transaction réelle : `''`, `'   \n  '` et `E'\t'` sont **acceptés, datés,
 -- attribués**. Trois dépôts vides sur le fil d'un patient.
 --
@@ -19,14 +19,15 @@
 -- L'idiome `btrim(x) <> ''` du domaine 0 laisse donc passer un IPP fait d'un seul retour
 -- ligne. On le corrige ici aussi : même faiblesse, même remède, un seul fil.
 --
--- `NULL ~ '\S'` vaut NULL, et un CHECK NULL est tenu : la `gestation` reste libre de rester
--- nue (§6). Les deux contraintes se composent ; aucune ne remplace l'autre.
+-- Plus aucune nature ne reste nue : la temporalité elle-même nomme le temps qu'elle
+-- demande et pourquoi (§6, refondu). `depots_contenu_requis` (db/30) refuse le NULL, ce
+-- CHECK refuse le blanc — les deux contraintes se composent, aucune ne remplace l'autre.
 
 SET ROLE continuum_migration;
 
 ALTER TABLE depot.depots
   ADD CONSTRAINT depots_contenu_non_vide
-  CHECK (nature = 'gestation' OR contenu ~ '\S');
+  CHECK (contenu ~ '\S');
 
 ALTER TABLE identite.patients
   DROP CONSTRAINT IF EXISTS patients_ipp_check;
