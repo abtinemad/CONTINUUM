@@ -248,15 +248,23 @@ SELECT test.doit_echouer(
 --  LES CONTRÔLES POSITIFS — sans eux, les quatre ci-dessus ne prouvent rien
 -- ══════════════════════════════════════════════════════════════════════════════
 
--- La `gestation` reste NUE. `NULL ~ '\S'` vaut NULL, et un CHECK NULL est tenu : la seule
--- nature autorisée à n'avoir aucun contenu le reste. Sans ce contrôle, un `contenu NOT NULL`
--- posé par mégarde passerait les deux impossibilités ci-dessus — et fermerait à l'infirmier
--- le seul guichet où il a le droit de dire qu'il ne sait pas encore.
-SELECT test.doit_reussir(
-  'une gestation reste nue',
+-- La `temporalite` est TOUJOURS argumentée — plus de pause opaque. Une temporalité nue
+-- (aucun contenu) échoue : on ne suspend pas la relance sans dire quel temps on demande ni
+-- pourquoi. Le contenu porte le couple temps + argument.
+SELECT test.doit_echouer(
+  'une temporalite nue est refusée',
   'continuum_soignant',
   $$INSERT INTO depot.depots (ipp, auteur_id, cadre, nature, champ_cible, contenu)
-    VALUES ('IPP-TEST-001','11111111-1111-1111-1111-111111111111','seul','gestation','demande', NULL)$$,
+    VALUES ('IPP-TEST-001','11111111-1111-1111-1111-111111111111','seul','temporalite','demande', NULL)$$,
+  '23514', '11111111-1111-1111-1111-111111111111');
+
+-- Argumentée, elle passe : le temps et sa raison, dans le contenu.
+SELECT test.doit_reussir(
+  'une temporalite argumentee se dépose',
+  'continuum_soignant',
+  $$INSERT INTO depot.depots (ipp, auteur_id, cadre, nature, champ_cible, contenu)
+    VALUES ('IPP-TEST-001','11111111-1111-1111-1111-111111111111','seul','temporalite','demande',
+            'On revoit la demande après l''été, le temps qu''il pose les choses.')$$,
   '11111111-1111-1111-1111-111111111111');
 
 -- Le mot cru se dépose seul : c'est le geste du matin, dans la voiture.
@@ -315,7 +323,7 @@ SELECT test.doit_reussir(
 --  déplacé d'un cran. On le ferme ici, par des dépôts réels.
 -- ══════════════════════════════════════════════════════════════════════════════
 
--- Un rendez-vous se pose. Nature neuve, `contenu` requis (ce n'est pas une gestation), aucune
+-- Un rendez-vous se pose. Nature neuve, `contenu` requis comme partout, aucune
 -- position, aucun nombre. L'id est figé : le report qui suit le vise.
 SELECT test.doit_reussir(
   'un rendez-vous se dépose',
@@ -326,7 +334,7 @@ SELECT test.doit_reussir(
   '11111111-1111-1111-1111-111111111111');
 
 -- Le report : lever n'est pas effacer — c'est déposer une `levee` qui vise le rendez-vous. Le CHECK
--- n'ouvre la levée qu'à hypothese_clinique/inquietude/gestation/rendez_vous ; la nature neuve devait y entrer.
+-- n'ouvre la levée qu'à hypothese_clinique/inquietude/temporalite/rendez_vous ; la nature neuve devait y entrer.
 -- `ref_depot_id` n'a pas de FK : on prouve la forme (rendez_vous est levable), pas l'existence.
 SELECT test.doit_reussir(
   'un rendez-vous se lève — le report',
