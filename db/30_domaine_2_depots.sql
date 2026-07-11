@@ -73,7 +73,7 @@ CREATE TABLE depot.depots (
   CONSTRAINT depots_nature_connue
     CHECK (nature IN (
       -- famille observation (déposée seul comme en synthèse) :
-      'observation','hypothese','inquietude','vide_info','gestation','levee',
+      'observation','inquietude','vide_info','gestation','levee',
       'lien_travail','indication',
       -- tournés vers l'avant (§ chaîne). Un dépôt, jamais une colonne : reprendre date,
       -- c'est déposer ; annuler, c'est lever. Le relais ferme par un nom (dans `contenu`,
@@ -81,7 +81,7 @@ CREATE TABLE depot.depots (
       'rendez_vous','relais',
       -- le nouage (jamais seul) :
       'situation','ressenti','demande','diffraction','lecture_clinique',
-      'equilibre','compte_rendu','validation_typage'
+      'hypothese_clinique','compte_rendu','validation_typage'
     )),
 
   -- ┌ La coupe n'est pas entre le médecin et les autres. Elle est entre ce qui se ────┐
@@ -92,10 +92,10 @@ CREATE TABLE depot.depots (
   -- │ rendu. Ouvert au cadre `responsabilite_medicale`.                                │
   -- │                                                                                  │
   -- │ Ce qui se **formule** — la grille — n'existe QUE parce que plusieurs regards     │
-  -- │ l'ont faite. `diffraction` déposée seul est un homme qui se relit ; `equilibre`  │
-  -- │ déposé seul est le nouage rendu à un regard unique. Fermé À TOUT LE MONDE, le    │
-  -- │ coordinateur compris. Si l'on peut formuler seul, le trilobe cesse d'être un     │
-  -- │ collège : c'est un bureau.                                                       │
+  -- │ l'ont faite. `diffraction` déposée seul est un homme qui se relit ;              │
+  -- │ `hypothese_clinique` déposé seul est le nouage rendu à un regard unique. Fermé   │
+  -- │ À TOUT LE MONDE, le coordinateur compris. Si l'on peut formuler seul, le         │
+  -- │ trilobe cesse d'être un collège : c'est un bureau.                               │
   -- │                                                                                  │
   -- │ Les deux contraintes sont **d'un seul côté** : la famille observation reste      │
   -- │ libre de son cadre (on cite un mot cru dans la salle). Un CHECK qui n'interdit   │
@@ -106,7 +106,7 @@ CREATE TABLE depot.depots (
   -- déposé seul, sans voir les autres) ; le champ Diffraction est le moment où le collège
   -- les pose côte à côte (§12 bis). Aucune main seule, jamais, pas même celle qui répond.
   CONSTRAINT depots_grille_formulee_en_college
-    CHECK (nature NOT IN ('situation','ressenti','demande','diffraction','equilibre')
+    CHECK (nature NOT IN ('situation','ressenti','demande','diffraction','hypothese_clinique')
            OR cadre = 'synthese_collective'),
 
   -- Ce qui se signe : le collège, ou la responsabilité médicale. Jamais `seul`.
@@ -144,7 +144,7 @@ CREATE TABLE depot.depots (
     CHECK ((nature IN ('vide_info','gestation')) = (champ_cible IS NOT NULL)),
   CONSTRAINT depots_champ_cible_connu
     CHECK (champ_cible IS NULL
-           OR champ_cible IN ('situation','clinique','ressenti','demande','diffraction','equilibre')),
+           OR champ_cible IN ('situation','clinique','ressenti','demande','diffraction')),
 
   -- ══ Le lien de travail — jamais anonyme ═════════════════════════════════════
   CONSTRAINT depots_lien_travail_acteur
@@ -155,15 +155,20 @@ CREATE TABLE depot.depots (
     CHECK ((ref_depot_id IS NULL) = (ref_nature IS NULL)),
   CONSTRAINT depots_ref_reservee
     CHECK (ref_depot_id IS NULL
-           OR nature IN ('levee','lecture_clinique','hypothese','lien_travail')),
+           OR nature IN ('levee','lecture_clinique','hypothese_clinique','lien_travail')),
   -- Lever n'est pas effacer : deux actes datés, tous deux visibles.
   CONSTRAINT depots_levee_reference
     CHECK (nature <> 'levee'
            OR (ref_depot_id IS NOT NULL
-               AND ref_nature IN ('hypothese','inquietude','gestation','rendez_vous'))),
+               AND ref_nature IN ('hypothese_clinique','inquietude','gestation','rendez_vous'))),
+  -- Fermer une hypothèse clinique est un acte d'équipe : sa levée suit le collège.
+  CONSTRAINT depots_levee_hypothese_clinique_en_college
+    CHECK (nature <> 'levee'
+           OR ref_nature <> 'hypothese_clinique'
+           OR cadre = 'synthese_collective'),
   -- Une révision révise le même registre : une lecture clinique ne révise pas un lien.
   CONSTRAINT depots_revision_homogene
-    CHECK (nature NOT IN ('lecture_clinique','hypothese','lien_travail')
+    CHECK (nature NOT IN ('lecture_clinique','hypothese_clinique','lien_travail')
            OR ref_depot_id IS NULL
            OR ref_nature = nature),
   CONSTRAINT depots_pas_d_auto_reference CHECK (ref_depot_id IS DISTINCT FROM id),
