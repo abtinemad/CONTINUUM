@@ -63,8 +63,7 @@ d'abord la gestalt (d'un coup, ou en jours, ou en mois) ; il reconstruit *ensuit
 justification, indice par indice, pour la rendre argumentable à un autre. La déduction
 n'est pas une seconde voie parallèle à la perception : elle lui est **postérieure et
 reconstructive**. C'est ce qui rend le geste *enseignable sans être mécanisable* — on
-peut rendre des comptes sur une chose qu'on n'a pas obtenue par comptes. (Voir §2, le
-seuil de dépôt : on ne dépose que ce qui a franchi le seuil de l'argumentable.)
+peut rendre des comptes sur une chose qu'on n'a pas obtenue par comptes.
 
 Danger central : la machine *a* les mots crus (ils sont dans le dossier) et peut les
 **rassembler**. Mais si elle tente l'émergence, elle produit le **cliché statistique** —
@@ -118,16 +117,12 @@ machine**.
 entre elles n'est pas un défaut à corriger, c'est un matériau (voir §4, la divergence des
 lectures).
 
-**Seuil de dépôt — perçu ≠ argumentable.** Dans la tête du soignant, deux états
-distincts coexistent : la perception encore **en gestation** (pas mûre, pas
-argumentable) et la perception déjà **décomposée** (argumentable, donc transmissible).
-Le seuil de ce qui entre dans le sanctuaire n'est pas « ce qui est important », c'est
-**« ce que j'ai perçu assez pour pouvoir l'argumenter à un autre »**. L'outil ne prend
-que l'argumentable, et surtout **ne force jamais à sortir ce qui est encore en train de
-se percevoir** — l'écrire trop tôt le figerait en verdict prématuré, ce qui trahit la
-temporalité que tout le reste protège. (Symétrie exacte de la plume, §5, qui refuse de
-se générer sous un seuil de matière : le soignant refuse de déposer sous un seuil
-d'argumentabilité.)
+**Ce qui entre dans le sanctuaire.** La lecture clinique se dépose dans les mots du
+soignant — hypothétique, datée, révisable —, jamais comme un verdict. Sa maturité n'est
+**pas une condition à l'entrée** : elle se fait en aval, dans le faisceau des
+observations et la chaîne des révisions (§3), jamais en retenant le dépôt. L'outil ne
+force jamais une lecture à sortir, et ne la génère jamais lui-même — symétrie avec la
+plume (§5), qui refuse de se produire à partir du vide.
 
 **Hypothèses de travail** (dans le sanctuaire, registre visiblement distinct de la
 Clinique posée). L'outil tient **plusieurs hypothèses côte à côte — le pluriel est la
@@ -348,16 +343,15 @@ Quatre états, jamais deux :
 - **vide-info** : la case est vide *et c'est un fait* (« aucun tiers — patient isolé »).
   À afficher comme un événement typographié, pas comme un blanc.
 - **non-renseigné** : un travail en attente, pas encore regardé.
-- **hypothèses en cours** : le soignant *tient quelque chose* mais ne l'a pas encore
-  perçu assez pour l'argumenter (§2, seuil de dépôt). Ce n'est **pas un trou** — c'est
-  une gestation. L'état dit à l'équipe « travail en cours derrière ce champ » et à
-  l'outil « **ne relance pas ici** » (§11). Il peut porter des hypothèses de travail
-  (plurielles, datées, révisables) ou rester nu si rien n'est encore argumentable.
+- **temporalité à respecter** : l'équipe a décidé d'attendre, et elle dit *quel temps et
+  pourquoi* (« on revoit après l'été, le temps qu'il pose les choses »). Ce n'est **pas
+  un trou** — c'est un temps choisi, argumenté, déposé en collège. L'état dit à l'équipe
+  « ce champ est en attente pour une raison nommée » et à l'outil « **défère la relance
+  ici** » ; jamais nu — une attente sans argument n'est qu'une pause opaque.
 
 Écraser le vide-info sous le non-renseigné (« à remplir ») détruit une information
-clinique. Confondre « hypothèses en cours » avec « non-renseigné » pousse à articuler
-avant maturité = verdict prématuré. Réf. code : `diffraction_sans_partage` de
-*Le collègue* — le vide comme champ de première classe.
+clinique. Réf. code : `diffraction_sans_partage` de *Le collègue* — le vide comme champ
+de première classe.
 
 ---
 
@@ -530,9 +524,10 @@ Composition (structure fixe, contenu libre) :
    digestion de la demande. En **latence** dessous, les six portes de rupture (voir
    §12) : l'outil range en silence ce que la prose touche, et **relance par l'absence**
    sur ce qui n'a pas été touché — une fois, sous forme de question qui ouvre, jamais un
-   champ qui ordonne. **La relance distingue le trou de la gestation** (§6) : elle se
-   déclenche sur le *non-regardé*, jamais sur un champ marqué « hypothèses en cours ».
-   Relancer une perception en gestation, c'est forcer la maturité = fabriquer le verdict
+   champ qui ordonne. La relance distingue le trou d'une **temporalité à respecter** (§6) : elle se
+   déclenche sur le *non-regardé*, mais **défère — sans mourir —** sur un champ où l'équipe
+   a déposé une temporalité argumentée ; le temps qu'elle a nommé passé, elle revient.
+   Relancer sans respecter ce temps, c'est forcer la maturité = fabriquer le verdict
    prématuré que tout le système interdit.
 
 4. **La digestion** — SIID ou pas. **Sanctuaire.** L'outil a tendu les faits ; il ne
@@ -1590,8 +1585,6 @@ pas par la couleur — §ci-dessus).
 - **Clinique = sanctuaire humain**, dédoublée (médecin + équipe, **deux positions sans
   hiérarchie** ; l'écart est le matériau), nomme le mécanisme, jamais l'étiquette ;
   hypothèse tenue, jamais verdict.
-- **Seuil de dépôt** = perçu ≠ argumentable ; on ne dépose que l'argumentable, on ne
-  force jamais la perception en gestation.
 - **Hypothèses de travail** = plurielles par règle (protection anti-verdict), datées,
   révisables visiblement, non-surplombantes, **jamais pondérées par l'outil** ; jugées à
   ce qu'elles tiennent, cèdent devant le fait cru qui résiste (garde-fou anti-délire).
@@ -1604,8 +1597,8 @@ pas par la couleur — §ci-dessus).
   tranche pas. (a) juxtaposition attribuée + (b) marqueur factuel « plusieurs angles » +
   (c) hypothèses **plurielles** ; jamais (d) sémantique, jamais d'échelle comparant les
   angles. Divergence avec l'entourage = aussi une direction de travail sur le lien (§13).
-- **Vide nommé** ≠ non-renseigné ; 4ᵉ état = **hypothèses en cours** (gestation, pas
-  trou ; la relance ne s'y déclenche pas).
+- **Vide nommé** ≠ non-renseigné ; 4ᵉ état = **temporalité à respecter** (un temps
+  argumenté déposé en collège, pas un trou ; la relance y défère, ne meurt pas).
 - **Relai (charge partagée)** ≠ Diffraction : le relai répartit la *charge*, la
   diffraction les *regards* ; le relai est la condition de la diffraction. Mécanisme de
   la baisse d'absentéisme (tribune).
