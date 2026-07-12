@@ -44,4 +44,4 @@ COMMENT ON SCHEMA identite IS 'Domaine 0. L''identité nominative ne sort jamais
 COMMENT ON SCHEMA recolte  IS 'Domaine 1. Faits durs, régime directif (§10). Append + corrigé projeté.';
 COMMENT ON SCHEMA depot    IS 'Domaine 2. Append, rien ne se masque. La machine n''a pas USAGE ici.';
 COMMENT ON SCHEMA machine  IS 'Domaine 3. Recalculable, ou immuable et daté. Rien d''autre.';
-COMMENT ON SCHEMA lecture  IS 'Vues possédées par la migration. Le seul chemin de la machine vers 0-1-2. En lecture, et sans nom, et sans gestation.';
+COMMENT ON SCHEMA lecture  IS 'Vues possédées par la migration. Le seul chemin de la machine vers 0-1-2. En lecture, et sans nom, et sans le non-ratifié.';

@@ -127,6 +127,13 @@ INSERT INTO depot.depots (id, ipp, auteur_id, cadre, nature, contenu) VALUES
    '11111111-1111-1111-1111-111111111111', 'synthese_collective', 'hypothese_clinique',
    'Hypothèse de travail — à ratifier par un second.');
 
+-- un dépôt collège fantôme : proposé, jamais ratifié (1 seule signature). Visible à
+-- l'équipe (elle lit `depot`), invisible à la machine (le filtre de db/50).
+INSERT INTO depot.depots (id, ipp, auteur_id, cadre, nature, contenu) VALUES
+  ('dddddddd-dddd-dddd-dddd-dddddddddddd', 'IPP-TEST-001',
+   '11111111-1111-1111-1111-111111111111', 'synthese_collective', 'hypothese_clinique',
+   'Hypothèse proposée seule — aucune seconde signature ne viendra.');
+
 RESET ROLE;
 
 -- ══════════════════════════════════════════════════════════════════════════════
@@ -470,6 +477,23 @@ SELECT test.doit_echouer(
     VALUES ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb','IPP-TEST-001','hypothese_clinique',
             '33333333-3333-3333-3333-333333333333','signature')$$,
   '23505', '33333333-3333-3333-3333-333333333333');
+
+-- Le filtre de validité prouvé : la machine ne voit QUE le ratifié.
+SELECT test.doit_reussir(
+  'la machine ne voit que le collège ratifié',
+  'continuum_machine',
+  $geste$
+  DO $chk$
+  BEGIN
+    IF NOT EXISTS (SELECT 1 FROM lecture.depots WHERE id = 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb') THEN
+      RAISE EXCEPTION 'le dépôt ratifié (2 signatures) est invisible à la machine';
+    END IF;
+    IF EXISTS (SELECT 1 FROM lecture.depots WHERE id = 'dddddddd-dddd-dddd-dddd-dddddddddddd') THEN
+      RAISE EXCEPTION 'le fantôme (1 signature) est visible à la machine';
+    END IF;
+  END
+  $chk$;
+  $geste$);
 
 \echo ''
 \echo '════════ CONTINUUM · Phase 0 · tests d''impossibilité ════════'

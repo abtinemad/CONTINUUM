@@ -39,7 +39,7 @@ CREATE TABLE machine.relances (
   CONSTRAINT relances_une_fois_par_porte UNIQUE (ipp, porte)             -- invariant 8
 );
 COMMENT ON TABLE machine.relances IS
-  'Une fois par porte. Jamais émise si une gestation est ouverte sur la demande (garde de code). Affichée dans la vue, jamais notifiée : il n''existe pas d''infrastructure pour pousser.';
+  'Une fois par porte. Déférée à la temporalité argumentée quand une temporalite est ouverte sur la demande (garde de code, à venir) — jamais suspendue : le temps nommé passé, elle revient. Affichée dans la vue, jamais notifiée : il n''existe pas d''infrastructure pour pousser.';
 
 CREATE TABLE machine.pistes (
   id        uuid        PRIMARY KEY DEFAULT gen_random_uuid(),
