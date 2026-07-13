@@ -13,8 +13,13 @@
 // ═════════════════════════════════════════════════════════════════════════════════════
 import { creerForme, CX, CY, N, TAU, INK, RED, lerp, clamp, smooth, easeAngle, f1, xNodes, composeScene, SET, POOL } from './noyau.js';
 
-export function creerNoeud(svgEl){
+export function creerNoeud(svgEl, opts){
   "use strict";
+  opts = opts || {};
+  // Une seule source d'encre pour ce que PEINT le module (overs + monture oudjat). Défaut = INK
+  // (constante noyau) → un hôte qui ne passe rien reste identique. Le FIL, lui, garde sa couleur
+  // du CSS de la page (le module ne la force pas ; le CSS l'emporterait de toute façon).
+  var encre = (opts.encre != null) ? opts.encre : INK;
   var reduce = (typeof window!=='undefined' && window.matchMedia) ? window.matchMedia("(prefers-reduced-motion:reduce)").matches : false;
   var NS = "http://www.w3.org/2000/svg";
   var q = function(id){ return svgEl.querySelector('#'+id); };
@@ -102,11 +107,11 @@ export function creerNoeud(svgEl){
         if(sc.mode==="stroke"){
           h.setAttribute("fill","none"); h.setAttribute("stroke","#000");
           h.setAttribute("stroke-width", f1(sc.holeW[k])); h.setAttribute("stroke-linecap","butt");
-          o.setAttribute("fill","none"); o.setAttribute("stroke",INK);
+          o.setAttribute("fill","none"); o.setAttribute("stroke",encre);
           o.setAttribute("stroke-width", f1(sc.inkW[k])); o.setAttribute("stroke-linecap","round"); o.setAttribute("stroke-linejoin","round");
         } else {
           h.setAttribute("fill","#000"); h.setAttribute("stroke","#000"); h.setAttribute("stroke-width","0.7"); h.setAttribute("stroke-linejoin","round");
-          o.setAttribute("fill",INK); o.setAttribute("stroke",INK); o.setAttribute("stroke-width","0.7"); o.setAttribute("stroke-linejoin","round");
+          o.setAttribute("fill",encre); o.setAttribute("stroke",encre); o.setAttribute("stroke-width","0.7"); o.setAttribute("stroke-linejoin","round");
         }
       } else { h.setAttribute("d",""); o.setAttribute("d",""); }
     }
@@ -421,7 +426,7 @@ export function creerNoeud(svgEl){
     } else if(scouterG.getAttribute("opacity")!=="0"){ scouterG.setAttribute("opacity","0"); }
     // OUDJAT - la monture se pose sur l'oeil (hors #grp) : enregistree par sa pupille sur P, epinglee a l'orientation du fil
     if(oudjatOp>0.001){
-      oudjatG.firstChild.setAttribute('fill', INK);                       // suit l'encre du fil (slider)
+      oudjatG.firstChild.setAttribute('fill', encre);                     // suit l'encre du fil (opts.encre)
       var _osr=spinDeg*Math.PI/180, _odx=P[0]-CX, _ody=P[1]-CY;
       var _oX=CX+_odx*Math.cos(_osr)-_ody*Math.sin(_osr);                 // P (repere local) -> ecran, comme le scouter
       var _oY=CY+_odx*Math.sin(_osr)+_ody*Math.cos(_osr);
