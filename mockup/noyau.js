@@ -61,48 +61,11 @@ export function setRefreshStatics(fn){ refreshStatics = fn; }
     if(L===3) return {baseR:44, len:120, width:66, dlt:12, ppl:Math.floor(N/3)-6, conn:6};
     return         {baseR:50, len:98,  width:44, dlt:9,  ppl:Math.floor(N/5)-5, conn:5};
   }
-  // ASYMÉTRIE — loi générale de la marque : aucun lobe n'est le clone d'un autre.
-  // Facteurs déterministes (reproductibles) par lobe : longueur/torsion inégales, petit décalage
-  // angulaire. Le lobe 0 (sommet) reste proche du repère pour ancrer le premier nœud en haut.
-  var ASYM = {
-    3: { s:[0.97, 1.12, 0.90], a:[0, 0.11, -0.07] },   // L1 (bas-droite) = Vigilante, la plus grande : la largeur du champ scruté, jamais un volume déposé (§18 bis)
-    5: { s:[1.13, 0.89, 1.06, 0.87, 1.04], a:[0, 0.08, -0.05, 0.07, -0.05] }
-  };
-  // construit le fil (points) pour L lobes vrillés, asymétriques — nœuds réels lus ensuite sur le fil
-  function build(L){
-    var g=geomFor(L), pts=[], l, s, c;
-    var az=ASYM[L], SC=function(i){ return az? az.s[i] : 1; }, AO=function(i){ return az? az.a[i] : 0; };
-    var LEN=function(i){ return g.len*SC(i); }, DL=function(i){ return g.dlt*SC(i); };
-    var WID=function(i){ return g.width*(0.55+0.45*SC(i)); }; // la largeur varie moins que la longueur
-    var ANG=function(i){ return (i/L)*2*Math.PI - Math.PI/2 + AO(i); };
-    for(l=0;l<L;l++){
-      var ang=ANG(l), ln=LEN(l), wd=WID(l), dl=DL(l);
-      var B=[CX+g.baseR*Math.cos(ang), CY+g.baseR*Math.sin(ang)];
-      for(s=0;s<=g.ppl;s++) pts.push(loopPoint(s/g.ppl, B, ang, ln, wd, dl));
-      // connecteur C¹ : sortie de CE lobe (longueur/torsion locales) → entrée du SUIVANT (les siennes)
-      var m=(l+1)%L, angN=ANG(m), lnN=LEN(m), wdN=WID(m), dlN=DL(m);
-      var BN=[CX+g.baseR*Math.cos(angN), CY+g.baseR*Math.sin(angN)];
-      var od=[Math.cos(ang),Math.sin(ang)], ld=[-Math.sin(ang),Math.cos(ang)];
-      var odN=[Math.cos(angN),Math.sin(angN)], ldN=[-Math.sin(angN),Math.cos(angN)];
-      var kT=2*Math.PI*wd+2*dl, kTN=2*Math.PI*wdN+2*dlN;
-      var P0=[B[0]+dl*ld[0],  B[1]+dl*ld[1]];
-      var P3=[BN[0]-dlN*ldN[0], BN[1]-dlN*ldN[1]];
-      var v0=[-Math.PI*ln*od[0]+kT*ld[0],   -Math.PI*ln*od[1]+kT*ld[1]];
-      var v3=[ Math.PI*lnN*odN[0]+kTN*ldN[0], Math.PI*lnN*odN[1]+kTN*ldN[1]];
-      var n0=Math.hypot(v0[0],v0[1]), n3=Math.hypot(v3[0],v3[1]);
-      var dist=Math.hypot(P3[0]-P0[0],P3[1]-P0[1]), k=dist*0.28;
-      var A=[P0[0]+v0[0]/n0*k, P0[1]+v0[1]/n0*k], D=[P3[0]-v3[0]/n3*k, P3[1]-v3[1]/n3*k];
-      for(c=1;c<=g.conn+3;c++){ var t=c/(g.conn+4), u=1-t;
-        pts.push([u*u*u*P0[0]+3*u*u*t*A[0]+3*u*t*t*D[0]+t*t*t*P3[0],
-                  u*u*u*P0[1]+3*u*u*t*A[1]+3*u*t*t*D[1]+t*t*t*P3[1]]); }
-    }
-    // une passe de lissage 1-2-1 : arrondit sommets et raccords (le fil est souple, pas tendu)
-    var sm=[], n=pts.length;
-    for(var i2=0;i2<n;i2++){ var a=pts[(i2-1+n)%n], b=pts[i2], c2=pts[(i2+1)%n];
-      sm.push([(a[0]+2*b[0]+c2[0])/4,(a[1]+2*b[1]+c2[1])/4]); }
-    // ré-échantillonne à un nombre fixe de points (pour morpher entre états)
-    return { pts:resample(sm, N) };
-  }
+  // ── ASYM / build / KF / KN / KCO / shapeAt / nodesAt / lobeCount : désormais PAR INSTANCE.
+  //    Construits dans creerForme() (plus bas) ; le DÉFAUT global les ré-exporte à l'identique.
+  //    Les helpers sans état (geomFor, loopPoint, resample, buildKnot2, selfX, xNodes…) restent
+  //    ici, partagés — ils prennent leur donnée en argument, jamais un singleton de forme.
+
   // ré-échantillonnage uniforme d'une polyligne fermée à M points
   function resample(pts, M){
     var closed=pts.concat([pts[0]]), len=[0], tot=0;
@@ -135,10 +98,7 @@ export function setRefreshStatics(fn){ refreshStatics = fn; }
     return { pts:resample(pts,N) };
   }
 
-  // trois formes-clés
-  var K2=buildKnot2(), K3=build(3), K5=build(5);
-  var KF=[K2.pts, K3.pts, K5.pts];
-  var KN, KCO; // les nœuds = les croisements RÉELS du fil — lus sur le fil après selfX, jamais déclarés
+  // (les trois formes-clés K2/K3/K5, KF, KN, KCO sont construites PAR forme — voir creerForme)
 
   // signature CO — le fil est souple : devant le nom entier, il se donne la forme des lettres qu'il remplace.
   // Construction d'après le dessin manuscrit : un élastique REPLIÉ — une boucle rabattue sur l'autre.
@@ -151,22 +111,7 @@ export function setRefreshStatics(fn){ refreshStatics = fn; }
   function easeAngle(cur,tgt,k){ var d=((tgt-cur+Math.PI*3)%(Math.PI*2))-Math.PI; return cur+d*k; }
   function f1(x){ return x.toFixed(1); }
 
-  // fil interpolé à s∈[0,2] — N points, fermeture par retour au premier (jamais de doublon)
-  /** Fil interpolé à s∈[0,2]. @param {number} s @returns {Pt[]} */
-  function shapeAt(s){
-    s=clamp(s,0,2); var seg=s<=1?0:1, u=s<=1?s:s-1, A=KF[seg], B=KF[seg+1], out=[];
-    for(var i=0;i<N;i++) out.push([lerp(A[i][0],B[i][0],u), lerp(A[i][1],B[i][1],u)]);
-    return out;
-  }
-  // nœuds interpolés (nombre = celui de l'état le plus proche)
-  /** Nœuds interpolés (nombre = état le plus proche). @param {number} s @returns {Pt[]} */
-  function nodesAt(s){
-    s=clamp(s,0,2);
-    if(s<0.5) return KN[0];
-    if(s<1.5) return KN[1];
-    return KN[2];
-  }
-  function lobeCount(s){ return nodesAt(s).length; }
+  // (shapeAt / nodesAt / lobeCount sont des méthodes de forme — voir creerForme)
 
   // ==== TRACÉ — réglages de l'atelier ====
   /** @type {SetConf} */
@@ -241,8 +186,7 @@ export function setRefreshStatics(fn){ refreshStatics = fn; }
       return aa-bb; });
     return nd;
   }
-  KN=[ xNodes(KF[0]).slice(0,1), xNodes(KF[1]), xNodes(KF[2]) ];
-  KCO={ pts:K2.pts, nodes:KN[0].length?KN[0]:[[CX,CY]] }; // §19 : la signature EST le nœud 2-lobes
+  // (KN et KCO sont construits PAR forme depuis xNodes(KF) — voir creerForme)
   // tronçon de fil sur [a,b] (indices fractionnaires, avec bouclage) + largeurs/normales interpolées
   function slice(P, W, F, a, b){
     var n=P.length, sp=[], sw=[], sx=[], sy=[];
@@ -394,6 +338,95 @@ export function setRefreshStatics(fn){ refreshStatics = fn; }
     return "M"+p1x.toFixed(1)+" "+p1y.toFixed(1)+" A"+rA.toFixed(1)+" "+rA.toFixed(1)+" 0 1 0 "+p2x.toFixed(1)+" "+p2y.toFixed(1)
       +" A"+rB.toFixed(1)+" "+rB.toFixed(1)+" 0 0 1 "+p1x.toFixed(1)+" "+p1y.toFixed(1)+"Z";
   }
+
+  // ══ Forme PAR INSTANCE (receveur explicite — cadrage Option B) ════════════════════
+  // Chaque forme possède SES ASYM/KF/KN/KCO et ses méthodes liées (build/shapeAt/nodesAt/
+  // lobeCount/setGrainPenta), qui lisent CETTE forme. Aucune variable ambient, aucun reset :
+  // deux formes ne peuvent pas fuir l'une dans l'autre. Les helpers sans état (geomFor,
+  // loopPoint, resample, buildKnot2, selfX, xNodes, lerp, clamp…) restent au module, partagés.
+  function creerForme(){
+    // ASYMÉTRIE — loi générale de la marque : aucun lobe n'est le clone d'un autre.
+    // Propre à CETTE forme (littéral neuf, jamais l'objet partagé).
+    var ASYM = {
+      3: { s:[0.97, 1.12, 0.90], a:[0, 0.11, -0.07] },   // L1 (bas-droite) = Vigilante, la plus grande : la largeur du champ scruté, jamais un volume déposé (§18 bis)
+      5: { s:[1.13, 0.89, 1.06, 0.87, 1.04], a:[0, 0.08, -0.05, 0.07, -0.05] }
+    };
+    // construit le fil (points) pour L lobes vrillés, asymétriques — nœuds réels lus ensuite sur le fil
+    function build(L){
+      var g=geomFor(L), pts=[], l, s, c;
+      var az=ASYM[L], SC=function(i){ return az? az.s[i] : 1; }, AO=function(i){ return az? az.a[i] : 0; };
+      var LEN=function(i){ return g.len*SC(i); }, DL=function(i){ return g.dlt*SC(i); };
+      var WID=function(i){ return g.width*(0.55+0.45*SC(i)); }; // la largeur varie moins que la longueur
+      var ANG=function(i){ return (i/L)*2*Math.PI - Math.PI/2 + AO(i); };
+      for(l=0;l<L;l++){
+        var ang=ANG(l), ln=LEN(l), wd=WID(l), dl=DL(l);
+        var B=[CX+g.baseR*Math.cos(ang), CY+g.baseR*Math.sin(ang)];
+        for(s=0;s<=g.ppl;s++) pts.push(loopPoint(s/g.ppl, B, ang, ln, wd, dl));
+        // connecteur C¹ : sortie de CE lobe (longueur/torsion locales) → entrée du SUIVANT (les siennes)
+        var m=(l+1)%L, angN=ANG(m), lnN=LEN(m), wdN=WID(m), dlN=DL(m);
+        var BN=[CX+g.baseR*Math.cos(angN), CY+g.baseR*Math.sin(angN)];
+        var od=[Math.cos(ang),Math.sin(ang)], ld=[-Math.sin(ang),Math.cos(ang)];
+        var odN=[Math.cos(angN),Math.sin(angN)], ldN=[-Math.sin(angN),Math.cos(angN)];
+        var kT=2*Math.PI*wd+2*dl, kTN=2*Math.PI*wdN+2*dlN;
+        var P0=[B[0]+dl*ld[0],  B[1]+dl*ld[1]];
+        var P3=[BN[0]-dlN*ldN[0], BN[1]-dlN*ldN[1]];
+        var v0=[-Math.PI*ln*od[0]+kT*ld[0],   -Math.PI*ln*od[1]+kT*ld[1]];
+        var v3=[ Math.PI*lnN*odN[0]+kTN*ldN[0], Math.PI*lnN*odN[1]+kTN*ldN[1]];
+        var n0=Math.hypot(v0[0],v0[1]), n3=Math.hypot(v3[0],v3[1]);
+        var dist=Math.hypot(P3[0]-P0[0],P3[1]-P0[1]), k=dist*0.28;
+        var A=[P0[0]+v0[0]/n0*k, P0[1]+v0[1]/n0*k], D=[P3[0]-v3[0]/n3*k, P3[1]-v3[1]/n3*k];
+        for(c=1;c<=g.conn+3;c++){ var t=c/(g.conn+4), u=1-t;
+          pts.push([u*u*u*P0[0]+3*u*u*t*A[0]+3*u*t*t*D[0]+t*t*t*P3[0],
+                    u*u*u*P0[1]+3*u*u*t*A[1]+3*u*t*t*D[1]+t*t*t*P3[1]]); }
+      }
+      // une passe de lissage 1-2-1 : arrondit sommets et raccords (le fil est souple, pas tendu)
+      var sm=[], n=pts.length;
+      for(var i2=0;i2<n;i2++){ var a=pts[(i2-1+n)%n], b=pts[i2], c2=pts[(i2+1)%n];
+        sm.push([(a[0]+2*b[0]+c2[0])/4,(a[1]+2*b[1]+c2[1])/4]); }
+      // ré-échantillonne à un nombre fixe de points (pour morpher entre états)
+      return { pts:resample(sm, N) };
+    }
+    // trois formes-clés — propres à cette forme
+    var K2=buildKnot2(), K3=build(3), K5=build(5);
+    var KF=[K2.pts, K3.pts, K5.pts];
+    var KN=[ xNodes(KF[0]).slice(0,1), xNodes(KF[1]), xNodes(KF[2]) ];
+    var KCO={ pts:K2.pts, nodes:KN[0].length?KN[0]:[[CX,CY]] }; // §19 : la signature EST le nœud 2-lobes
+    // fil interpolé à s∈[0,2] — N points, fermeture par retour au premier (jamais de doublon)
+    function shapeAt(s){
+      s=clamp(s,0,2); var seg=s<=1?0:1, u=s<=1?s:s-1, A=KF[seg], B=KF[seg+1], out=[];
+      for(var i=0;i<N;i++) out.push([lerp(A[i][0],B[i][0],u), lerp(A[i][1],B[i][1],u)]);
+      return out;
+    }
+    // nœuds interpolés (nombre = celui de l'état le plus proche)
+    function nodesAt(s){
+      s=clamp(s,0,2);
+      if(s<0.5) return KN[0];
+      if(s<1.5) return KN[1];
+      return KN[2];
+    }
+    function lobeCount(s){ return nodesAt(s).length; }
+    // Le grain penta PAR INSTANCE : la densité par lobe module la TAILLE du 5-lobes et
+    // reconstruit KF[2]/KN[2]. Corps équivalent au regenPentalobe d'app_mockup (hors labels/PET_BY,
+    // qui restent côté page). `d` = densité par lobe ; absente/0 → grain canonique (neutre).
+    var GRAIN = ASYM[5].s.slice(), K_AMP = 0.30, TAU_D = 4;
+    function setGrainPenta(d){
+      for(var i=0;i<5;i++) ASYM[5].s[i] = GRAIN[i]*(1 + K_AMP*(1-Math.exp(-((d&&d[i])||0)/TAU_D)));
+      var K5b=build(5); KF[2]=K5b.pts; KN[2]=xNodes(KF[2]);
+    }
+    return { ASYM:ASYM, KF:KF, KN:KN, KCO:KCO, K2:K2, K3:K3, K5:K5,
+             build:build, shapeAt:shapeAt, nodesAt:nodesAt, lobeCount:lobeCount,
+             setGrainPenta:setGrainPenta };
+  }
+  export { creerForme };
+
+  // ── Le DÉFAUT global : rétro-compatibilité totale ─────────────────────────────────
+  // Tout appelant existant lit/écrit CE défaut, exactement comme avant (mêmes noms, même
+  // usage). Seul le code multi-instance (le clone) appellera creerForme() pour sa propre forme.
+  const _defaut = creerForme();
+  const ASYM = _defaut.ASYM, build = _defaut.build,
+        K2 = _defaut.K2, K3 = _defaut.K3, K5 = _defaut.K5,
+        KF = _defaut.KF, KN = _defaut.KN, KCO = _defaut.KCO,
+        shapeAt = _defaut.shapeAt, nodesAt = _defaut.nodesAt, lobeCount = _defaut.lobeCount;
 
 // ── Export large : toute l'API des écrans + ce que le test touche (selfX, KF, KN).
 //    Exporter large ne coûte rien en ES ; trier public/privé casserait un consommateur.
