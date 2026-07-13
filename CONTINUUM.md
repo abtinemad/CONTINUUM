@@ -942,6 +942,13 @@ le score-verdict qu'elle existe pour refuser). Elle mesure notre trace, pas l'is
 Le nombre de lobes (§19) n'indexe pas un zoom mais un **degré de métabolisation** : *brut →
 métabolisé → méta*. Trois strates, un seul mouvement de digestion.
 
+Ce mouvement est un **fondu, du singulier au collectif** : au pentalobe, le patient seul
+(la perception brute de sa vie) ; au trilobe, sa **rencontre** avec l'équipe — le patient
+métabolisé *par* nous (cf. « alimenté par le pentalobe *et* par les nouages d'équipe »,
+ci-dessous) ; au bilobe, l'**institution** — le patient singulier s'est effacé, ne demeure
+que la forme agrégée de nos pratiques. Le **lavage** du contenu patient se fait au passage
+au bilobe.
+
 **Récolte (5 lobes, par patient).** La donnée brute de terrain, par axe relationnel. Guichet des
 **soignants**. C'est le nœud-patient (§19). Deux natures s'y déposent : les **faits durs** —
 identité, coordonnées, droits (AAH…) : *ce sur quoi on ne peut pas se tromper* (domaines 0-1,
@@ -1036,8 +1043,10 @@ récolté. Guichet des **coordinateurs**, en **synthèse collective signée**. T
   elle ne surgit pas pendant qu'on cherche ses mots. C'est ici que l'œil chausse la lentille (§19), et que joue sa fonction d'angle
   mort (il élargit vers le non-regardé, il ne détourne jamais du vif).
 
-**Institutionnel (2 lobes, l'infini).** L'agrégat anonyme de toutes les métabolisations, ses deux
-faces : **Continuité / Fragmentation** (ci-dessus). Méta.
+**Institutionnel (2 lobes, l'infini).** Le bilobe prend l'**institution** pour patient : il
+n'analyse plus un sujet singulier mais **nos pratiques agrégées à la maille de l'unité** — la
+forme de comment nous soignons (comment on observe, tisse, noue), anonyme, lavée du contenu
+patient. Ses deux faces : **Continuité / Fragmentation** — la santé de l'institution même. Méta.
 
 **Comment la métabolisation est nourrie — deux sources.** (1) Un **eval** — *le cerveau du
 Collègue* — lit la **récolte brute** (5-lobes) d'un patient et en projette un **condensé** dans
