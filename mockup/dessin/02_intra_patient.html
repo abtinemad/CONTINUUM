@@ -171,7 +171,7 @@
     <div id="frags"></div>
     <div class="actes" id="actesO" style="margin-top:10px"><button class="pri" id="btObs">déposer</button></div>
     <div class="edit" id="editO">
-      <textarea id="taO" placeholder="ce qui a été vu, entendu, rapporté"></textarea>
+      <textarea id="taO" placeholder="ce qui s'observe sur le terrain…"></textarea>
       <div class="sig">déposé par une personne · pas signé en équipe</div>
       <div class="actes"><button class="pri" id="btDepO">déposer</button><button id="btAnnulO">annuler</button></div>
     </div>
@@ -184,7 +184,7 @@
     <div class="recit machine" id="recitMachine"></div>
     <div class="actes" id="actesR" style="margin-top:10px"><button class="pri" id="btRecit">récit</button></div>
     <div class="edit" id="editR">
-      <textarea id="taR"></textarea>
+      <textarea id="taR" placeholder="l'histoire qui s'en dégage…"></textarea>
       <div class="sig">on part de la lecture machine · on signe en équipe</div>
       <div class="actes"><button class="pri" id="btSignerR">signer en équipe</button><button id="btAnnulR">annuler</button></div>
     </div>
@@ -197,7 +197,7 @@
     <div class="secSub">Ce que l'équipe en retient</div>
     <div class="actes" id="actesS"><button class="pri" id="btSynth">synthèse</button></div>
     <div class="edit" id="editS">
-      <textarea id="taS"></textarea>
+      <textarea id="taS" placeholder="ce que l'équipe en retient…"></textarea>
       <div class="sig">on part de la lecture machine · on signe en équipe</div>
       <div class="actes"><button class="pri" id="btSignerS">signer en équipe</button><button id="btAnnulS">annuler</button></div>
     </div>
@@ -210,7 +210,7 @@
     <div class="secSub">Ce qui se joue</div>
     <div class="actes" id="actesH"><button class="pri" id="btHyp">hypothèse</button></div>
     <div class="edit" id="editH">
-      <textarea id="taH" placeholder="ce qui se joue — la question qui oriente"></textarea>
+      <textarea id="taH" placeholder="ce qui se joue — la question qui oriente…"></textarea>
       <div class="sig">l'équipe pose la question · on noue et signe en collège</div>
       <div class="actes"><button class="pri" id="btSignerH">signer en équipe</button><button id="btAnnulH">annuler</button></div>
     </div>
@@ -228,7 +228,7 @@
     <div class="secSub">Où on va</div>
     <div class="actes" id="actesA"><button class="pri" id="btAcc">accompagnement</button></div>
     <div class="edit" id="editA">
-      <textarea id="taA"></textarea>
+      <textarea id="taA" placeholder="où on va…"></textarea>
       <div class="sig">on reprend l'accompagnement en cours · on signe en équipe</div>
       <div class="actes"><button class="pri" id="btSignerA">signer en équipe</button><button id="btAnnulA">annuler</button></div>
     </div>
@@ -403,9 +403,9 @@ import { creerNoeud } from '../noeud.js';
   }
   // Récit — même mécanisme que la synthèse : la machine propose (au-dessus), l'équipe signe → historique.
   brancherActe({ bt:"btRecit", edit:"editR", actes:"actesR", ta:"taR", signer:"btSignerR", annul:"btAnnulR",
-                 prefill:function(){ return RECIT_MACHINE; }, data:RECITS, list:"listR", par:"équipe" });
+                 prefill:function(){ return ""; }, data:RECITS, list:"listR", par:"équipe" });
   brancherActe({ bt:"btSynth", edit:"editS", actes:"actesS", ta:"taS", signer:"btSignerS", annul:"btAnnulS",
-                 prefill:function(){ return RECIT_MACHINE; }, data:SYNTHESES, list:"listS", par:"équipe" });
+                 prefill:function(){ return ""; }, data:SYNTHESES, list:"listS", par:"équipe" });
   // Hypothèse — l'équipe pose SA question (champ vide) ; l'angle machine ne se révèle qu'APRÈS la signature.
   $("hypMachineTxt").innerHTML = esc(HYP_MACHINE) + '<span class="maj">hypothèse machine · un autre angle, jamais une correction</span>';
   brancherActe({ bt:"btHyp", edit:"editH", actes:"actesH", ta:"taH", signer:"btSignerH", annul:"btAnnulH",
@@ -413,7 +413,7 @@ import { creerNoeud } from '../noeud.js';
                  afterSign:function(){ $("hypMachine").style.display = ""; } });
   // Accompagnement — où on va : signé en équipe, révisable (on reprend le fil en cours).
   brancherActe({ bt:"btAcc", edit:"editA", actes:"actesA", ta:"taA", signer:"btSignerA", annul:"btAnnulA",
-                 prefill:function(){ return ACCOMPAGNEMENTS.length ? ACCOMPAGNEMENTS[0].t : ""; }, data:ACCOMPAGNEMENTS, list:"listA", par:"équipe" });
+                 prefill:function(){ return ""; }, data:ACCOMPAGNEMENTS, list:"listA", par:"équipe" });
 
 })();
 </script>
