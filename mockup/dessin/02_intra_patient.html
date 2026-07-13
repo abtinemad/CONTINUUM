@@ -171,11 +171,18 @@
     <div id="frags"></div>
   </div>
 
-  <!-- RÉCIT -->
+  <!-- RÉCIT — lecture machine vivante + acte de signature d'équipe (même mécanique que la synthèse) -->
   <div class="sec" data-mode="recolte">
     <div class="secTitre">Récit</div>
     <div class="secSub">L'histoire qui s'en dégage</div>
     <div class="recit machine" id="recitMachine"></div>
+    <div class="actes" id="actesR" style="margin-top:10px"><button class="pri" id="btRecit">récit</button></div>
+    <div class="edit" id="editR">
+      <textarea id="taR"></textarea>
+      <div class="sig">on part de la lecture machine · on signe en équipe</div>
+      <div class="actes"><button class="pri" id="btSignerR">valider et signer en équipe</button><button id="btAnnulR">annuler</button></div>
+    </div>
+    <div class="stack" id="listR"></div>
   </div>
 
   <!-- SYNTHÈSE -->
@@ -191,17 +198,35 @@
     <div class="stack" id="listS"></div>
   </div>
 
-  <!-- HYPOTHÈSE -->
-  <div class="sec" data-mode="metab" style="padding-bottom:26px">
+  <!-- HYPOTHÈSE — ce qui se joue : une QUESTION. L'équipe pose d'abord ; la machine ne se révèle qu'après. -->
+  <div class="sec" data-mode="metab">
     <div class="secTitre">Hypothèse</div>
-    <div class="secSub">L'horizon vers lequel on tend</div>
+    <div class="secSub">Ce qui se joue</div>
     <div class="actes" id="actesH"><button class="pri" id="btHyp">hypothèse</button></div>
     <div class="edit" id="editH">
-      <textarea id="taH"></textarea>
-      <div class="sig">on part de la synthèse · on noue et signe en collège</div>
+      <textarea id="taH" placeholder="ce qui se joue — la question qui oriente"></textarea>
+      <div class="sig">l'équipe pose la question · on noue et signe en collège</div>
       <div class="actes"><button class="pri" id="btSignerH">nouer et signer en collège</button><button id="btAnnulH">annuler</button></div>
     </div>
     <div class="stack" id="listH"></div>
+    <!-- révélée SEULEMENT après la signature de l'équipe : un autre angle, jamais une correction -->
+    <div id="hypMachine" style="display:none;margin-top:12px">
+      <div class="recit machine" id="hypMachineTxt"></div>
+      <div class="secSub" style="margin-top:6px;opacity:.8">lue à l'aveugle de la vôtre — l'écart est matière, pas un verdict</div>
+    </div>
+  </div>
+
+  <!-- ACCOMPAGNEMENT — où on va : objet distinct de l'hypothèse (même structure que Synthèse) -->
+  <div class="sec" data-mode="metab" style="padding-bottom:26px">
+    <div class="secTitre">Accompagnement</div>
+    <div class="secSub">Où on va</div>
+    <div class="actes" id="actesA"><button class="pri" id="btAcc">accompagnement</button></div>
+    <div class="edit" id="editA">
+      <textarea id="taA"></textarea>
+      <div class="sig">on reprend l'accompagnement en cours · on signe en équipe</div>
+      <div class="actes"><button class="pri" id="btSignerA">valider et signer en équipe</button><button id="btAnnulA">annuler</button></div>
+    </div>
+    <div class="stack" id="listA"></div>
   </div>
 
   <!-- TRAITEMENTS -->
@@ -238,11 +263,18 @@ import { creerNoeud } from '../noeud.js';
   ];
   var RECIT_MACHINE =
     "Paul est en rupture partielle de traitement (le soir), non discutée en famille. Sa sœur reste le lien principal mais dit son épuisement. Le travail apparaît au présent dans son discours — un appui qui n'est plus actif mais reste vivant. Un rendez-vous manqué récent, sans explication donnée.";
+  var RECITS = [];   // l'historique des récits signés en équipe (la machine propose au-dessus, vivant)
   var SYNTHESES = [
     { d:"4 juil.", par:"équipe", t:"Alliance tenue par la sœur. Traitement pris. Réinvestissement possible du côté du travail à explorer. Pas d'inquiétude aiguë." }
   ];
-  var HYPOTHESES = [
-    { d:"4 juil.", par:"collège · 2 sign.", t:"On accompagne le desserrage du lien fraternel sans le rompre ; on ouvre doucement le versant travail comme appui. On ne force pas le traitement du soir — on attend qu'il en reparle." }
+  // Hypothèse = ce qui se joue, une QUESTION. L'équipe pose d'abord : vide au départ.
+  var HYPOTHESES = [];
+  // L'hypothèse machine — un autre angle, révélé APRÈS la signature, jamais une correction.
+  var HYP_MACHINE =
+    "« Le retrait de Paul — le traitement du soir arrêté, le rendez-vous manqué — est-il un refus du soin, ou une manière de tenir un reste de maîtrise là où le travail et le lien lui échappent ? »";
+  // « Où on va » — l'ancien contenu de l'Hypothèse, à sa vraie place.
+  var ACCOMPAGNEMENTS = [
+    { d:"4 juil.", par:"équipe", t:"On accompagne le desserrage du lien fraternel sans le rompre ; on ouvre doucement le versant travail comme appui. On ne force pas le traitement du soir — on attend qu'il en reparle." }
   ];
 
   var esc = function(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;"); };
@@ -344,12 +376,22 @@ import { creerNoeud } from '../noeud.js';
       cfg.data.unshift({ d:"aujourd\u2019hui", par:cfg.par, t:txt });
       $(cfg.edit).classList.remove("on"); $(cfg.actes).style.display = "";
       rendreStack(cfg.list, cfg.data);
+      if(cfg.afterSign) cfg.afterSign();
     });
   }
+  // Récit — même mécanisme que la synthèse : la machine propose (au-dessus), l'équipe signe → historique.
+  brancherActe({ bt:"btRecit", edit:"editR", actes:"actesR", ta:"taR", signer:"btSignerR", annul:"btAnnulR",
+                 prefill:function(){ return RECIT_MACHINE; }, data:RECITS, list:"listR", par:"équipe" });
   brancherActe({ bt:"btSynth", edit:"editS", actes:"actesS", ta:"taS", signer:"btSignerS", annul:"btAnnulS",
                  prefill:function(){ return RECIT_MACHINE; }, data:SYNTHESES, list:"listS", par:"équipe" });
+  // Hypothèse — l'équipe pose SA question (champ vide) ; l'angle machine ne se révèle qu'APRÈS la signature.
+  $("hypMachineTxt").innerHTML = esc(HYP_MACHINE) + '<span class="maj">hypothèse machine · un autre angle, jamais une correction</span>';
   brancherActe({ bt:"btHyp", edit:"editH", actes:"actesH", ta:"taH", signer:"btSignerH", annul:"btAnnulH",
-                 prefill:function(){ return SYNTHESES.length ? SYNTHESES[0].t : ""; }, data:HYPOTHESES, list:"listH", par:"collège · 2 sign." });
+                 prefill:function(){ return ""; }, data:HYPOTHESES, list:"listH", par:"collège · 2 sign.",
+                 afterSign:function(){ $("hypMachine").style.display = ""; } });
+  // Accompagnement — où on va : signé en équipe, révisable (on reprend le fil en cours).
+  brancherActe({ bt:"btAcc", edit:"editA", actes:"actesA", ta:"taA", signer:"btSignerA", annul:"btAnnulA",
+                 prefill:function(){ return ACCOMPAGNEMENTS.length ? ACCOMPAGNEMENTS[0].t : ""; }, data:ACCOMPAGNEMENTS, list:"listA", par:"équipe" });
 
 })();
 </script>
