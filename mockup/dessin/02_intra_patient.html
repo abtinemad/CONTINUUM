@@ -164,11 +164,17 @@
     </div>
   </div>
 
-  <!-- OBSERVATIONS -->
+  <!-- OBSERVATIONS — déposées par UNE personne (« déposer »), jamais signées en équipe -->
   <div class="sec" data-mode="recolte">
     <div class="secTitre">Observations</div>
     <div class="secSub">La perception brute sur le terrain</div>
     <div id="frags"></div>
+    <div class="actes" id="actesO" style="margin-top:10px"><button class="pri" id="btObs">déposer</button></div>
+    <div class="edit" id="editO">
+      <textarea id="taO" placeholder="ce qui a été vu, entendu, rapporté"></textarea>
+      <div class="sig">déposé par une personne · pas signé en équipe</div>
+      <div class="actes"><button class="pri" id="btDepO">déposer</button><button id="btAnnulO">annuler</button></div>
+    </div>
   </div>
 
   <!-- RÉCIT — lecture machine vivante + acte de signature d'équipe (même mécanique que la synthèse) -->
@@ -180,7 +186,7 @@
     <div class="edit" id="editR">
       <textarea id="taR"></textarea>
       <div class="sig">on part de la lecture machine · on signe en équipe</div>
-      <div class="actes"><button class="pri" id="btSignerR">valider et signer en équipe</button><button id="btAnnulR">annuler</button></div>
+      <div class="actes"><button class="pri" id="btSignerR">signer en équipe</button><button id="btAnnulR">annuler</button></div>
     </div>
     <div class="stack" id="listR"></div>
   </div>
@@ -193,7 +199,7 @@
     <div class="edit" id="editS">
       <textarea id="taS"></textarea>
       <div class="sig">on part de la lecture machine · on signe en équipe</div>
-      <div class="actes"><button class="pri" id="btSignerS">valider et signer en équipe</button><button id="btAnnulS">annuler</button></div>
+      <div class="actes"><button class="pri" id="btSignerS">signer en équipe</button><button id="btAnnulS">annuler</button></div>
     </div>
     <div class="stack" id="listS"></div>
   </div>
@@ -206,7 +212,7 @@
     <div class="edit" id="editH">
       <textarea id="taH" placeholder="ce qui se joue — la question qui oriente"></textarea>
       <div class="sig">l'équipe pose la question · on noue et signe en collège</div>
-      <div class="actes"><button class="pri" id="btSignerH">nouer et signer en collège</button><button id="btAnnulH">annuler</button></div>
+      <div class="actes"><button class="pri" id="btSignerH">signer en équipe</button><button id="btAnnulH">annuler</button></div>
     </div>
     <div class="stack" id="listH"></div>
     <!-- révélée SEULEMENT après la signature de l'équipe : un autre angle, jamais une correction -->
@@ -224,7 +230,7 @@
     <div class="edit" id="editA">
       <textarea id="taA"></textarea>
       <div class="sig">on reprend l'accompagnement en cours · on signe en équipe</div>
-      <div class="actes"><button class="pri" id="btSignerA">valider et signer en équipe</button><button id="btAnnulA">annuler</button></div>
+      <div class="actes"><button class="pri" id="btSignerA">signer en équipe</button><button id="btAnnulA">annuler</button></div>
     </div>
     <div class="stack" id="listA"></div>
   </div>
@@ -326,12 +332,28 @@ import { creerNoeud } from '../noeud.js';
 
   /* Observations — récent → ancien */
   var fr = $("frags");
-  FRAGS.forEach(function(f){
+  function creerFrag(f){
     var el = document.createElement("div");
-    el.className = "frag"; el.dataset.ax = JSON.stringify(f.ax);
-    var lbs = f.ax.map(function(a){ return '<span class="lb">'+esc(AXES[a])+'</span>'; }).join("");
+    el.className = "frag"; el.dataset.ax = JSON.stringify(f.ax || []);
+    var lbs = (f.ax || []).map(function(a){ return '<span class="lb">'+esc(AXES[a])+'</span>'; }).join("");
     el.innerHTML = '<div class="txt">'+esc(f.t)+'</div><div class="meta"><span>'+esc(f.a)+' · '+esc(f.d)+'</span>'+lbs+'</div>';
-    fr.appendChild(el);
+    return el;
+  }
+  FRAGS.forEach(function(f){ fr.appendChild(creerFrag(f)); });
+
+  /* Déposer une observation — un seul auteur, pas de signature d'équipe (d'où « déposer »).
+     La carte s'empile en tête (récent → ancien), datée aujourd'hui ; l'axe est laissé libre. */
+  $("btObs").addEventListener("click", function(){
+    $("taO").value = ""; $("editO").classList.add("on"); $("actesO").style.display = "none"; $("taO").focus();
+  });
+  $("btAnnulO").addEventListener("click", function(){
+    $("editO").classList.remove("on"); $("actesO").style.display = "";
+  });
+  $("btDepO").addEventListener("click", function(){
+    var txt = $("taO").value.trim(); if(!txt) return;
+    fr.insertBefore(creerFrag({ t:txt, a:"moi", d:"aujourd’hui", ax:[] }), fr.firstChild);
+    $("editO").classList.remove("on"); $("actesO").style.display = "";
+    majLentille();   // la nouvelle carte respecte la lentille en cours
   });
 
   /* La chaîne */
