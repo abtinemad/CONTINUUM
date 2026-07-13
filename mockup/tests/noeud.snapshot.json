@@ -1,0 +1,85 @@
+{
+  "strates": {
+    "b5": {
+      "tag": "5 boucles — récolte",
+      "viewBox": "0 0 420 420",
+      "nLabels": 5,
+      "mots": [
+        "Amoureuse",
+        "Soin",
+        "Familiale",
+        "Sociale",
+        "Professionnelle"
+      ],
+      "nTrous": 5,
+      "nOvers": 5,
+      "oeil": [
+        210,
+        149,
+        21
+      ]
+    },
+    "b3": {
+      "tag": "3 boucles — métabolisation",
+      "viewBox": "0 0 420 420",
+      "nLabels": 3,
+      "mots": [
+        "Vigilante",
+        "Réflexive",
+        "Affective"
+      ],
+      "nTrous": 3,
+      "nOvers": 3,
+      "oeil": [
+        210,
+        210,
+        21
+      ]
+    },
+    "b2": {
+      "tag": "1 boucle — institutionnel",
+      "viewBox": "0 0 420 420",
+      "nLabels": 2,
+      "mots": [
+        "Fragmentation",
+        "Continuité"
+      ],
+      "nTrous": 1,
+      "nOvers": 1,
+      "oeil": [
+        200,
+        210,
+        21
+      ]
+    }
+  },
+  "modes": {
+    "oudjat_b2_opacite": 1,
+    "dashboard_b3": {
+      "avant": [
+        210,
+        210,
+        21
+      ],
+      "apres": [
+        210,
+        89,
+        26
+      ],
+      "deplacement": 121
+    },
+    "park_b5": {
+      "avant": [
+        210,
+        149,
+        21
+      ],
+      "apres": [
+        173,
+        254,
+        30
+      ],
+      "deplacement": 111
+    }
+  }
+}
