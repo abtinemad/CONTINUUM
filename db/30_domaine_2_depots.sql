@@ -83,7 +83,11 @@ CREATE TABLE depot.depots (
       'temporalite',
       -- le nouage (jamais seul) :
       'situation','ressenti','demande','diffraction','lecture_clinique',
-      'hypothese_clinique','compte_rendu','validation_typage'
+      'hypothese_clinique','compte_rendu','validation_typage',
+      -- trois objets distincts nés du dénouage de l'hypothèse (§2) : ce qui se dégage
+      -- (recit), ce qui se condense (synthese), où on va (accompagnement). Même régime
+      -- que l'hypothèse clinique — formulés en collège, ≥ 2, révisés en spirale.
+      'recit','synthese','accompagnement'
     )),
 
   -- ┌ La coupe n'est pas entre le médecin et les autres. Elle est entre ce qui se ────┐
@@ -108,7 +112,8 @@ CREATE TABLE depot.depots (
   -- déposé seul, sans voir les autres) ; le champ Diffraction est le moment où le collège
   -- les pose côte à côte (§12 bis). Aucune main seule, jamais, pas même celle qui répond.
   CONSTRAINT depots_grille_formulee_en_college
-    CHECK (nature NOT IN ('situation','ressenti','demande','diffraction','hypothese_clinique')
+    CHECK (nature NOT IN ('situation','ressenti','demande','diffraction','hypothese_clinique',
+                          'recit','synthese','accompagnement')
            OR cadre = 'synthese_collective'),
 
   -- Ce qui se signe : le collège, ou la responsabilité médicale. Jamais `seul`.
@@ -163,7 +168,8 @@ CREATE TABLE depot.depots (
     CHECK ((ref_depot_id IS NULL) = (ref_nature IS NULL)),
   CONSTRAINT depots_ref_reservee
     CHECK (ref_depot_id IS NULL
-           OR nature IN ('levee','lecture_clinique','hypothese_clinique','lien_travail')),
+           OR nature IN ('levee','lecture_clinique','hypothese_clinique','lien_travail',
+                         'recit','synthese','accompagnement')),
   -- Lever n'est pas effacer : deux actes datés, tous deux visibles.
   CONSTRAINT depots_levee_reference
     CHECK (nature <> 'levee'
@@ -179,9 +185,11 @@ CREATE TABLE depot.depots (
     CHECK (nature <> 'levee'
            OR ref_nature <> 'temporalite'
            OR cadre = 'synthese_collective'),
-  -- Une révision révise le même registre : une lecture clinique ne révise pas un lien.
+  -- Une révision révise le même registre : une lecture clinique ne révise pas un lien,
+  -- un recit ne révise qu'un recit, une synthese qu'une synthese.
   CONSTRAINT depots_revision_homogene
-    CHECK (nature NOT IN ('lecture_clinique','hypothese_clinique','lien_travail')
+    CHECK (nature NOT IN ('lecture_clinique','hypothese_clinique','lien_travail',
+                          'recit','synthese','accompagnement')
            OR ref_depot_id IS NULL
            OR ref_nature = nature),
   CONSTRAINT depots_pas_d_auto_reference CHECK (ref_depot_id IS DISTINCT FROM id),

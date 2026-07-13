@@ -175,17 +175,17 @@ Au Collègue, la diffraction est rare, à susciter (l'utilisateur est seul). Au 
 c'est le **milieu natif** (points quotidiens, réunions, partenaires) qui **se perd à
 l'oral** — la case le capte au lieu de le provoquer.
 
-### Hypothèse clinique — le mouvement vers un équilibre vers lequel on tend
+### Hypothèse clinique — ce qui se joue
 
-Pas un point d'arrivée. L'hypothèse clinique est ce que l'équipe **noue à un instant du parcours** — où on en est, où on va — en sachant qu'au tour suivant elle ne sera plus la même. L'**équilibre**, lui, est la **visée** : l'horizon vers lequel on tend, jamais un état qu'on atteint et qu'on range. On ne dépose pas un équilibre ; on dépose une hypothèse qui se révise. « Ne rien faire » / « attendre » restent des orientations valides **si elles sont construites**, pas des sorties par défaut ; et une **déliaison réussie** — un lien desserré, détendu, accompagné — est un mouvement, pas un échec (« ne rien lâcher » ≠ « tout garder » : *aucun fil ne se défait sans qu'on l'accompagne*).
+Pas un point d'arrivée, pas un état. L'hypothèse clinique est **ce qui se joue** : la question qui interroge l'essence de la prise en charge et l'**oriente**. Elle n'est **ni le récit** (ce qui se dégage du parcours — l'objet `recit`), **ni l'accompagnement** (où on va — l'objet `accompagnement`) : ce sont désormais des objets distincts, déposés à part. L'hypothèse est le nœud qui les tient sous tension — ce autour de quoi tout se joue — en sachant qu'au tour suivant elle ne sera plus la même. On ne dépose pas un état qu'on atteint et qu'on range ; on dépose une question qui se révise. « Ne rien faire » / « attendre » restent des orientations valides **si elles sont construites**, pas des sorties par défaut ; et une **déliaison réussie** — un lien desserré, détendu, accompagné — est un mouvement, pas un échec (« ne rien lâcher » ≠ « tout garder » : *aucun fil ne se défait sans qu'on l'accompagne*).
 
-**Le nouage.** L'hypothèse est le moment où l'équipe (médecin + coordinateur) noue en une synthèse *toutes* les données — factuelles, lecture clinique, ce que l'alliance et la temporalité ont permis, le patient et l'entourage comme **matière vivante**. Le patient n'est **pas co-auteur** (l'équipe rédige) ; il est intégré comme source, au titre de ce que l'alliance a ouvert. Ce nouage tient ensemble **où on en est et où on va**, dans le même texte. L'« où on en est » n'est pas un état psychique mesuré : c'est une lecture, datée, révisable.
+**Le nouage.** L'hypothèse se forme quand l'équipe (médecin + coordinateur) tient ensemble *toutes* les données — factuelles, lecture clinique, ce que l'alliance et la temporalité ont permis, le patient et l'entourage comme **matière vivante**. Le patient n'est **pas co-auteur** (l'équipe rédige) ; il est intégré comme source, au titre de ce que l'alliance a ouvert. Mais l'hypothèse n'est pas cet inventaire : de cette matière elle dégage **ce qui se joue** — la question vive qui oriente. Ce qui se dégage (le `recit`) et ce qui se condense (la `synthese`) sont des objets distincts ; la direction prise (l'`accompagnement`) en est un autre. L'hypothèse, elle, n'est pas un état psychique mesuré : c'est une lecture, datée, révisable.
 
 **La spirale — la chaîne de révisions.** Chaque hypothèse est à la fois le *fruit* du nouage précédent et la *condition* du suivant : parce qu'on a mieux compris, on peut regarder et nouer autrement qu'au départ (« ce ne sera pas la même lecture qu'à la base »). Cause et effet sur le même objet, à deux instants : une **spirale, pas un point**. C'est le nœud gordien — à chaque tour le fil n'est plus le même. Matériellement, cette spirale **est** la chaîne des révisions (`ref_id` → `ref_id`) : le récit du parcours s'écrit dans la suite des hypothèses qui se reprennent.
 
 **Point de rebouclage, pas terminus.** Une hypothèse révisée **rétroagit sur les autres champs** : elle déplace la Situation, le Ressenti, la Demande qu'on lira au tour suivant. L'Hypothèse clinique n'est donc **pas le dernier des six** — c'est le point qui **renvoie au début, transformé** : elle rouvre la grille. C'est l'organe qui **réalise l'intrication** (§3) : la grille n'est pas une séquence qui finit, c'est une boucle que l'hypothèse fait tourner — et ce qui la fait tourner, c'est la **révision**, jamais l'atteinte d'un état.
 
-**Le projet est l'hypothèse rédigée vers l'avant** — pas un septième terme. Nouer vers l'avant (ce qu'on vise, avec qui) et tenir maintenant (où on en est) sont un seul geste, deux directions. La version tabulée « immédiat / moyen / long terme » morcelle en tranches ce qui se rédige en continu.
+**Où on va est désormais l'accompagnement** — un objet distinct (`accompagnement`), non un septième terme ni une strate fondue dans l'hypothèse. Ce qu'on vise, avec qui, à quel rythme se dépose à part, en collège, révisable comme l'hypothèse et de son même régime. La version tabulée « immédiat / moyen / long terme » morcelle en tranches ce qui se rédige en continu.
 
 **Le mouvement se dépose, jamais un score.** L'hypothèse est déposée dans les mots de l'équipe — **jamais un score, jamais une échelle** (ce serait le cliché). La machine voit *qu'il* y a eu mouvement (via le recours au soin, §15 — un fait), **jamais le mouvement lui-même**. Et le rebouclage est un **geste clinique** : c'est le soignant qui repart de la dernière hypothèse posée pour relire la situation. L'outil garde la trace des hypothèses datées et **rend la spirale visible** ; il ne la fait pas tourner à la place du soignant.
 
@@ -1071,8 +1071,9 @@ branche compte rendu, ci-dessous), sans avoir à tout ré-assembler à la main.
 **Un seul canal, deux guichets.** Le canal unique est une contrainte sur la **destination** (le
 flux de dépôts, domaine 2 du schéma), **pas sur le lieu du geste**. La récolte (5-lobes) et la
 métabolisation (3-lobes) sont **deux guichets qui écrivent dans le même store** : composer dans
-la métabolisation = déposer un `hypothese_clinique`, un `compte_rendu` — **aucune nature nouvelle, aucun
-entrepôt parallèle**. Le soignant ne se perd pas : un seul endroit reçoit, quel que soit le
+la métabolisation = déposer dans le flux (`hypothese_clinique`, `recit`, `synthese`, `accompagnement`,
+`compte_rendu`) — **jamais un entrepôt parallèle** : toute métabolisation reste un dépôt append-only
+dans le canal unique, jamais un stockage à côté. Le soignant ne se perd pas : un seul endroit reçoit, quel que soit le
 guichet. La **signature reste la frontière** (§5) ; le condensé prémâché que le coordinateur a
 sous les yeux est le **brouillon de la plume** (§6.3), reformulé sans fabriquer, sanctuaire cité
 verbatim, jamais noué.

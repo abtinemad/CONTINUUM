@@ -134,6 +134,13 @@ INSERT INTO depot.depots (id, ipp, auteur_id, cadre, nature, contenu) VALUES
    '11111111-1111-1111-1111-111111111111', 'synthese_collective', 'hypothese_clinique',
    'Hypothèse proposée seule — aucune seconde signature ne viendra.');
 
+-- un `recit` proposé seul (1 signature) : même régime collège que l'hypothèse. Il est
+-- invisible à la machine tant qu'un second ne l'a pas ratifié — prouvé plus bas.
+INSERT INTO depot.depots (id, ipp, auteur_id, cadre, nature, contenu) VALUES
+  ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', 'IPP-TEST-001',
+   '11111111-1111-1111-1111-111111111111', 'synthese_collective', 'recit',
+   'Ce qui se dégage du parcours — à ratifier par un second.');
+
 RESET ROLE;
 
 -- ══════════════════════════════════════════════════════════════════════════════
@@ -490,6 +497,133 @@ SELECT test.doit_reussir(
     END IF;
     IF EXISTS (SELECT 1 FROM lecture.depots WHERE id = 'dddddddd-dddd-dddd-dddd-dddddddddddd') THEN
       RAISE EXCEPTION 'le fantôme (1 signature) est visible à la machine';
+    END IF;
+  END
+  $chk$;
+  $geste$);
+
+-- ══════════════════════════════════════════════════════════════════════════════
+--  TROIS NATURES NOUVELLES — recit, synthese, accompagnement
+--  Même régime que l'hypothèse clinique : formulées EN COLLÈGE (synthese_collective),
+--  ratifiées à ≥ 2, révisées EN SPIRALE et SAME-NATURE (un recit ne révise qu'un recit).
+--  L'hypothèse a été redéfinie (« ce qui se joue ») ; ces trois objets portent ce
+--  qu'elle ne porte plus — ce qui se dégage, ce qui se condense, où on va.
+-- ══════════════════════════════════════════════════════════════════════════════
+
+-- Formulée en collège : les trois se déposent en `synthese_collective`, comme le nouage.
+SELECT test.doit_reussir(
+  'un recit se dépose en collège',
+  'continuum_soignant',
+  $$INSERT INTO depot.depots (ipp, auteur_id, cadre, nature, contenu)
+    VALUES ('IPP-TEST-001','11111111-1111-1111-1111-111111111111','synthese_collective','recit',
+            'Le fil du parcours, tel qu''il se raconte à ce tour.')$$,
+  '11111111-1111-1111-1111-111111111111');
+
+SELECT test.doit_reussir(
+  'une synthese se dépose en collège',
+  'continuum_soignant',
+  $$INSERT INTO depot.depots (ipp, auteur_id, cadre, nature, contenu)
+    VALUES ('IPP-TEST-001','11111111-1111-1111-1111-111111111111','synthese_collective','synthese',
+            'Le condensé des couches, à un instant, révisable.')$$,
+  '11111111-1111-1111-1111-111111111111');
+
+SELECT test.doit_reussir(
+  'un accompagnement se dépose en collège',
+  'continuum_soignant',
+  $$INSERT INTO depot.depots (ipp, auteur_id, cadre, nature, contenu)
+    VALUES ('IPP-TEST-001','11111111-1111-1111-1111-111111111111','synthese_collective','accompagnement',
+            'Où on va, avec qui, à quel rythme — construit, jamais opposable.')$$,
+  '11111111-1111-1111-1111-111111111111');
+
+-- Jamais par une main seule : `cadre='seul'` mord la grille (depots_grille_formulee_en_college).
+SELECT test.doit_echouer(
+  'un recit en cadre=seul est refusé',
+  'continuum_soignant',
+  $$INSERT INTO depot.depots (ipp, auteur_id, cadre, nature, contenu)
+    VALUES ('IPP-TEST-001','11111111-1111-1111-1111-111111111111','seul','recit',
+            'Un récit écrit seul n''est pas un récit d''équipe.')$$,
+  '23514', '11111111-1111-1111-1111-111111111111');
+
+SELECT test.doit_echouer(
+  'une synthese en cadre=seul est refusée',
+  'continuum_soignant',
+  $$INSERT INTO depot.depots (ipp, auteur_id, cadre, nature, contenu)
+    VALUES ('IPP-TEST-001','11111111-1111-1111-1111-111111111111','seul','synthese',
+            'Une synthèse formulée seule n''en est pas une.')$$,
+  '23514', '11111111-1111-1111-1111-111111111111');
+
+SELECT test.doit_echouer(
+  'un accompagnement en cadre=seul est refusé',
+  'continuum_soignant',
+  $$INSERT INTO depot.depots (ipp, auteur_id, cadre, nature, contenu)
+    VALUES ('IPP-TEST-001','11111111-1111-1111-1111-111111111111','seul','accompagnement',
+            'Décider où on va, seul, n''est pas un accompagnement.')$$,
+  '23514', '11111111-1111-1111-1111-111111111111');
+
+-- La spirale, same-nature : un `recit` révise un `recit` (ref vers le récit fixture 'eeee').
+-- depots_ref_reservee l'ouvre ; depots_revision_homogene exige l'homogénéité.
+SELECT test.doit_reussir(
+  'un recit révise un recit — la spirale',
+  'continuum_soignant',
+  $$INSERT INTO depot.depots (ipp, auteur_id, cadre, nature, ref_depot_id, ref_nature, contenu)
+    VALUES ('IPP-TEST-001','11111111-1111-1111-1111-111111111111','synthese_collective','recit',
+            'eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee','recit',
+            'Le récit repris au tour suivant : mieux compris, autrement noué.')$$,
+  '11111111-1111-1111-1111-111111111111');
+
+-- Jamais cross-nature : un `recit` qui référence une `synthese` est refusé (23514,
+-- depots_revision_homogene). On dépose d'abord une synthese réelle (id figé) pour que
+-- la FK composite soit satisfaite — seule l'homogénéité doit mordre, pas l'existence.
+SELECT test.doit_reussir(
+  'une synthese cible se dépose (support du test cross-nature)',
+  'continuum_soignant',
+  $$INSERT INTO depot.depots (id, ipp, auteur_id, cadre, nature, contenu)
+    VALUES ('ffffffff-ffff-ffff-ffff-ffffffffffff','IPP-TEST-001',
+            '11111111-1111-1111-1111-111111111111','synthese_collective','synthese',
+            'Une synthèse, cible d''une révision illicite.')$$,
+  '11111111-1111-1111-1111-111111111111');
+
+SELECT test.doit_echouer(
+  'un recit ne révise pas une synthese — cross-nature refusée',
+  'continuum_soignant',
+  $$INSERT INTO depot.depots (ipp, auteur_id, cadre, nature, ref_depot_id, ref_nature, contenu)
+    VALUES ('IPP-TEST-001','11111111-1111-1111-1111-111111111111','synthese_collective','recit',
+            'ffffffff-ffff-ffff-ffff-ffffffffffff','synthese',
+            'Un récit qui prétend réviser une synthèse — registres croisés.')$$,
+  '23514', '11111111-1111-1111-1111-111111111111');
+
+-- Le fantôme reste à l'équipe : le recit 'eeee' à UNE seule signature est invisible à la machine.
+SELECT test.doit_reussir(
+  'un recit à 1 signature est invisible à la machine',
+  'continuum_machine',
+  $geste$
+  DO $chk$
+  BEGIN
+    IF EXISTS (SELECT 1 FROM lecture.depots WHERE id = 'eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee') THEN
+      RAISE EXCEPTION 'le recit à 1 signature est visible à la machine — le filtre ne le tient pas';
+    END IF;
+  END
+  $chk$;
+  $geste$);
+
+-- Un second ratifie : le coordinateur signe le recit. La signature muette passe (avis_natures_signables l'ouvre).
+SELECT test.doit_reussir(
+  'un second agent signe un recit',
+  'continuum_soignant',
+  $$INSERT INTO depot.avis (depot_id, ipp, depot_nature, agent_id, type)
+    VALUES ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee','IPP-TEST-001','recit',
+            '33333333-3333-3333-3333-333333333333','signature')$$,
+  '33333333-3333-3333-3333-333333333333');
+
+-- Ratifié à ≥ 2, le recit entre dans la fenêtre : la machine le voit désormais.
+SELECT test.doit_reussir(
+  'le recit ratifié (2 signatures) devient visible à la machine',
+  'continuum_machine',
+  $geste$
+  DO $chk$
+  BEGIN
+    IF NOT EXISTS (SELECT 1 FROM lecture.depots WHERE id = 'eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee') THEN
+      RAISE EXCEPTION 'le recit ratifié (2 signatures) est invisible à la machine';
     END IF;
   END
   $chk$;

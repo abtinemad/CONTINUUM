@@ -38,7 +38,8 @@ CREATE TABLE depot.avis (
   -- levées. Un avis sur une observation n'a AUCUN chemin — refusé à la racine.
   CONSTRAINT avis_natures_signables
     CHECK (depot_nature IN ('situation','ressenti','demande','diffraction',
-                            'hypothese_clinique','temporalite','levee')),
+                            'hypothese_clinique','recit','synthese','accompagnement',
+                            'temporalite','levee')),
 
   CONSTRAINT avis_type_connu
     CHECK (type IN ('signature','refus')),

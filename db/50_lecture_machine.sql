@@ -108,7 +108,8 @@ flux AS (
   FROM depot.depots d
   JOIN signataires s ON s.depot_id = d.id
   WHERE
-    (d.nature NOT IN ('situation','ressenti','demande','diffraction','hypothese_clinique','temporalite')
+    (d.nature NOT IN ('situation','ressenti','demande','diffraction','hypothese_clinique','temporalite',
+                      'recit','synthese','accompagnement')
      AND NOT (d.nature = 'levee' AND d.ref_nature IN ('hypothese_clinique','temporalite')))
     OR s.nb >= 2
 )
