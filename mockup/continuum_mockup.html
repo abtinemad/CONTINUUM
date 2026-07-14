@@ -428,7 +428,7 @@ import { CX, CY, N, TAU, INK, RED, setRed, setInk, ASYM, build, KF, KN, KCO, ler
   }
 
   // ---- state ----
-  var targetS=0, currentS=0, T=0, hop=0, ptParked=null;
+  var targetS=0, currentS=0, T=0, hop=0, HOP_FIL=0.0010, ptParked=null;   // HOP_FIL : vitesse de parcours de l'œil le long du fil (comme l'intra-patient)
   // DASHBOARD (Vigie) : l'œil entre dans une boucle (barycentre) et en ressort. Passage = franchir le fil, comme une corde à sauter.
   var dashLobe=-1, moveT=-9, moveFrom=[210,210], moveTo=[210,210], moveKind='over', moveDur=0.62; var eyeUnder=false;
   var DASH_MODE=['compose','read','compose'];   // §19 : « deux lobes composent, un seul lit ». Le mode est la nature du lobe, non une humeur
@@ -460,9 +460,11 @@ import { CX, CY, N, TAU, INK, RED, setRed, setInk, ASYM, build, KF, KN, KCO, ler
     if(ptParked!==null && ptParked<nodes.length) return nodes[ptParked];
     if(Math.round(currentS)===1) return (dashLobe>=0 ? dashBary(dashLobe) : [CX,CY]);   // DASHBOARD (Vigie) : au CENTRE il veille (méta) ; entré dans une boucle, il se tient au barycentre du lobe
     if(reduce) return nodes[0];
-    hop += 0.006;                              // vitesse de circulation entre nœuds
-    var f=hop%nodes.length, i=Math.floor(f), t=smooth(f-i), j=(i+1)%nodes.length;
-    return [ lerp(nodes[i][0],nodes[j][0],t), lerp(nodes[i][1],nodes[j][1],t) ];
+    if(Math.round(currentS)===0) return nodes[0];   // bilobe : œil statique (veilleuse) — inchangé
+    var lp=livePts(), M=lp.length;                   // l'œil parcourt TOUT le fil, pas seulement la portion centrale entre les nœuds
+    hop += HOP_FIL;
+    var f=(hop%1)*M, i=Math.floor(f)%M, t=smooth(f-i), j=(i+1)%M;
+    return [ lerp(lp[i][0],lp[j][0],t), lerp(lp[i][1],lp[j][1],t) ];
   }
   // nœuds avec la même respiration que le fil (pour rester posés dessus)
   function nodesic(){
