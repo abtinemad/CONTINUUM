@@ -403,13 +403,14 @@ import { CX, CY, N, TAU, INK, lerp, smooth, shapeAt, nodesAt, slice, composeScen
   //    "repos" (glisse sur le fil) · "notif" (LE TOUR des 2 boucles) · "attente" (notif non consultée).
   //    Réglages À L'ŒIL, const nommées :
   var OVER=0.5, UNDER=-0.42;        // corde à sauter — profondeur (module L229) : over enfle (devant), under rétrécit (derrière)
+  var NOTIF_LIFT=18;                // corde à sauter — hauteur du SAUT écran-haut sur le segment "over" (à régler à l'œil)
   var GONFLE=0.8;                   // gonflement final avant de se poser sur le nœud (×1,8 → repos)
   var FLASH_A=0.55, FLASH_K=4.5;    // flash net (module L377) : glow = 1 + A·exp(-t·K)
   var ATT_FLASH_MS=1800;            // attente : période du flash
   var FREMI_AMP=1.2, FREMI_HZ=13;   // attente : frémi (px, Hz) — petit tremblement, pas le bounce
   var RETOUR_MS=5000;               // attente : re-joue le tour tout seul (~5 s), jusqu'à consultation
   var OND_AMP=0.06, OND_EASE=0.12, ondAmp=0;   // DICTÉE : amplitude (gate) de l'égaliseur, adoucie sur parle
-  var VU_N=22, VU_W=2.5, VU_LEN=16, VU_COL="#B0212F", VU_SPD_MIN=3.5, VU_SPD_MAX=8.5;   // ÉGALISEUR : nb de barres · épaisseur · longueur max · rouge · plage de fréquences par barre (désordre)
+  var VU_N=16, VU_W=8, VU_LEN=40, VU_COL="#B0212F", VU_SPD_MIN=3.5, VU_SPD_MAX=8.5;   // ÉGALISEUR : nb de barres · épaisseur · longueur max · rouge · plage de fréquences par barre (désordre) — grossi pour être lisible à 66 px
   var eyeState="repos", notifT0=0, NOTIF_MS=1600, ePhase=0, attenteT0=0, notifStartXY=[CX,CY], eyeUnder=false;
   var grp=document.getElementById("grp"), eyeG=document.getElementById("eyeG");
   // égaliseur : pool de barres <line> dans #vu (sous l'œil, sur le fil) ; phase + fréquence FIXES par barre (désordre, nombre d'or)
@@ -456,14 +457,16 @@ import { CX, CY, N, TAU, INK, lerp, smooth, shapeAt, nodesAt, slice, composeScen
       var prog=(Date.now()-notifT0)/NOTIF_MS;
       var C=redXY2(), Lx=0,Ly=0,Lc=0,Rx=0,Ry=0,Rc=0;                  // le TOUR : [C, gaucheC, C, droiteC, C] (barycentres des lobes)
       for(i=0;i<n;i++){ if(lp[i][0]<C[0]-4){Lx+=lp[i][0];Ly+=lp[i][1];Lc++;} else if(lp[i][0]>C[0]+4){Rx+=lp[i][0];Ry+=lp[i][1];Rc++;} }
-      var leftC=Lc?[Lx/Lc,Ly/Lc]:C, rightC=Rc?[Rx/Rc,Ry/Rc]:C, WP=[C,leftC,C,rightC,C];
-      var seg=Math.min(3,Math.floor(prog*4)), lt=smooth(prog*4-seg);
+      var leftC=Lc?[Lx/Lc,Ly/Lc]:C, rightC=Rc?[Rx/Rc,Ry/Rc]:C;
+      var WP=[notifStartXY, leftC, rightC, leftC, C];                 // fil → boucle A → boucle B → boucle A → nœud
+      var KIND=["enter","under","over","under"];                      // entrer A · A→B dessous · B→A saute par-dessus · A→nœud dessous
+      var seg=Math.min(3,Math.floor(prog*4)), lt=smooth(prog*4-seg), kind=KIND[seg];
       var raw=[lerp(WP[seg][0],WP[seg+1][0],lt), lerp(WP[seg][1],WP[seg+1][1],lt)];
-      var win=smooth(prog/0.10);                                      // "part du fil" : on fond depuis la position de repos au tout début
-      e=[lerp(notifStartXY[0],raw[0],win), lerp(notifStartXY[1],raw[1],win)];
-      var over=(seg%2===0), _ra=Math.sin(Math.PI*lt);                 // seg0/2 = over (entre, enfle, devant) · seg1/3 = under (revient, rétréci, derrière) — module L516
-      r *= 1 + _ra*(over?OVER:UNDER);                                 // profondeur — échelle over/under (module L229)
-      underNow = (!over && prog<0.85);                                // z : SOUS le fil sur les retours (module L280) ; relâché pour le gonflement
+      var _ra=Math.sin(Math.PI*lt);
+      if(kind==="over"){ r *= 1+_ra*OVER; raw[1] -= NOTIF_LIFT*_ra; } // par-dessus : enfle + SAUTE (arc écran-haut)
+      else if(kind==="under"){ r *= 1+_ra*UNDER; }                    // par-dessous : rétréci, derrière le fil
+      e=raw;
+      underNow = (kind==="under" && prog<0.85);                       // z : SOUS le fil sur les retours (module L280) ; relâché pour le gonflement
       if(prog>=0.85){ var gp=smooth((prog-0.85)/0.15); r = 25*1.35*(1 + GONFLE*(1-gp)); }   // GONFLEMENT final : ×(1+0.8) → taille de repos au contact du nœud
       pt.style.filter = "";                                           // le tour est porté par la PROFONDEUR, pas la luminosité
       if(prog>=1){ eyeState="attente"; attenteT0=Date.now(); e=redXY2(); r=25*1.35; underNow=false; }   // posé sur le nœud → ATTENTE
@@ -533,7 +536,7 @@ import { CX, CY, N, TAU, INK, lerp, smooth, shapeAt, nodesAt, slice, composeScen
   q.addEventListener("keydown", function(e){ if(e.key==="Escape"){ fente.classList.add("ferme"); q.value=""; dessineListe(""); } });
   // Recherche au repos = bulle-loupe ; tap → déploiement de la fente (transition scaleX existante) ; × → repli.
   // La loupe se ré-affiche seule quand la fente reprend .ferme (CSS :has) — aucune logique de recherche touchée.
-  document.getElementById("loupe").addEventListener("click", function(){ fente.classList.remove("ferme"); q.focus(); });
+  document.getElementById("loupe").addEventListener("click", function(){ lacher(); fente.classList.remove("ferme"); q.focus(); });
   document.getElementById("fx").addEventListener("click", function(){ fente.classList.add("ferme"); q.value=""; dessineListe(""); });
   // DEMO (maquette) : "n" lance le TOUR (depuis repos) ; "c" CONSULTE (retour repos).
   // le tap du nœud est libre (guichet parti) ; la consultation notif reste sur "c" — pourra passer sur le tap si voulu.
