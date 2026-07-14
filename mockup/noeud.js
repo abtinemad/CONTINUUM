@@ -154,6 +154,10 @@ export function creerNoeud(svgEl, opts){
   var targetS=0, currentS=0, T=0, hop=0, HOP_FIL=0.0010, CENTER_R=75, ptParked=null;   // HOP_FIL : vitesse de l'œil sur le fil (baissé = plus lent) · CENTER_R : rayon de la zone-clic centrale (retour repos) — à régler à l'œil
   // DASHBOARD (Vigie) : l'œil entre dans une boucle (barycentre) et en ressort. Passage = franchir le fil, comme une corde à sauter.
   var dashLobe=-1, moveT=-9, moveFrom=[210,210], moveTo=[210,210], moveKind='over', moveDur=0.62; var eyeUnder=false;
+  // ── TOUR DE NOTIF (porté de la veilleuse page-side · pas 2a) : gated bilobe. État SÉPARÉ (ne réutilise pas eyeState). ──
+  var NT_OVER=0.5, NT_UNDER=-0.42, NT_LIFT=18, NT_GONFLE=0.8, NT_MS=2000;   // corde à sauter : over enfle+saute · under rétrécit · settle = gonflement final (×1,8 → repos)
+  var NT_FLASH_A=0.55, NT_FLASH_K=4.5, NT_ATT_FLASH_MS=1800, NT_FREMI_AMP=1.2, NT_FREMI_HZ=13, NT_RETOUR_MS=5000;   // attente : flash net + frémi HF + re-tour
+  var notifTour=false, notifTourT0=0, ntAttenteT0=0, notifStartXY=[CX,CY], ntFlash=1;
   var DASH_MODE=['compose','read','compose'];   // §19 : « deux lobes composent, un seul lit ». Le mode est la nature du lobe, non une humeur
                                                  // de l'œil : la lentille est l'organe de la seule Vigilante (idx1), pas un réglage disponible partout.
   var SCOUT={size:0.66, posX:-0.20, posY:0.02, dur:0.7, oriMin:-1, oriMax:12, montRest:-2, flipFrom:50};
@@ -280,6 +284,38 @@ export function creerNoeud(svgEl, opts){
     }
     var _underNow=(_rmP>=0 && _rmP<moveDur && moveKind==='under');
     if(_underNow!==eyeUnder){ if(_underNow) grp.insertBefore(eyeG, grp.firstChild); else grp.insertBefore(eyeG, oversG.nextSibling); eyeUnder=_underNow; }
+    // ── TOUR DE NOTIF : porté de render2 (veilleuse) · gated bilobe. Écrase eyeX/eyeY, ptRad, z ; flash via ntFlash (glow, plus bas). ──
+    ntFlash=1;
+    if(notifTour && Math.round(currentS)===0){
+      var _ntBase=ptRad, _ntLp=livePts(), _ntN=_ntLp.length;
+      var _ntNd=nodesic(), _ntC=_ntNd.length?_ntNd[0]:[CX,CY];        // nœud = le crossing du bilobe (centre)
+      if(ntAttenteT0===0){                                            // NOTIF : le TOUR — WP = [départ, gaucheC, droiteC, gaucheC, droiteC, nœud]
+        var _prog=(Date.now()-notifTourT0)/NT_MS;
+        var _Lx=0,_Ly=0,_Lc=0,_Rx=0,_Ry=0,_Rc=0,_q;                   // barycentres gauche/droite depuis livePts() (comme render2)
+        for(_q=0;_q<_ntN;_q++){ if(_ntLp[_q][0]<_ntC[0]-4){_Lx+=_ntLp[_q][0];_Ly+=_ntLp[_q][1];_Lc++;} else if(_ntLp[_q][0]>_ntC[0]+4){_Rx+=_ntLp[_q][0];_Ry+=_ntLp[_q][1];_Rc++;} }
+        var _leftC=_Lc?[_Lx/_Lc,_Ly/_Lc]:_ntC, _rightC=_Rc?[_Rx/_Rc,_Ry/_Rc]:_ntC;
+        var _WP=[notifStartXY,_leftC,_rightC,_leftC,_rightC,_ntC];
+        var _KIND=["enter","under","over","under","settle"];          // entrer A · A→B dessous · B→A saute · A→B dessous COMPLET · remonte sur le nœud
+        var _seg=Math.min(4,Math.floor(_prog*5)), _lt=smooth(_prog*5-_seg), _kind=_KIND[_seg];
+        var _raw=[lerp(_WP[_seg][0],_WP[_seg+1][0],_lt), lerp(_WP[_seg][1],_WP[_seg+1][1],_lt)];
+        var _ra=Math.sin(Math.PI*_lt);
+        ptRad=_ntBase;
+        if(_kind==="over"){ ptRad=_ntBase*(1+_ra*NT_OVER); _raw[1]-=NT_LIFT*_ra; }   // par-dessus : enfle + SAUTE (arc écran-haut)
+        else if(_kind==="under"){ ptRad=_ntBase*(1+_ra*NT_UNDER); }                    // par-dessous : rétréci, derrière le fil
+        if(_kind==="settle"){ var _gp=smooth((_prog-0.8)/0.2); ptRad=_ntBase*(1+NT_GONFLE*(1-_gp)); }   // émerge de l'autre côté puis REMONTE avec le gonflement
+        eyeX=_raw[0]; eyeY=_raw[1];
+        var _ntUnder=(_kind==="under");                               // z : SOUS le fil sur les deux passes complètes ; la remontée repasse par-dessus
+        if(_ntUnder!==eyeUnder){ if(_ntUnder) grp.insertBefore(eyeG, grp.firstChild); else grp.insertBefore(eyeG, oversG.nextSibling); eyeUnder=_ntUnder; }
+        if(_prog>=1){ ntAttenteT0=Date.now(); eyeX=_ntC[0]; eyeY=_ntC[1]; ptRad=_ntBase; if(eyeUnder){ grp.insertBefore(eyeG, oversG.nextSibling); eyeUnder=false; } }   // posé sur le nœud → ATTENTE
+      } else {                                                        // ATTENTE : posé sur le nœud + frémi HF + flash + re-tour
+        var _att=Date.now()-ntAttenteT0, _fs=_att/1000;
+        eyeX=_ntC[0]+NT_FREMI_AMP*Math.sin(2*Math.PI*NT_FREMI_HZ*_fs);
+        eyeY=_ntC[1]+NT_FREMI_AMP*Math.sin(2*Math.PI*NT_FREMI_HZ*_fs*1.07+1.3);
+        ptRad=_ntBase;
+        var _fl=(_att%NT_ATT_FLASH_MS)/1000; ntFlash=1+NT_FLASH_A*Math.exp(-_fl*NT_FLASH_K);   // flash net périodique
+        if(_att>=NT_RETOUR_MS){ notifTourT0=Date.now(); ntAttenteT0=0; notifStartXY=[eyeX,eyeY]; }   // re-joue le tour tout seul, jusqu'à consultation
+      }
+    }
     var P=[eyeX,eyeY];
     // GESTE (Vigie) : saut sur place amorti — couche ponctuelle, superposée à l'état tenu. Déplace tout l'œil (globe+pupille+halo).
     var _bt=T-bounceT;
@@ -377,7 +413,8 @@ export function creerNoeud(svgEl, opts){
       glowS += (_glowT-glowS)*0.12;                        // base lissée (repos/éveil/interro)
       var glow=glowS;
       if(_sig && eyeState==='notif'){ var _n2=T-eyeStateT; glow=1+0.55*Math.exp(-_n2*4.5); }   // FLASH net (le globe s'illumine d'un coup puis retombe)
-      pt.style.filter = (Math.abs(glow-1)>0.002) ? ("brightness("+glow.toFixed(3)+")") : "";
+      var _gEff=glow*ntFlash;   // ntFlash : flash net de l'ATTENTE notif (≡ render2) ; vaut 1 le reste du temps
+      pt.style.filter = (Math.abs(_gEff-1)>0.002) ? ("brightness("+_gEff.toFixed(3)+")") : "";
       pupVis = gzv>0.02;                                    // visible seulement sur la face avant
       rx=Math.max(0.01,pbreath*Math.max(0,gzv)*bf); ry=Math.max(0.01,pbreath*bf);
       var _pe=pbreath+irisThick+ptRad*0.16, _cosR=Math.sqrt(Math.max(0,1-(_pe/ptRad)*(_pe/ptRad)));   // rayon effectif = iris + marge PROPORTIONNELLE (ptRad*0.16) → gap constant quelle que soit la taille de l'oeil, aucune coupe au limbe
@@ -570,6 +607,9 @@ export function creerNoeud(svgEl, opts){
     eyeState = eyeState_ || 'repos'; eyeStateT = T;
     if(gestType_){ gestType = gestType_; bounceT = T; } else gestType = 'none';
   }
+  // ── TOUR DE NOTIF (pas 2a) : démarre le tour (bilobe uniquement) · consulter → arrêt, repos ──
+  function signalerNotif(){ if(Math.round(currentS)!==0) return; notifTour=true; notifTourT0=Date.now(); ntAttenteT0=0; notifStartXY=[eyeX,eyeY]; }
+  function consulter(){ notifTour=false; ntAttenteT0=0; ntFlash=1; if(pt&&pt.style) pt.style.filter=""; if(eyeUnder){ grp.insertBefore(eyeG, oversG.nextSibling); eyeUnder=false; } }
   // ── densité par lobe (page → forme) : écrit la forme de CETTE instance, relabellise ──
   function setGrain(d){
     densites = (d && d.slice) ? d.slice() : [0,0,0,0,0];
@@ -592,6 +632,8 @@ export function creerNoeud(svgEl, opts){
     onEye: function(cb){ cbEye = cb || function(){}; },
     onEyeLong: function(cb){ cbEyeLong = cb || function(){}; },
     signaler: signaler,
+    signalerNotif: signalerNotif,
+    consulter: consulter,
     setGrain: setGrain,
     axes: axes,
     setEpaisseur: setEpaisseur,

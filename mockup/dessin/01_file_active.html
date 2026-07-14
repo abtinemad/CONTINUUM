@@ -451,6 +451,12 @@ var encre = getComputedStyle(document.documentElement).getPropertyValue('--ink')
   var noeud = creerNoeud(document.getElementById('knot'),
     { labels:false, encre: getComputedStyle(document.documentElement).getPropertyValue('--ink').trim() });
   noeud.setStrate(0);   // bilobe (veilleuse) — pas de morph, l'œil vit dessus
+  // DÉMO (maquette) : « n » rejoue le TOUR de notif (porté dans le module) ; « c » CONSULTE (retour repos).
+  document.addEventListener("keydown", function(e){
+    if(/^(INPUT|TEXTAREA)$/.test((document.activeElement||{}).tagName)) return;
+    if(e.key==="n") noeud.signalerNotif();
+    else if(e.key==="c") noeud.consulter();
+  });
 })();
 </script>
 </body>
