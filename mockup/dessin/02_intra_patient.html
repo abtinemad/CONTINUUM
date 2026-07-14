@@ -27,8 +27,8 @@
     background:radial-gradient(120% 90% at 50% 0%,rgba(255,255,255,.35),transparent 60%)}
   .pageHead{position:absolute;top:0;left:0;right:0;z-index:5;background:var(--paper)}   /* ni height ni padding ici */
   .titreLigne{position:relative;padding:24px 22px 2px}          /* = le padding du .titre de la page 1 */
-  .titre{font-family:var(--prose);font-weight:700;font-size:22px}   /* = page 1 — pas de line-height */
-  .ret{position:absolute;right:22px;top:22px;width:30px;height:30px;border-radius:15px;border:0;padding:0;
+  .titre{font-family:var(--prose);font-weight:700;font-size:22px;padding-left:38px}   /* = page 1 ; +38px pour le chevron à gauche */
+  .ret{position:absolute;left:22px;top:22px;width:30px;height:30px;border-radius:15px;border:0;padding:0;
        background:rgba(255,255,255,.6);color:var(--ink-soft);cursor:pointer;
        display:flex;align-items:center;justify-content:center;transition:background .2s}
   .ret:hover{background:rgba(255,255,255,.95)}
@@ -151,8 +151,8 @@
   <!-- HEADER FIXE (hors scroll) -->
   <div class="pageHead">
     <div class="titreLigne">
-      <div class="titre">Fil de soi</div>
       <button class="ret" onclick="location.href='01_file_active.html'" aria-label="retour à la file active" title="retour à la file active"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <div class="titre">Fil de soi</div>
     </div>
     <div class="modes" id="modes">
       <button data-mode="recolte" aria-current="true">Récolte</button>

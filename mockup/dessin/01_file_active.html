@@ -28,7 +28,12 @@
   .tel::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:6;
     background:radial-gradient(120% 90% at 50% 0%,rgba(255,255,255,.35),transparent 60%)}
 
-  .titre{padding:24px 22px 2px;font-family:var(--prose);font-weight:700;font-size:22px}
+  .titreLigne{position:relative;padding:24px 22px 2px}
+  .titre{font-family:var(--prose);font-weight:700;font-size:22px;padding-left:38px}   /* +38px pour le chevron à gauche */
+  .ret{position:absolute;left:22px;top:22px;width:30px;height:30px;border-radius:15px;border:0;padding:0;
+       background:rgba(255,255,255,.6);color:var(--ink-soft);cursor:pointer;
+       display:flex;align-items:center;justify-content:center;transition:background .2s}
+  .ret:hover{background:rgba(255,255,255,.95)}
   .terrains{display:flex;gap:18px;align-items:center;padding:8px 22px 9px;border-bottom:1px solid var(--faint)}
   .terrains button{background:0;border:0;padding:2px 0 6px;font-family:var(--word);font-size:12.5px;
     color:var(--ink-soft);cursor:pointer;border-bottom:2px solid transparent}
@@ -118,7 +123,10 @@
 </head>
 <body>
 <div class="tel">
-  <div class="titre">File active</div>
+  <div class="titreLigne">
+    <button class="ret" type="button" aria-label="page de connexion" title="page de connexion (à venir)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button><!-- TODO : vers la page de connexion (à venir) -->
+    <div class="titre">File active</div>
+  </div>
   <div class="terrains" id="terrains">
     <button data-t="amb" aria-current="true">ambulatoire<span class="c" id="c-amb"></span></button>
     <button data-t="hosp">hospitalisés<span class="c" id="c-hosp"></span></button>
