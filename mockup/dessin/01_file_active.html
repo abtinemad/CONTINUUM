@@ -410,7 +410,7 @@ var encre = getComputedStyle(document.documentElement).getPropertyValue('--ink')
   var FREMI_AMP=1.2, FREMI_HZ=13;   // attente : frémi (px, Hz) — petit tremblement, pas le bounce
   var RETOUR_MS=5000;               // attente : re-joue le tour tout seul (~5 s), jusqu'à consultation
   var OND_AMP=14, OND_HZ=9, OND_ONDES=16, OND_EASE=0.12, ondAmp=0;   // DICTÉE : vagues TRANSVERSES sur le ∞ — amplitude EN UNITÉS (déplacement perpendiculaire au fil) · vitesse · nb de crêtes · douceur (gate 0→1 sur parle)
-  var eyeState="repos", notifT0=0, NOTIF_MS=1600, ePhase=0, attenteT0=0, notifStartXY=[CX,CY], eyeUnder=false;
+  var eyeState="repos", notifT0=0, NOTIF_MS=2000, ePhase=0, attenteT0=0, notifStartXY=[CX,CY], eyeUnder=false;
   var grp=document.getElementById("grp"), eyeG=document.getElementById("eyeG");
   function lancerTour(){ eyeState="notif"; notifT0=Date.now(); notifStartXY=(eyePos||[CX,CY]).slice(); }   // depuis repos (n) ou re-tour d'attente
   function setUnder(u){ if(u!==eyeUnder){ if(u) grp.insertBefore(eyeG, grp.firstChild); else grp.insertBefore(eyeG, oversG.nextSibling); eyeUnder=u; } }   // z : sous le fil / par-dessus (module L280)
@@ -456,16 +456,16 @@ var encre = getComputedStyle(document.documentElement).getPropertyValue('--ink')
       var C=redXY2(), Lx=0,Ly=0,Lc=0,Rx=0,Ry=0,Rc=0;                  // le TOUR : [C, gaucheC, C, droiteC, C] (barycentres des lobes)
       for(i=0;i<n;i++){ if(lp[i][0]<C[0]-4){Lx+=lp[i][0];Ly+=lp[i][1];Lc++;} else if(lp[i][0]>C[0]+4){Rx+=lp[i][0];Ry+=lp[i][1];Rc++;} }
       var leftC=Lc?[Lx/Lc,Ly/Lc]:C, rightC=Rc?[Rx/Rc,Ry/Rc]:C;
-      var WP=[notifStartXY, leftC, rightC, leftC, C];                 // fil → boucle A → boucle B → boucle A → nœud
-      var KIND=["enter","under","over","under"];                      // entrer A · A→B dessous · B→A saute par-dessus · A→nœud dessous
-      var seg=Math.min(3,Math.floor(prog*4)), lt=smooth(prog*4-seg), kind=KIND[seg];
+      var WP=[notifStartXY, leftC, rightC, leftC, rightC, C];         // fil → A → B → A → B (dessous COMPLET, émerge) → remonte sur le nœud
+      var KIND=["enter","under","over","under","settle"];             // entrer A · A→B dessous · B→A saute · A→B dessous COMPLET (émerge de l'autre côté) · B→remonte sur le nœud
+      var seg=Math.min(4,Math.floor(prog*5)), lt=smooth(prog*5-seg), kind=KIND[seg];
       var raw=[lerp(WP[seg][0],WP[seg+1][0],lt), lerp(WP[seg][1],WP[seg+1][1],lt)];
       var _ra=Math.sin(Math.PI*lt);
       if(kind==="over"){ r *= 1+_ra*OVER; raw[1] -= NOTIF_LIFT*_ra; } // par-dessus : enfle + SAUTE (arc écran-haut)
       else if(kind==="under"){ r *= 1+_ra*UNDER; }                    // par-dessous : rétréci, derrière le fil
       e=raw;
-      underNow = (kind==="under" && prog<0.85);                       // z : SOUS le fil sur les retours (module L280) ; relâché pour le gonflement
-      if(prog>=0.85){ var gp=smooth((prog-0.85)/0.15); r = 25*1.35*(1 + GONFLE*(1-gp)); }   // GONFLEMENT final : ×(1+0.8) → taille de repos au contact du nœud
+      underNow = (kind==="under");                                    // z : SOUS le fil sur les DEUX passes complètes ; la remontée (settle) repasse par-dessus
+      if(kind==="settle"){ var gp=smooth((prog-0.8)/0.2); r = 25*1.35*(1 + GONFLE*(1-gp)); }   // émerge de l'autre côté puis REMONTE sur le nœud avec le gonflement (×1,8 → repos)
       pt.style.filter = "";                                           // le tour est porté par la PROFONDEUR, pas la luminosité
       if(prog>=1){ eyeState="attente"; attenteT0=Date.now(); e=redXY2(); r=25*1.35; underNow=false; }   // posé sur le nœud → ATTENTE
     } else if(eyeState==="attente"){
