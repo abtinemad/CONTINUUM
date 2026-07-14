@@ -372,7 +372,7 @@ var encre = getComputedStyle(document.documentElement).getPropertyValue('--ink')
     var L=document.getElementById("liste");
     L.innerHTML = h || '<div class="lig"><span class="nom">personne</span></div>';
     [].slice.call(L.querySelectorAll(".lig[data-i]")).forEach(function(el){
-      el.addEventListener("click", function(){ var i=+el.dataset.i; if(i===tenuIdx){ location.href="02_intra_patient.html?p="+i; } else { tenir(i); } });   // 1er clic : tenir · re-clic : entrer dans l'intra-patient
+      el.addEventListener("click", function(){ var i=+el.dataset.i; if(i===tenuIdx){ location.href="02_intra_patient.html?p="+i+"&n="+encodeURIComponent(FILE[i].n); } else { tenir(i); } });   // 1er clic : tenir · re-clic : entrer
     });
   }
   ["amb","hosp","dem"].forEach(function(t){

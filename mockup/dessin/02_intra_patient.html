@@ -133,7 +133,7 @@
 
   <!-- EN-TÊTE -->
   <div class="entete">
-    <button class="ret" onclick="alert('→ retour à la file active (01)')">‹ file active</button>
+    <button class="ret" onclick="location.href='01_file_active.html'">‹ file active</button>
     <div class="nom" id="nom"></div>
     <div class="usage" id="usage"></div>
     <div class="admin" id="admin"></div>
@@ -344,6 +344,10 @@ import { creerNoeud } from '../noeud.js';
   $("usage").textContent = PATIENT.usage;
   $("admin").innerHTML = "<b>"+esc(PATIENT.ipp)+"</b> · "+esc(PATIENT.ne)+"<br>"+esc(PATIENT.adresse);
   $("contacts").innerHTML = "proche — <span class='qui'>"+esc(PATIENT.proche)+"</span><br>soignant — <span class='qui'>"+esc(PATIENT.soignant)+"</span>";
+  // lien depuis la file active : le nom du patient cliqué est porté par l'URL (?n=). Les champs
+  // d'identité riches n'existent pas côté file active → blanchis (pas de specifics d'un autre patient).
+  var qn = new URLSearchParams(location.search).get("n");
+  if(qn){ PATIENT.nom = qn; $("nom").textContent = qn; $("usage").textContent = ""; $("admin").innerHTML = "—"; $("contacts").innerHTML = "—"; }
 
   /* Le vrai nœud — module partagé, sur sa propre forme (creerForme) */
   var noeud = creerNoeud(document.getElementById('knot'), {
