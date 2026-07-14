@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cahier de dessin — 02 · vue intra-patient</title>
+<title>Cahier de dessin — 02 · Le fil de soi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600&family=Spectral:wght@400;600;700&display=swap" rel="stylesheet">
@@ -21,8 +21,11 @@
   body{margin:0;background:#D6DADE;color:var(--ink);font-family:var(--word);
        -webkit-font-smoothing:antialiased;display:flex;gap:36px;justify-content:center;
        align-items:flex-start;padding:40px 24px 80px;flex-wrap:wrap}
-  .tel{position:relative;width:390px;min-height:820px;background:var(--paper);
-       border-radius:34px;box-shadow:0 20px 60px rgba(0,0,0,.22);overflow:hidden}
+  .tel{width:390px;height:812px;background:var(--paper);position:relative;overflow:hidden;
+       border-radius:34px;box-shadow:0 30px 70px rgba(0,0,0,.28),0 0 0 9px #22262b;flex:0 0 auto}
+  .tel::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:6;
+    background:radial-gradient(120% 90% at 50% 0%,rgba(255,255,255,.35),transparent 60%)}
+  .ecran{position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch}
 
   /* En-tête */
   .entete{padding:22px 22px 14px;border-bottom:1px solid var(--faint)}
@@ -138,6 +141,7 @@
 </head>
 <body>
 <div class="tel">
+  <div class="ecran"><!-- flux défilant : en-tête, chaîne, nœud, sections. Les overlays (#over, #guichet) restent hors .ecran. -->
 
   <!-- EN-TÊTE -->
   <div class="entete">
@@ -269,6 +273,7 @@
     </div>
     <div class="stack" id="listA"></div>
   </div>
+  </div><!-- /.ecran (fin du flux défilant) -->
 
   <!-- TRAITEMENTS -->
   <div class="over" id="over">
@@ -302,7 +307,7 @@
 </div>
 
 <div class="marge">
-  <h2>02 · l'intra-patient</h2>
+  <h2>02 · Le fil de soi</h2>
   <p>Un patient, ouvert depuis la file active. Rien n'est réel : matériau de dessin. En haut, le
      nœud-lentille ; en dessous, deux modes qu'un même geste bascule.</p>
   <h3>récolte</h3>
@@ -390,7 +395,7 @@ import { creerNoeud } from '../noeud.js';
        elles n'existent pas encore, la branche est câblée mais sans cible pour l'instant. */
   }
   noeud.onLobe(function(index, axe){ axeTenu = index; lentAxe = axe || ""; majLentille(); });
-  /* onEye NON branché : dans l'intra-patient, le tap sur l'œil ne déclenche rien (décidé). */
+  /* onEye NON branché : dans le fil de soi, le tap sur l'œil ne déclenche rien (décidé). */
 
   /* Toggle deux modes — pilote D'UN COUP le nœud (setStrate) et l'affichage des registres */
   function setMode(m){
