@@ -25,18 +25,22 @@
        border-radius:34px;box-shadow:0 30px 70px rgba(0,0,0,.28),0 0 0 9px #22262b;flex:0 0 auto}
   .tel::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:6;
     background:radial-gradient(120% 90% at 50% 0%,rgba(255,255,255,.35),transparent 60%)}
-  .pageHead{position:absolute;top:0;left:0;right:0;z-index:5;background:var(--paper);
-            height:100px;box-sizing:border-box;padding:14px 22px 10px;border-bottom:1px solid var(--faint);
-            display:flex;flex-direction:column;justify-content:space-between}
-  .titre{font-family:var(--prose);font-weight:700;font-size:22px;line-height:1.05}   /* = page 1 (File active) */
+  .pageHead{position:absolute;top:0;left:0;right:0;z-index:5;background:var(--paper)}   /* ni height ni padding ici */
+  .titreLigne{position:relative;padding:24px 22px 2px}          /* = le padding du .titre de la page 1 */
+  .titre{font-family:var(--prose);font-weight:700;font-size:22px}   /* = page 1 — pas de line-height */
+  .ret{position:absolute;right:22px;top:22px;width:30px;height:30px;border-radius:15px;border:0;padding:0;
+       background:rgba(255,255,255,.6);color:var(--ink-soft);cursor:pointer;
+       display:flex;align-items:center;justify-content:center;transition:background .2s}
+  .ret:hover{background:rgba(255,255,255,.95)}
+  /* onglets — copie de .terrains (page 1) */
+  .modes{display:flex;gap:18px;align-items:center;padding:8px 22px 9px;border-bottom:1px solid var(--faint)}
+  .modes button{background:0;border:0;padding:2px 0 6px;font-family:var(--word);font-size:12.5px;
+    color:var(--ink-soft);cursor:pointer;border-bottom:2px solid transparent}
+  .modes button[aria-current="true"]{color:var(--ink);border-bottom-color:var(--ink);font-weight:600}
   .ecran{position:absolute;top:100px;left:0;right:0;bottom:0;overflow-y:auto;-webkit-overflow-scrolling:touch}   /* top = hauteur du header (100px, comme page 1) */
 
   /* En-tête */
   .entete{padding:22px 22px 14px;border-bottom:1px solid var(--faint)}
-  .ret{width:30px;height:30px;border-radius:15px;border:0;padding:0;flex:0 0 auto;
-       background:rgba(255,255,255,.6);color:var(--ink-soft);cursor:pointer;
-       display:flex;align-items:center;justify-content:center;transition:background .2s}
-  .ret:hover{background:rgba(255,255,255,.95)}
   .nom{font-family:var(--word);font-weight:800;font-size:20px;line-height:1.1;letter-spacing:-0.01em}
   .nomLigne{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
   .age{font-family:var(--slate);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);flex:0 0 auto}
@@ -62,11 +66,6 @@
   #filR{fill:var(--ink);stroke:var(--ink);stroke-width:.7;stroke-linejoin:round}
   .lentInfo{font-family:var(--slate);font-size:9px;color:var(--ink-soft);opacity:.65;min-height:12px;margin-top:-4px}
   #labels text{fill:var(--ink-soft);font-family:var(--word);font-weight:700}
-
-  /* Toggle deux modes — récolte / métabolisation */
-  .modeToggle{display:inline-flex;margin:2px auto 10px;border:1px solid var(--faint);border-radius:12px;overflow:hidden;background:rgba(255,255,255,.5)}
-  .modeToggle button{background:0;border:0;padding:8px 18px;font-family:var(--word);font-size:12.5px;color:var(--ink-soft);cursor:pointer;transition:.15s}
-  .modeToggle button.on{background:var(--ink);color:var(--paper)}
 
   /* Sections titrées */
   .sec{padding:14px 18px 8px;border-top:1px solid var(--faint)}
@@ -151,8 +150,15 @@
 <div class="tel">
   <!-- HEADER FIXE (hors scroll) -->
   <div class="pageHead">
-    <button class="ret" onclick="location.href='01_file_active.html'" aria-label="retour à la file active" title="retour à la file active"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
-    <div class="titre">Fil de soi</div>
+    <div class="titreLigne">
+      <div class="titre">Fil de soi</div>
+      <button class="ret" onclick="location.href='01_file_active.html'" aria-label="retour à la file active" title="retour à la file active"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+    </div>
+    <div class="modes" id="modes">
+      <button data-mode="recolte" aria-current="true">Récolte</button>
+      <button data-mode="metab">Métabolisation</button>
+      <button data-mode="vigilance">Vigilance</button>
+    </div>
   </div>
   <div class="ecran"><!-- flux défilant : en-tête, chaîne, nœud, sections. Les overlays (#over, #guichet) restent hors .ecran. -->
 
@@ -213,14 +219,6 @@
         <g id="labels" font-size="10" letter-spacing="0" opacity="0"></g>
       </svg>
     <div class="lentInfo" id="lentInfo"></div>
-  </div>
-
-  <!-- TOGGLE DEUX MODES -->
-  <div style="text-align:center;padding:0 0 2px">
-    <div class="modeToggle" id="modeToggle">
-      <button data-mode="recolte" class="on">Récolte</button>
-      <button data-mode="metab">Métabolisation</button>
-    </div>
   </div>
 
   <!-- OBSERVATIONS — déposées par UNE personne (« déposer »), jamais signées en équipe -->
@@ -408,23 +406,28 @@ import { creerNoeud } from '../noeud.js';
     /* En Métabolisation : même geste, destiné aux futures cartes Affectif/Réflexif/Vigilant —
        elles n'existent pas encore, la branche est câblée mais sans cible pour l'instant. */
   }
-  noeud.onLobe(function(index, axe){ axeTenu = index; lentAxe = axe || ""; majLentille(); });
+  noeud.onLobe(function(index, axe){ axeTenu = index; lentAxe = axe || ""; majLentille();
+    if(MODE==="metab" && index===1) setMode("vigilance");   // boucle Vigilante (module : DASH_MODE[1]='read', LAB3[1]="Vigilante") → son onglet ; strate inchangée, l'œil reste dans la boucle
+  });
   /* onEye NON branché : dans le fil de soi, le tap sur l'œil ne déclenche rien (décidé). */
 
-  /* Toggle deux modes — pilote D'UN COUP le nœud (setStrate) et l'affichage des registres */
+  /* Trois onglets — pilote le nœud (setStrate) et l'affichage des registres.
+     Récolte=pentalobe · Métabolisation ET Vigilance=trilobe (la Vigilante est une boucle du trilobe). */
+  var STRATE = { recolte:2, metab:1, vigilance:1 };
+  var strateCourante = -1;
   function setMode(m){
     MODE = m;
-    noeud.setStrate(m==="recolte" ? 2 : 1);   // Récolte = pentalobe (2) · Métabolisation = trilobe (1)
+    var _st = STRATE[m]; if(_st !== strateCourante){ noeud.setStrate(_st); strateCourante = _st; }   // strate SEULEMENT si elle change (sinon on éjecte l'œil de la boucle ouverte)
     axeTenu = -1; lentAxe = "";                // relâcher la lentille au changement de mode
     [].forEach.call(document.querySelectorAll(".sec[data-mode]"), function(el){
       el.style.display = (el.dataset.mode===m) ? "" : "none";
     });
-    [].forEach.call(document.querySelectorAll(".modeToggle button"), function(b){
-      b.classList.toggle("on", b.dataset.mode===m);
+    [].forEach.call(document.querySelectorAll(".modes button"), function(b){
+      b.setAttribute("aria-current", b.dataset.mode===m ? "true" : "false");
     });
     majLentille();
   }
-  [].forEach.call(document.querySelectorAll(".modeToggle button"), function(b){
+  [].forEach.call(document.querySelectorAll(".modes button"), function(b){
     b.addEventListener("click", function(){ setMode(b.dataset.mode); });
   });
   setMode("recolte");   // état initial
