@@ -62,23 +62,31 @@
          background:none;pointer-events:none}
   /* nœud agrandi (régler ~150–190px). align-self:flex-end → il s'ancre sur la ligne du bas
      et déborde vers le HAUT au-dessus de la liste, sans être rogné par le cadre (overflow:hidden). */
-  .noeud{width:120px;height:120px;flex:0 0 auto;align-self:flex-end;cursor:pointer;touch-action:none;pointer-events:auto}
+  .noeud{position:absolute;top:14px;right:12px;z-index:5;width:120px;height:120px;cursor:pointer;touch-action:none;pointer-events:auto}
   .noeud svg{width:120px;height:120px;display:block;overflow:visible}
   #fil2{stroke:var(--ink)}
   .fente{flex:1;height:46px;border-radius:23px;background:rgba(255,255,255,.6);
          border:1px solid var(--faint);display:flex;align-items:center;padding:0 16px;pointer-events:auto;
          transition:opacity .2s, transform .26s cubic-bezier(.2,.9,.2,1);transform-origin:left center}
-  .fente input{border:0;background:transparent;outline:0;width:100%;font-family:var(--word);font-size:14.5px;color:var(--ink)}
+  .fente input{border:0;background:transparent;outline:0;flex:1;min-width:0;font-family:var(--word);font-size:14.5px;color:var(--ink)}
+  .fx{flex:0 0 auto;background:0;border:0;font-size:18px;line-height:1;color:var(--ink-soft);cursor:pointer;padding:0 2px 0 8px}
+  /* la recherche au repos : une pastille loupe (bas, sous le pouce) ; déployée, elle laisse place à la fente */
+  .loupe{flex:0 0 auto;width:46px;height:46px;border-radius:23px;background:rgba(255,255,255,.6);
+         border:1px solid var(--faint);display:flex;align-items:center;justify-content:center;
+         cursor:pointer;pointer-events:auto;transition:background .15s}
+  .loupe:hover{background:rgba(255,255,255,.82)}
+  .loupe svg{width:20px;height:20px;display:block}
+  .tel:has(#fente:not(.ferme)) .loupe{display:none}   /* fente déployée → la loupe s'efface (repli auto) */
   .fente.ferme{opacity:0;transform:scaleX(.02);pointer-events:none}
   .tenu{flex:1;font-family:var(--prose);font-weight:700;font-size:16px;line-height:1.2}
   .tenu small{display:block;font-family:var(--word);font-weight:400;font-size:11.5px;color:var(--ink-soft)}
   .tenu.off{display:none}
-  .onde{position:absolute;left:128px;right:16px;bottom:40px;height:46px;display:flex;align-items:center;
+  .onde{position:absolute;top:56px;right:140px;width:120px;height:46px;display:flex;align-items:center;
         gap:3px;opacity:0;pointer-events:none;transition:opacity .18s}
   .onde.on{opacity:1}
   .onde i{width:3px;background:var(--red);border-radius:2px;animation:o 1.05s ease-in-out infinite}
   @keyframes o{0%,100%{height:5px;opacity:.4}50%{height:26px;opacity:1}}
-  .strate{position:absolute;left:22px;bottom:6px;font-family:var(--slate);font-size:9px;
+  .strate{position:absolute;top:140px;right:16px;text-align:right;font-family:var(--slate);font-size:9px;
           letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);opacity:.65}
 
   /* ── le guichet ──────────────────────────────────────────── */
@@ -147,8 +155,7 @@
   </div>
   <div class="liste" id="liste"></div>
 
-  <div class="barre">
-    <div class="noeud" id="noeud" title="clic : le fil se dénoue · appui long : la voix · double-clic : strate">
+  <div class="noeud" id="noeud" title="clic : le fil se dénoue · appui long : la voix · double-clic : strate">
       <svg id="knot" viewBox="0 0 420 420" aria-label="le nœud">
         <defs>
           <mask id="cut" maskUnits="userSpaceOnUse" x="-90" y="-90" width="600" height="600">
@@ -165,7 +172,12 @@
         </g>
       </svg>
     </div>
-    <div class="fente ferme" id="fente"><input id="q" placeholder="un nom, un IPP" autocomplete="off"></div>
+
+  <div class="barre">
+    <button class="loupe" id="loupe" type="button" aria-label="rechercher" title="rechercher">
+      <svg viewBox="0 0 20 20" fill="none" stroke="var(--ink)" stroke-width="1.7" stroke-linecap="round"><circle cx="8.4" cy="8.4" r="5.2"/><path d="M12.4 12.4 L17 17"/></svg>
+    </button>
+    <div class="fente ferme" id="fente"><input id="q" placeholder="un nom, un IPP" autocomplete="off"><button class="fx" id="fx" type="button" aria-label="fermer la recherche">×</button></div>
     <div class="tenu off" id="tenu"></div>
   </div>
   <div class="onde" id="onde"></div>
@@ -527,6 +539,10 @@ import { CX, CY, N, TAU, INK, lerp, smooth, shapeAt, nodesAt, slice, composeScen
 
   q.addEventListener("input", function(){ dessineListe(q.value); });
   q.addEventListener("keydown", function(e){ if(e.key==="Escape"){ fente.classList.add("ferme"); q.value=""; dessineListe(""); } });
+  // Recherche au repos = bulle-loupe ; tap → déploiement de la fente (transition scaleX existante) ; × → repli.
+  // La loupe se ré-affiche seule quand la fente reprend .ferme (CSS :has) — aucune logique de recherche touchée.
+  document.getElementById("loupe").addEventListener("click", function(){ fente.classList.remove("ferme"); q.focus(); });
+  document.getElementById("fx").addEventListener("click", function(){ fente.classList.add("ferme"); q.value=""; dessineListe(""); });
 
   // file active : nœud en mode plume (ruban plein)
   SET.plume = true;
