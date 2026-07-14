@@ -163,6 +163,7 @@ export function creerNoeud(svgEl, opts){
   var ondAmp=0, ondTarget=false;
   // ── VEILLEUSE (bilobe, en motion) : clic COURT → notif (cbEye) · clic LONG ≥500ms → oudjat (cbEyeLong). En reduce : clic direct oudjat (inchangé). ──
   var NT_LONG_MS=500, _ntTimer=0, _ntHandled=false, _ntDownXY=null;
+  var NT_REDRESSE_MS=0.5;   // oudjat 'on' : durée (unités de T) du redressement 180°→0° avant que la monture apparaisse
   var DASH_MODE=['compose','read','compose'];   // §19 : « deux lobes composent, un seul lit ». Le mode est la nature du lobe, non une humeur
                                                  // de l'œil : la lentille est l'organe de la seule Vigilante (idx1), pas un réglage disponible partout.
   var SCOUT={size:0.66, posX:-0.20, posY:0.02, dur:0.7, oriMin:-1, oriMax:12, montRest:-2, flipFrom:50};
@@ -196,6 +197,7 @@ export function creerNoeud(svgEl, opts){
     if(ptParked!==null && ptParked<nodes.length) return nodes[ptParked];
     if(Math.round(currentS)===1) return (dashLobe>=0 ? dashBary(dashLobe) : [CX,CY]);   // DASHBOARD (Vigie) : au CENTRE il veille (méta) ; entré dans une boucle, il se tient au barycentre du lobe
     if(reduce) return nodes[0];
+    if(oudjatPhase==='on' && Math.round(currentS)===0) return (nodesic()[0] || [CX,CY]);   // oudjat posé : l'œil sur le nœud (la monture s'y pose) — glisse via le lissage existant
     var lp=livePts(), M=lp.length;                   // l'œil parcourt TOUT le fil, pas seulement la portion centrale entre les nœuds
     hop += HOP_FIL;
     var f=(hop%1)*M, i=Math.floor(f)%M, t=smooth(f-i), j=(i+1)%M;
@@ -216,14 +218,20 @@ export function creerNoeud(svgEl, opts){
     // OUDJAT - machine d'etat (2-lobes) : off -> orbit -> on ; quitter le 2-lobes reinitialise
     if(Math.round(currentS)!==0 && oudjatPhase!=='off') oudjatPhase='off';
     if(oudjatPhase==='orbit' && (T-oudjatT)>=OUDJAT.orbitDur){ oudjatPhase='on'; oudjatT=T; }
-    oudjatOp += (((oudjatPhase==='on')?1:0)-oudjatOp)*(reduce?1:0.14);
+    oudjatOp += (((oudjatPhase==='on' && (reduce || (T-oudjatT)>=NT_REDRESSE_MS))?1:0)-oudjatOp)*(reduce?1:0.14);   // monture APRÈS le redressement (reduce : immédiat, témoin sauf)
 
     // rotation continue 360° : le logo flotte, le sens n'importe pas tant que c'est cohérent
     var scouting = (Math.round(currentS)===1 && dashLobe>=0 && DASH_MODE[dashLobe]==='read' && !flipping);   // SCOUTER : entré dans la boucle Vigilante (read) → l'œil scrute, spin gelé (il se gare)
     var interroLock = (Math.round(currentS)===1 && eyeState==='interro' && !flipping);   // INTERRO (démo atelier) : on fige le nœud et on accroche l'œil dessus
     if(oudjatPhase==='on'){ var _uT=Math.round(spinAcc/360)*360; spinAcc += (_uT-spinAcc)*0.06; }   // OUDJAT pose : la marque se redresse et se pose (repos)
     else if(!reduce && !interroLock && !scouting) spinAcc += 0.096;                            // 6°/s — gelé pendant l'interro OU le scrutin (l'œil s'arrête pour scruter)
-    spinDeg = (reduce || Math.round(currentS)===0) ? 0 : (spinAcc%360); var spinRad=spinDeg*Math.PI/180;   // veilleuse : le fil ne tourne pas
+    if(reduce){ spinDeg = 0; }                                           // témoin : inchangé
+    else if(Math.round(currentS)===0){                                    // BILOBE (veilleuse) : off au repos, DEMI-TOUR pendant l'oudjat
+      if(oudjatPhase==='off') spinDeg = 0;
+      else if(oudjatPhase==='orbit') spinDeg = 180*smooth(Math.min(1,(T-oudjatT)/OUDJAT.orbitDur));  // rampe 0→180 pendant l'orbite
+      else spinDeg = 180*(1 - smooth(Math.min(1,(T-oudjatT)/NT_REDRESSE_MS)));   // 'on' : 180°→0°, le fil se REDRESSE (revient à l'endroit)
+    } else { spinDeg = spinAcc%360; }                                     // currentS>0 : inchangé
+    var spinRad=spinDeg*Math.PI/180;
     // direction de visée UNIQUE (partagée par le bec du fil et la lumière du reflet) :
     // suit la souris si le pointeur survole, sinon revient au bec réglé + dérive douce.
     var aimTarget = pointerActive ? cursorAngle : (nibBase + (reduce?0:0.30*Math.sin(T*0.13)));
