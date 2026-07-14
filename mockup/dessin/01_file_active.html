@@ -251,6 +251,7 @@
 import { CX, CY, N, TAU, INK, lerp, smooth, shapeAt, nodesAt, slice, composeScene, SET } from '../noyau.js';
 (function(){
 "use strict";
+var encre = getComputedStyle(document.documentElement).getPropertyValue('--ink').trim() || INK;   // fil peint en --ink (page 2), pas la constante noyau INK qui grise
 
   /* ══ matériau de dessin — rien de réel ═══════════════════════════════════════
      rdv    : jours relatifs (0 = aujourd'hui) des rendez-vous PRÉVUS. <0 passés, >0 à venir
@@ -431,15 +432,15 @@ import { CX, CY, N, TAU, INK, lerp, smooth, shapeAt, nodesAt, slice, composeScen
     T+=0.016; currentS += (targetS-currentS)*0.07;
     ondAmp += ((parle?1:0) - ondAmp) * OND_EASE;                     // gate 0→1 ; l'amplitude = OND_AMP (unités), appliquée en transverse
     var P=livePts2(), sc=composeScene(P,1.35), i, rib=(sc.mode==="ribbon");
-    fil.setAttribute("d",sc.baseD); fil.setAttribute("fill",rib?INK:"none");
-    fil.setAttribute("stroke",INK); fil.setAttribute("stroke-width",rib?"0.7":sc.w.toFixed(1));
+    fil.setAttribute("d",sc.baseD); fil.setAttribute("fill",rib?encre:"none");
+    fil.setAttribute("stroke",encre); fil.setAttribute("stroke-width",rib?"0.7":sc.w.toFixed(1));
     for(i=0;i<POOL2;i++){
       if(i<sc.holes.length){
         hP[i].setAttribute("d",sc.holes[i]); hP[i].setAttribute("fill",rib?"#000":"none");
         hP[i].setAttribute("stroke","#000"); hP[i].setAttribute("stroke-width",rib?"0.7":sc.holeW[i].toFixed(1));
         hP[i].setAttribute("stroke-linecap","butt"); hP[i].style.display="";
-        oP[i].setAttribute("d",sc.inks[i]); oP[i].setAttribute("fill",rib?INK:"none");
-        oP[i].setAttribute("stroke",INK); oP[i].setAttribute("stroke-width",rib?"0.7":sc.inkW[i].toFixed(1));
+        oP[i].setAttribute("d",sc.inks[i]); oP[i].setAttribute("fill",rib?encre:"none");
+        oP[i].setAttribute("stroke",encre); oP[i].setAttribute("stroke-width",rib?"0.7":sc.inkW[i].toFixed(1));
         oP[i].setAttribute("stroke-linecap","round"); oP[i].style.display="";
       } else { hP[i].style.display="none"; oP[i].style.display="none"; }
     }
@@ -533,8 +534,8 @@ import { CX, CY, N, TAU, INK, lerp, smooth, shapeAt, nodesAt, slice, composeScen
   });
 
   // file active : nœud en mode plume (ruban plein)
-  SET.plume = true;
-  SET.w     = 12;    // calibre du ruban
+  SET.plume = false;
+  SET.w     = 12;    // épaisseur du trait stroké (à régler à l'œil)
   SET.gap   = 1.5;   // réserve du dessous au croisement
   dessineListe(""); cadre(); render2();
 })();
