@@ -20,6 +20,8 @@ export function creerNoeud(svgEl, opts){
   // (constante noyau) → un hôte qui ne passe rien reste identique. Le FIL, lui, garde sa couleur
   // du CSS de la page (le module ne la force pas ; le CSS l'emporterait de toute façon).
   var encre = (opts.encre != null) ? opts.encre : INK;
+  // opts.labels===false → le nœud se monte SANS labels (la file active). Défaut true : comportement actuel inchangé.
+  var showLabels = (opts.labels !== false);
   var reduce = (typeof window!=='undefined' && window.matchMedia) ? window.matchMedia("(prefers-reduced-motion:reduce)").matches : false;
   var NS = "http://www.w3.org/2000/svg";
   var q = function(id){ return svgEl.querySelector('#'+id); };
@@ -69,8 +71,9 @@ export function creerNoeud(svgEl, opts){
   function buildLabels(lc){
     while(labels.firstChild) labels.removeChild(labels.firstChild);
     labelNodes=[]; labelPaths=[]; labelTP=[]; soinN=null;
-    curPET = PET_BY[lc] || PET_BY[5]; curLc = lc;
-    curOff=[]; curIns=[]; curFlip=[];
+    curLc = lc; curOff=[]; curIns=[]; curFlip=[];
+    if(!showLabels){ curPET = null; return; }   // opts.labels===false : aucun label construit (#labels reste vide), à aucune strate ; le rendu L447 se garde sur `&& curPET`
+    curPET = PET_BY[lc] || PET_BY[5];
     for(var k0=0;k0<curPET.sep.length;k0++){
       var wf=wordFor(lc, curPET, k0);
       if(lc===2){ var _p=(curPET.tips[k0][0]<CX)?LAB2POS.cont:LAB2POS.frag; curOff[k0]=_p.arc; curIns[k0]=_p.ins; curFlip[k0]=_p.flip; }
