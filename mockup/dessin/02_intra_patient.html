@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cahier de dessin — 02 · Le fil de soi</title>
+<title>Cahier de dessin — 02 · Fil de soi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600&family=Spectral:wght@400;600;700&display=swap" rel="stylesheet">
@@ -26,15 +26,20 @@
   .tel::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:6;
     background:radial-gradient(120% 90% at 50% 0%,rgba(255,255,255,.35),transparent 60%)}
   .pageHead{position:absolute;top:0;left:0;right:0;z-index:5;background:var(--paper);
-            padding:14px 22px 10px;border-bottom:1px solid var(--faint)}
+            height:100px;box-sizing:border-box;padding:14px 22px 10px;border-bottom:1px solid var(--faint);
+            display:flex;flex-direction:column;justify-content:space-between}
   .titre{font-family:var(--prose);font-weight:700;font-size:22px;line-height:1.05}   /* = page 1 (File active) */
-  .ecran{position:absolute;top:77px;left:0;right:0;bottom:0;overflow-y:auto;-webkit-overflow-scrolling:touch}   /* top = hauteur réelle du header (mesurée) */
+  .ecran{position:absolute;top:100px;left:0;right:0;bottom:0;overflow-y:auto;-webkit-overflow-scrolling:touch}   /* top = hauteur du header (100px, comme page 1) */
 
   /* En-tête */
   .entete{padding:22px 22px 14px;border-bottom:1px solid var(--faint)}
-  .ret{background:0;border:0;font-family:var(--slate);font-size:11px;color:var(--ink-soft);padding:0 0 10px;cursor:pointer;opacity:.8}
+  .ret{width:30px;height:30px;border-radius:15px;border:0;padding:0;flex:0 0 auto;
+       background:rgba(255,255,255,.6);color:var(--ink-soft);cursor:pointer;
+       display:flex;align-items:center;justify-content:center;transition:background .2s}
+  .ret:hover{background:rgba(255,255,255,.95)}
   .nom{font-family:var(--word);font-weight:800;font-size:20px;line-height:1.1;letter-spacing:-0.01em}
-  .usage{font-family:var(--prose);font-style:italic;font-weight:600;font-size:15px;color:var(--red);margin-top:1px}
+  .nomLigne{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+  .age{font-family:var(--slate);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);flex:0 0 auto}
   .admin{font-family:var(--slate);font-size:10.5px;color:var(--ink-soft);margin-top:9px;line-height:1.7;letter-spacing:.2px}
   .admin b{color:var(--ink);font-weight:600}
   .contacts{font-family:var(--word);font-size:12px;color:var(--ink-soft);margin-top:9px;line-height:1.55}
@@ -146,15 +151,17 @@
 <div class="tel">
   <!-- HEADER FIXE (hors scroll) -->
   <div class="pageHead">
-    <button class="ret" onclick="location.href='01_file_active.html'">‹ file active</button>
-    <div class="titre">Le fil de soi</div>
+    <button class="ret" onclick="location.href='01_file_active.html'" aria-label="retour à la file active" title="retour à la file active"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <div class="titre">Fil de soi</div>
   </div>
   <div class="ecran"><!-- flux défilant : en-tête, chaîne, nœud, sections. Les overlays (#over, #guichet) restent hors .ecran. -->
 
   <!-- EN-TÊTE -->
   <div class="entete">
-    <div class="nom" id="nom"></div>
-    <div class="usage" id="usage"></div>
+    <div class="nomLigne">
+      <div class="nom" id="nom"></div>
+      <div class="age" id="age"></div>
+    </div>
     <div class="admin" id="admin"></div>
     <div class="contacts" id="contacts"></div>
     <div class="logos">
@@ -314,7 +321,7 @@
 </div>
 
 <div class="marge">
-  <h2>02 · Le fil de soi</h2>
+  <h2>02 · Fil de soi</h2>
   <p>Un patient, ouvert depuis la file active. Rien n'est réel : matériau de dessin. En haut, le
      nœud-lentille ; en dessous, deux modes qu'un même geste bascule.</p>
   <h3>récolte</h3>
@@ -336,7 +343,7 @@ import { creerNoeud } from '../noeud.js';
 "use strict";
 
   var PATIENT = {
-    nom:"JOUVE, Paul", usage:"« Paul »", ipp:"IPP 4471-092", ne:"né le 09.03.1987 · H",
+    nom:"JOUVE, Paul", age:"39a", ipp:"IPP 4471-092", ne:"né le 09.03.1987 · H",
     adresse:"14 rue des Peupliers, Nanterre",
     proche:"sœur — Claire J. · 06 xx", soignant:"CMP Colombes · Dr M. / K.D. réf."
   };
@@ -378,13 +385,13 @@ import { creerNoeud } from '../noeud.js';
 
   /* En-tête */
   $("nom").textContent = PATIENT.nom;
-  $("usage").textContent = PATIENT.usage;
+  $("age").textContent = PATIENT.age;
   $("admin").innerHTML = "<b>"+esc(PATIENT.ipp)+"</b> · "+esc(PATIENT.ne)+"<br>"+esc(PATIENT.adresse);
   $("contacts").innerHTML = "proche — <span class='qui'>"+esc(PATIENT.proche)+"</span><br>soignant — <span class='qui'>"+esc(PATIENT.soignant)+"</span>";
   // lien depuis la file active : le nom du patient cliqué est porté par l'URL (?n=). Les champs
   // d'identité riches n'existent pas côté file active → blanchis (pas de specifics d'un autre patient).
   var qn = new URLSearchParams(location.search).get("n");
-  if(qn){ PATIENT.nom = qn; $("nom").textContent = qn; $("usage").textContent = ""; $("admin").innerHTML = "—"; $("contacts").innerHTML = "—"; }
+  if(qn){ PATIENT.nom = qn; $("nom").textContent = qn; $("age").textContent = "—"; $("admin").innerHTML = "—"; $("contacts").innerHTML = "—"; }
 
   /* Le vrai nœud — module partagé, sur sa propre forme (creerForme) */
   var noeud = creerNoeud(document.getElementById('knot'), {});   // couleur défaut du module (#1F222A)
