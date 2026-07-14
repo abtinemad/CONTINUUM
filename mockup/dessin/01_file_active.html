@@ -55,7 +55,7 @@
 
   /* ── barre basse ─────────────────────────────────────────── */
   /* le bas (loupe + fente + tenu) FLOTTE au-dessus de la liste : plus de fond porteur,
-     couche relevée (5 : au-dessus de .liste, sous le guichet 7 et la clarté 8).
+     couche relevée (5 : au-dessus de .liste, sous la clarté 8).
      pointer-events:none → le calque laisse passer le scroll ; seuls loupe/fente/tenu captent. */
   .barre{position:absolute;left:0;right:0;bottom:0;height:126px;z-index:5;
          display:flex;align-items:center;gap:12px;padding:0 16px 18px;
@@ -130,7 +130,7 @@
   </div>
   <div class="liste" id="liste"></div>
 
-  <div class="noeud" id="noeud" title="le nœud — l'œil : le guichet du patient tenu · maintien : la voix">
+  <div class="noeud" id="noeud" title="le nœud — la veilleuse · double-touche : la légende">
       <svg id="knot" viewBox="0 0 420 420" aria-label="le nœud">
         <defs>
           <mask id="cut" maskUnits="userSpaceOnUse" x="-90" y="-90" width="600" height="600">
@@ -153,7 +153,7 @@
     <button class="loupe" id="loupe" type="button" aria-label="rechercher" title="rechercher">
       <svg viewBox="0 0 20 20" fill="none" stroke="var(--ink)" stroke-width="1.7" stroke-linecap="round"><circle cx="8.4" cy="8.4" r="5.2"/><path d="M12.4 12.4 L17 17"/></svg>
     </button>
-    <button class="micro off" id="micro" type="button" aria-label="déposer une observation" title="dépose une observation · appui long : dictée">
+    <button class="micro off" id="micro" type="button" aria-label="dicter une observation" title="tap : démarre / arrête la dictée (mains libres)">
       <svg viewBox="0 0 20 20" fill="none" stroke="var(--ink)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7.3" y="2.6" width="5.4" height="9" rx="2.7"/><path d="M4.8 9.2a5.2 5.2 0 0 0 10.4 0"/><path d="M10 14.4L10 17.4M7 17.4L13 17.4"/></svg>
     </button>
     <div class="fente ferme" id="fente"><input id="q" placeholder="un nom, un IPP" autocomplete="off"><button class="fx" id="fx" type="button" aria-label="fermer la recherche">×</button></div>
@@ -172,8 +172,8 @@
       <div class="lgd"><svg viewBox="0 0 34 20"><path d="M4 10 L30 10" stroke="var(--trait)" stroke-width="1.3" stroke-dasharray="1.8 4" opacity=".55"/></svg><span>depuis quand plus rien</span></div>
       <h5>les deux faces</h5>
       <p class="lobes">Continuité · Fragmentation</p>
-      <p class="ges">touche <b>l'œil</b> : le guichet, si un patient est tenu ·
-         <b>maintiens</b> : la voix · <b>double-touche</b> : ceci</p>
+      <p class="ges">le nœud veille — il signale, il n'agit pas · <b>double-touche</b> : ceci ·
+         dépose : <b>touche un nom</b> → la bulle-micro</p>
     </div>
   </div>
 </div>
@@ -234,12 +234,12 @@
   <h3>gestes</h3>
   <p>Le cercle pointillé, en haut à droite : <b>un filtre</b>, pas un onglet. Personne n'est déplacé de terrain.
      Il meurt à la fermeture.</p>
-  <p><b>Le nœud veille en haut à droite — un bilobe fixe.</b> Il ne morphe plus.
-     Touche <b>l'œil</b> : le guichet s'ouvre si un patient est tenu — <b>on écrit au
-     nœud</b>. Maintiens : la voix. Double-touche : la clarté — la légende. Le nœud ne parle
-     jamais le premier ; on le convoque.</p>
-  <p>Dans le guichet : <b>pas de date</b> ouvre l'écriture obligatoire. Le champ ne dit pas
-     « justification » — ce mot appelle une défense, et on se défend devant une autorité.</p>
+  <p><b>Le nœud veille en haut à droite — un bilobe fixe.</b> Il ne morphe plus, il ne
+     s'ouvre plus : il <b>signale</b> (Continuité · Fragmentation), il n'agit pas.
+     Double-touche : la clarté — la légende. Le nœud ne parle jamais le premier ; on le convoque.</p>
+  <p><b>Déposer une observation :</b> touche un nom → une bulle-micro apparaît. Tap le micro :
+     la dictée démarre, mains libres — le nœud ondule tant qu'on parle ; re-tap : elle s'arrête.
+     Le dépôt délibéré, avec date et relais, se fait dans la vue intra-patient, sur le « + ».</p>
 
   <h3>non tranché</h3>
   <p class="q">La liste des relais qui s'apprend : jamais triée par fréquence. Une liste qui remonte
@@ -499,7 +499,7 @@ import { CX, CY, N, TAU, INK, lerp, smooth, shapeAt, nodesAt, slice, composeScen
     for(i=0;i<P.length;i++){x0=Math.min(x0,P[i][0]);y0=Math.min(y0,P[i][1]);x1=Math.max(x1,P[i][0]);y1=Math.max(y1,P[i][1]);}
     var pd=24; knot.setAttribute("viewBox",(x0-pd)+" "+(y0-pd)+" "+(x1-x0+2*pd)+" "+(y1-y0+2*pd)); }
 
-  /* ══ tenir un patient · le guichet ════════════════════════════════════════ */
+  /* ══ tenir un patient · la bulle-micro ════════════════════════════════════════ */
   var fente=document.getElementById("fente"), q=document.getElementById("q"),
       noeud=document.getElementById("noeud"),
       tenu=document.getElementById("tenu"),
@@ -508,7 +508,7 @@ import { CX, CY, N, TAU, INK, lerp, smooth, shapeAt, nodesAt, slice, composeScen
   function tenir(i){
     tenuIdx=i;                                              /* le nœud reste figé en bilobe (s=0) */
     fente.classList.add("ferme"); tenu.classList.remove("off"); micro.classList.remove("off");   // révèle la bulle-micro
-    tenu.innerHTML = esc(FILE[i].n)+"<small>dépose une observation</small>";
+    tenu.innerHTML = esc(FILE[i].n)+"<small>tape le micro pour dicter</small>";
     dessineListe("");
   }
   function lacher(){ if(parle) voixOff(); tenuIdx=-1; tenu.classList.add("off"); micro.classList.add("off"); dessineListe(""); }   // lâcher coupe la dictée en cours
@@ -536,7 +536,7 @@ import { CX, CY, N, TAU, INK, lerp, smooth, shapeAt, nodesAt, slice, composeScen
   document.getElementById("loupe").addEventListener("click", function(){ fente.classList.remove("ferme"); q.focus(); });
   document.getElementById("fx").addEventListener("click", function(){ fente.classList.add("ferme"); q.value=""; dessineListe(""); });
   // DEMO (maquette) : "n" lance le TOUR (depuis repos) ; "c" CONSULTE (retour repos).
-  // ⚠ le tap sur le nœud est DÉJÀ pris (pointerup → guichet/recherche) : on NE l'écrase pas → consultation sur "c".
+  // le tap du nœud est libre (guichet parti) ; la consultation notif reste sur "c" — pourra passer sur le tap si voulu.
   document.addEventListener("keydown", function(e){
     if(/^(INPUT|TEXTAREA)$/.test((document.activeElement||{}).tagName)) return;
     if(e.key==="n" && eyeState==="repos") lancerTour();
