@@ -79,42 +79,18 @@
   /* la bulle-micro : pastille SŒUR de la loupe, révélée quand un patient est tenu (dépôt d'observation) */
   .micro{flex:0 0 auto;width:46px;height:46px;border-radius:23px;background:rgba(255,255,255,.6);
          border:1px solid var(--faint);display:flex;align-items:center;justify-content:center;
-         cursor:pointer;pointer-events:auto;transition:background .15s}
+         cursor:pointer;pointer-events:auto;touch-action:manipulation;transition:background .15s,border-color .15s}
   .micro:hover{background:rgba(255,255,255,.82)}
   .micro svg{width:20px;height:20px;display:block}
   .micro.off{display:none}
+  /* ENREGISTREMENT (tap-bascule) : pastille rouge pleine + icône claire + pouls doux */
+  .micro.rec{background:var(--red);border-color:var(--red);animation:micPouls 1.15s ease-in-out infinite}
+  .micro.rec svg{stroke:var(--paper)}
+  @keyframes micPouls{0%,100%{box-shadow:0 0 0 0 rgba(142,28,43,.45)}50%{box-shadow:0 0 0 6px rgba(142,28,43,0)}}
   .fente.ferme{opacity:0;transform:scaleX(.02);pointer-events:none;flex:0 0 0;min-width:0;padding:0;border-width:0;overflow:hidden}   /* fermée : ne prend AUCUNE place (sinon elle pousse le nom tenu hors cadre) */
   .tenu{flex:1;font-family:var(--prose);font-weight:700;font-size:16px;line-height:1.2}
   .tenu small{display:block;font-family:var(--word);font-weight:400;font-size:11.5px;color:var(--ink-soft)}
   .tenu.off{display:none}
-
-  /* ── le guichet ──────────────────────────────────────────── */
-  .guichet{position:absolute;inset:0;z-index:7;background:rgba(233,236,239,.97);
-           transform:translateY(101%);transition:transform .3s cubic-bezier(.2,.9,.2,1);
-           display:flex;flex-direction:column;padding:26px 22px 22px}
-  .guichet.on{transform:none}
-  .guichet h4{font-family:var(--prose);font-weight:700;font-size:19px;margin:0 0 2px}
-  .guichet .who{font-size:11.5px;color:var(--ink-soft);margin-bottom:14px}
-  .guichet textarea{width:100%;height:140px;border:1px solid var(--faint);border-radius:14px;
-    background:rgba(255,255,255,.6);padding:13px 15px;font-family:var(--prose);font-size:15px;
-    color:var(--ink);resize:none;outline:0;line-height:1.5}
-  .pf{margin-top:16px;display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--ink-soft)}
-  .pf input[type=date]{border:1px solid var(--faint);border-radius:9px;background:rgba(255,255,255,.6);
-    padding:6px 9px;font-family:var(--slate);font-size:12px;color:var(--ink)}
-  .pf button{background:0;border:0;color:var(--ink-soft);font-size:11.5px;cursor:pointer;
-    text-decoration:underline;text-underline-offset:3px;font-family:var(--word);margin-left:auto}
-  .sortie{margin-top:14px;border-top:1px solid var(--faint);padding-top:14px;display:none}
-  .sortie.on{display:block}
-  .sortie label{display:block;font-family:var(--prose);font-weight:700;font-size:14.5px;margin-bottom:8px}
-  .sortie input[type=text]{width:100%;border:0;border-bottom:1px solid var(--faint);background:0;
-    padding:7px 2px;font-family:var(--word);font-size:14px;outline:0;color:var(--ink)}
-  .sortie .ex{margin-top:14px;font-size:11.5px;color:var(--ink-soft)}
-  .sortie .ex div{margin-top:7px;font-family:var(--prose);font-style:italic;color:#3B424A;font-size:12px}
-  .sortie .ex span{font-family:var(--slate);font-style:normal;font-size:10px;opacity:.7;margin-left:5px}
-  .fin{margin-top:auto;display:flex;gap:12px;align-items:center}
-  .fin button{flex:1;height:48px;border-radius:24px;border:0;background:var(--ink);color:var(--paper);
-    font-family:var(--word);font-size:14.5px;font-weight:600;cursor:pointer}
-  .fin .annul{flex:0 0 auto;background:0;color:var(--ink-soft);font-weight:400;width:auto;padding:0 8px}
 
   .clarte{position:absolute;inset:0;z-index:8;background:rgba(233,236,239,.965);opacity:0;
           pointer-events:none;transition:opacity .22s;display:flex;align-items:center;padding:0 26px}
@@ -198,30 +174,6 @@
       <p class="lobes">Continuité · Fragmentation</p>
       <p class="ges">touche <b>l'œil</b> : le guichet, si un patient est tenu ·
          <b>maintiens</b> : la voix · <b>double-touche</b> : ceci</p>
-    </div>
-  </div>
-
-  <div class="guichet" id="guichet">
-    <h4 id="g-nom">—</h4>
-    <div class="who">déposé par S.R. · aujourd'hui · <b>irrévocable</b></div>
-    <textarea id="g-txt" placeholder="ce que je dépose…"></textarea>
-    <div class="pf">
-      <span>prochaine fois</span>
-      <input type="date" id="g-date" value="2026-07-24">
-      <button id="g-sans">pas de date</button>
-    </div>
-    <div class="sortie" id="g-sortie">
-      <label for="g-relais">qui prend la suite ?</label>
-      <input type="text" id="g-relais" placeholder="">
-      <div class="ex">ce que le service a écrit, les trois dernières fois :
-        <div>« elle reprend au CMP de Colombes, le rendez-vous est pris pour le 3 »<span>K.D. · 12 juin</span></div>
-        <div>« retour chez ses parents, le CMP secteur les reçoit tous les deux »<span>L.M. · 2 juin</span></div>
-        <div>« SAMSAH, dossier accepté ; on reste joignables jusqu'en septembre »<span>A.B. · 28 mai</span></div>
-      </div>
-    </div>
-    <div class="fin">
-      <button id="g-dep">Déposer</button>
-      <button class="annul" id="g-annul">annuler</button>
     </div>
   </div>
 </div>
@@ -420,7 +372,7 @@ import { CX, CY, N, TAU, INK, lerp, smooth, shapeAt, nodesAt, slice, composeScen
     var L=document.getElementById("liste");
     L.innerHTML = h || '<div class="lig"><span class="nom">personne</span></div>';
     [].slice.call(L.querySelectorAll(".lig[data-i]")).forEach(function(el){
-      el.addEventListener("click", function(){ tenir(+el.dataset.i); });
+      el.addEventListener("click", function(){ (+el.dataset.i===tenuIdx) ? lacher() : tenir(+el.dataset.i); });   // re-clic sur le tenu → on lâche
     });
   }
   ["amb","hosp","dem"].forEach(function(t){
@@ -550,7 +502,7 @@ import { CX, CY, N, TAU, INK, lerp, smooth, shapeAt, nodesAt, slice, composeScen
   /* ══ tenir un patient · le guichet ════════════════════════════════════════ */
   var fente=document.getElementById("fente"), q=document.getElementById("q"),
       noeud=document.getElementById("noeud"),
-      tenu=document.getElementById("tenu"), guichet=document.getElementById("guichet"),
+      tenu=document.getElementById("tenu"),
       micro=document.getElementById("micro");
 
   function tenir(i){
@@ -559,26 +511,12 @@ import { CX, CY, N, TAU, INK, lerp, smooth, shapeAt, nodesAt, slice, composeScen
     tenu.innerHTML = esc(FILE[i].n)+"<small>dépose une observation</small>";
     dessineListe("");
   }
-  function lacher(){ tenuIdx=-1; tenu.classList.add("off"); micro.classList.add("off"); dessineListe(""); }
-
-  function ouvrirGuichet(){
-    if(tenuIdx<0) return;                                    // la bulle-micro n'existe que patient tenu (la recherche, c'est la loupe)
-    document.getElementById("g-nom").textContent = FILE[tenuIdx].n;
-    document.getElementById("g-sortie").classList.remove("on");
-    document.getElementById("g-txt").value="";
-    guichet.classList.add("on"); setTimeout(function(){ document.getElementById("g-txt").focus(); },260);
-  }
-  document.getElementById("g-annul").addEventListener("click", function(){ guichet.classList.remove("on"); });
-  document.getElementById("g-dep").addEventListener("click", function(){ guichet.classList.remove("on"); lacher(); });
-  document.getElementById("g-sans").addEventListener("click", function(){
-    var s=document.getElementById("g-sortie"); s.classList.add("on");
-    document.getElementById("g-date").value=""; document.getElementById("g-relais").focus();
-  });
+  function lacher(){ if(parle) voixOff(); tenuIdx=-1; tenu.classList.add("off"); micro.classList.add("off"); dessineListe(""); }   // lâcher coupe la dictée en cours
 
   var clarte=document.getElementById("clarte"), eyePos=[CX,CY];
-  var longT=null, parle=false, clicT=0;
-  function voixOn(){ parle=true; fente.classList.add("ferme"); }   // enregistrement : le NŒUD ondule (voir render2/livePts2)
-  function voixOff(){ parle=false; }
+  var parle=false, clicT=0;
+  function voixOn(){ parle=true; fente.classList.add("ferme"); micro.classList.add("rec"); }   // enregistrement : le NŒUD ondule (VU) + pastille rouge
+  function voixOff(){ parle=false; micro.classList.remove("rec"); }
 
   // ── LE NŒUD est une veilleuse : il signale, il n'agit plus. Seule la double-touche montre sa légende. ──
   noeud.addEventListener("pointerup", function(){
@@ -587,10 +525,8 @@ import { CX, CY, N, TAU, INK, lerp, smooth, shapeAt, nodesAt, slice, composeScen
     clicT=now;                                                          /* simple tap : inerte (la veilleuse ne fait que signaler) */
   });
 
-  // ── LA BULLE-MICRO porte le dépôt (sorti du nœud) : tap court → guichet du patient tenu ; appui long → dictée. ──
-  micro.addEventListener("pointerdown", function(){ longT=setTimeout(voixOn,420); });
-  micro.addEventListener("pointerup", function(){ clearTimeout(longT); if(parle){ voixOff(); return; } ouvrirGuichet(); });
-  micro.addEventListener("pointerleave", function(){ clearTimeout(longT); if(parle) voixOff(); });
+  // ── MICRO = TAP-BASCULE mains libres : 1er tap enregistre (dictée), 2e tap arrête. Plus aucun maintien. ──
+  micro.addEventListener("click", function(){ parle ? voixOff() : voixOn(); });
   clarte.addEventListener("click", function(){ clarte.classList.remove("on"); });
 
   q.addEventListener("input", function(){ dessineListe(q.value); });
