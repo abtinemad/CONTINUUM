@@ -469,7 +469,7 @@ import { CX, CY, N, TAU, INK, lerp, smooth, shapeAt, nodesAt, slice, composeScen
       } else { hP[i].style.display="none"; oP[i].style.display="none"; }
     }
     // ── l'œil sur le bilobe : REPOS = il SUIT le fil du ∞ en continu ; NOTIF = il FRANCHIT les boucles ──
-    ePhase += 0.0022; if(ePhase>=1) ePhase-=1;                        // avance lente et continue (~1 tour du ∞ en ~7,5 s)
+    ePhase += 0.0012; if(ePhase>=1) ePhase-=1;                        // cadence du module : hop 0.006/frame ÷ 5 nœuds (pentalobe) → ~1 tour du ∞ en ~14 s
     var lp=livePts2(), n=lp.length;
     var fp=ePhase*n, a0=Math.floor(fp)%n, ft=fp-Math.floor(fp), a1=(a0+1)%n;
     var base=[lerp(lp[a0][0],lp[a1][0],ft), lerp(lp[a0][1],lp[a1][1],ft)];   // repos : l'œil posé SUR le fil, qui glisse
