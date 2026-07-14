@@ -151,7 +151,7 @@ export function creerNoeud(svgEl, opts){
   }
 
   // ---- state ----
-  var targetS=0, currentS=0, T=0, hop=0, ptParked=null;
+  var targetS=0, currentS=0, T=0, hop=0, HOP_FIL=0.0010, CENTER_R=75, ptParked=null;   // HOP_FIL : vitesse de l'œil sur le fil (baissé = plus lent) · CENTER_R : rayon de la zone-clic centrale (retour repos) — à régler à l'œil
   // DASHBOARD (Vigie) : l'œil entre dans une boucle (barycentre) et en ressort. Passage = franchir le fil, comme une corde à sauter.
   var dashLobe=-1, moveT=-9, moveFrom=[210,210], moveTo=[210,210], moveKind='over', moveDur=0.62; var eyeUnder=false;
   var DASH_MODE=['compose','read','compose'];   // §19 : « deux lobes composent, un seul lit ». Le mode est la nature du lobe, non une humeur
@@ -183,9 +183,11 @@ export function creerNoeud(svgEl, opts){
     if(ptParked!==null && ptParked<nodes.length) return nodes[ptParked];
     if(Math.round(currentS)===1) return (dashLobe>=0 ? dashBary(dashLobe) : [CX,CY]);   // DASHBOARD (Vigie) : au CENTRE il veille (méta) ; entré dans une boucle, il se tient au barycentre du lobe
     if(reduce) return nodes[0];
-    hop += 0.006;                              // vitesse de circulation entre nœuds
-    var f=hop%nodes.length, i=Math.floor(f), t=smooth(f-i), j=(i+1)%nodes.length;
-    return [ lerp(nodes[i][0],nodes[j][0],t), lerp(nodes[i][1],nodes[j][1],t) ];
+    if(Math.round(currentS)===0) return nodes[0];   // bilobe : œil statique (veilleuse) — inchangé
+    var lp=livePts(), M=lp.length;                   // l'œil parcourt TOUT le fil, pas seulement la portion centrale entre les nœuds
+    hop += HOP_FIL;
+    var f=(hop%1)*M, i=Math.floor(f)%M, t=smooth(f-i), j=(i+1)%M;
+    return [ lerp(lp[i][0],lp[j][0],t), lerp(lp[i][1],lp[j][1],t) ];
   }
   // nœuds avec la même respiration que le fil (pour rester posés dessus)
   function nodesic(){
@@ -511,12 +513,20 @@ export function creerNoeud(svgEl, opts){
     var nd=nodesic(), best=0, bd=1e9;
     for(var i=0;i<nd.length;i++){ var d=Math.hypot(nd[i][0]-mx,nd[i][1]-my); if(d<bd){bd=d;best=i;} }
     if(Math.round(currentS)===1){                // DASHBOARD (Vigie) : ENTRER dans la boucle (barycentre) / re-clic même boucle → RESSORTIR au centre. Passage = corde à sauter.
+      if(Math.hypot(mx-CX,my-CY) < CENTER_R){    // clic dans la zone centrale (triangle) → RESSORTIR au repos, quelle que soit la boucle proche
+        if(dashLobe>=0){ moveFrom=[eyeX,eyeY]; moveTo=[CX,CY]; moveKind='under'; moveT=T; dashLobe=-1; lastInter=T; cbLobe(-1,null); }
+        return;
+      }
       var newLobe=(dashLobe===best)?-1:best;
       moveFrom=[eyeX,eyeY]; moveTo=(newLobe>=0)?dashBary(newLobe):[CX,CY];
       moveKind=(newLobe>=0)?'over':'under';      // entrer = par-DESSUS (saute la corde) ; ressortir = par-DESSOUS (passe sous la corde)
       moveT=T; dashLobe=newLobe; lastInter=T; cbLobe(dashLobe, null); return;
     }
     if(forme.lobeCount(currentS)<5) return;            // (vue patient uniquement au-delà)
+    if(Math.hypot(mx-CX,my-CY) < CENTER_R){            // clic dans la zone centrale (losange) → retour au parcours du fil (repos), quelle que soit la boucle proche
+      if(ptParked!==null){ ptParked=null; cbLobe(-1,null); }
+      return;
+    }
     ptParked=(ptParked===best)?null:best;        // PATIENT : l'œil se pose sur le nœud (bord), lecture du fil
     var _pb = ptParked!==null ? buildDuNoeud(ptParked) : -1;
     cbLobe(_pb, _pb>=0 ? axeDuBuild(_pb) : null);
