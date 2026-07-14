@@ -442,6 +442,9 @@ import { CX, CY, N, TAU, INK, lerp, smooth, shapeAt, nodesAt, slice, composeScen
                         var b2=document.createElementNS(NS,"path"); oversG.appendChild(b2); oP.push(b2); }
   // nœud FIGÉ en bilobe (s=0, institutionnel) : plus de strates, plus de morph, boucle inerte.
   var targetS=0, currentS=0, T=0, hop=0, FRQ2=Math.round(0.2*N/TAU);
+  // l'œil : "repos" (posé au croisement) | "notif" (il court le fil du ∞). Croquis d'anim, page-side.
+  var eyeState="repos", notifT0=0, NOTIF_MS=1600;
+  function startNotif(){ if(eyeState==="repos"){ eyeState="notif"; notifT0=Date.now(); } }
   function livePts2(){ var P=shapeAt(currentS), pu=1+0.012*Math.sin(T*1.4), o=[],i;
     for(i=0;i<P.length;i++){ var x=P[i][0]-CX,y=P[i][1]-CY,fr=1+0.010*Math.sin(T*2.1+i*TAU*FRQ2/N);
       x*=fr;y*=fr;o.push([CX+x*pu,CY+y*pu]); } return o; }
@@ -465,7 +468,20 @@ import { CX, CY, N, TAU, INK, lerp, smooth, shapeAt, nodesAt, slice, composeScen
         oP[i].setAttribute("stroke-linecap","round"); oP[i].style.display="";
       } else { hP[i].style.display="none"; oP[i].style.display="none"; }
     }
-    var e=redXY2(), r=25*1.35; eyePos=e;
+    // l'œil : statique au repos ; sur NOTIF il court le fil ordonné du ∞ (les deux boucles) puis se repose.
+    var prog = (eyeState==="notif") ? (Date.now()-notifT0)/NOTIF_MS : 0;
+    if(eyeState==="notif" && prog>=1){ eyeState="repos"; prog=0; }   // fin du timer : retour propre au croisement
+    var e, r=25*1.35;
+    if(eyeState==="notif"){
+      var lp=livePts2(), n=lp.length, cx0=redXY2(), xIdx=0, bd=1e9;   // cx0 = le croisement (position de repos)
+      for(i=0;i<n;i++){ var dxx=lp[i][0]-cx0[0], dyy=lp[i][1]-cx0[1], d2=dxx*dxx+dyy*dyy; if(d2<bd){bd=d2;xIdx=i;} }
+      var u=smooth(prog), fpos=(xIdx + u*2*n)%n, i0=Math.floor(fpos)%n, tt=fpos-Math.floor(fpos), i1=(i0+1)%n;
+      e=[lerp(lp[i0][0],lp[i1][0],tt), lerp(lp[i0][1],lp[i1][1],tt)];  // part de xIdx (croisement), 2 tours, y revient — easing smooth aux bouts
+      r *= 1 + 0.15*Math.max(0, 1 - prog/0.35);                        // flash bref : le globe enfle au départ, retombe
+    } else {
+      e=redXY2();
+    }
+    eyePos=e;
     ptHalo.setAttribute("cx",e[0]);ptHalo.setAttribute("cy",e[1]);ptHalo.setAttribute("r",(r*1.1).toFixed(1));
     pt.setAttribute("cx",e[0]);pt.setAttribute("cy",e[1]);pt.setAttribute("r",r.toFixed(1));pt.setAttribute("fill","url(#ptSphere)");
     ptPup.setAttribute("cx",e[0]);ptPup.setAttribute("cy",e[1]);ptPup.setAttribute("r",(r*0.36).toFixed(1));ptPup.setAttribute("fill",INK);
@@ -536,6 +552,10 @@ import { CX, CY, N, TAU, INK, lerp, smooth, shapeAt, nodesAt, slice, composeScen
   // La loupe se ré-affiche seule quand la fente reprend .ferme (CSS :has) — aucune logique de recherche touchée.
   document.getElementById("loupe").addEventListener("click", function(){ fente.classList.remove("ferme"); q.focus(); });
   document.getElementById("fx").addEventListener("click", function(){ fente.classList.add("ferme"); q.value=""; dessineListe(""); });
+  // DEMO (maquette) : la touche "n" simule une notif → l'œil traverse le ∞. Pas de vraie notif ici.
+  document.addEventListener("keydown", function(e){
+    if(e.key==="n" && !/^(INPUT|TEXTAREA)$/.test((document.activeElement||{}).tagName)) startNotif();
+  });
 
   // file active : nœud en mode plume (ruban plein)
   SET.plume = true;
