@@ -61,6 +61,7 @@ La réflexivité **isole, inhibe l'action, mène au scepticisme / désenchanteme
 « elle se vit mais ne se raconte pas ». Antidote : le collectif re-horizontalise.
 ⇒ **Miroir privé (agent) + climat global = un couple NÉCESSAIRE**, pas une commodité :
 le miroir seul isole, le climat re-collectivise.
+*(Périmé le 2026-07-15 — Abtine. Le climat ne dépend pas du miroir privé pour exister.)*
 
 ## Unification
 La méthode de réflexivité = **la thèse de CONTINUUM retournée sur le soignant.**

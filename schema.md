@@ -609,7 +609,7 @@ commodité :
    dépôt `compte_rendu`. Le brouillon ne se stocke pas ; seule la trace du **miroir agent**
    (privée, §6.4) persiste.
 6. **Le Lien** (Vigie collective, §18 bis) — le nœud vu côté soignant : objet **agrégé
-   anonyme**, **deux lectures** (**affective** = climat / **réflexive**), lu à la maille de
+   anonyme**, **deux faces** (**Continuité / Fragmentation**), lu à la maille de
    l'**unité** (en v1). Appartenance **scellée** (non exposée au chemin de lecture générique) :
    sans en être, impossible de lire. Nourri par une **lecture muette** des écrits (projections
    §6.1 : affect + posture réflexive), **jamais** par les miroirs privés (§6.4). Les

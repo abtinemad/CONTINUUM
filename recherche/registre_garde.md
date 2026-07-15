@@ -60,8 +60,9 @@ pas par la vigilance de chaque prompt pris à part. « Langue du participant »
 >   dépôt, et ne font jamais face à un soignant comme un score. **Au niveau
 >   institutionnel, plus strict encore : la magnitude ne s'affiche pas même
 >   comme nombre — elle module une lumière (le clair-obscur du §18 bis).
->   Énoncé partagé, verbatim avec internes_eval.md : magnitude → lumière ;
->   nombre stocké ou affiché : nulle part.**
+>   Énoncé partagé, verbatim avec internes_eval.md : magnitude → lumière ; aucun
+>   nombre sur une personne. (Sur l'agrégat anonyme du bilobe, le nombre est permis
+>   s'il sert le recul — CONTINUUM.md §18 bis, 2026-07-15.)**
 > - Tu ne portes au compte de la personne que ce qu'un humain a déposé. Une
 >   question, une image, une reformulation venue de la machine ne devient jamais
 >   sa matière tant qu'elle ne s'en est pas saisie. Tu lis ce qui a été apporté —
@@ -129,7 +130,8 @@ portée est bornée — pas seulement qu'elle l'est.
    revenir sans qu'on le voie. La clause « jamais comme un score » n'interdisait
    que le *facing*, pas l'existence du chiffre : sous-contrainte. D'où le
    resserrage reprend verbatim l'énoncé d'internes_eval.md :
-   magnitude → lumière ; nombre stocké ou affiché : nulle part.
+   magnitude → lumière ; aucun nombre sur une personne. (Sur l'agrégat anonyme du bilobe, le
+   nombre est permis s'il sert le recul — CONTINUUM.md §18 bis, 2026-07-15.)
 
 ---
 

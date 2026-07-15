@@ -1151,7 +1151,7 @@ le **patient** (surface §19) —, plus un **miroir privé** pour le soignant.
 **Le Lien.** Le nœud du patient (§19) vu de l'autre côté : là où le patient voit *le problème*, le
 soignant voit *les liens qu'il peut tisser pour desserrer le nœud*. Ce versant soignant se lit à
 **deux strates** : par patient, la **métabolisation** (3 lobes — Affectif · Réflexif · Vigilante) ;
-à la maille de l'unité, l'**institutionnel** — le *climat institutionnel* (Oury), **anonyme et
+à la maille de l'unité, l'**institutionnel** — **anonyme et
 agrégé**, dont les deux faces sont Continuité et Fragmentation. Les mots *affectif* et *réflexif*
 vivent alors aux deux strates sans se confondre : à la métabolisation ils lisent **le patient**
 (ce qu'on éprouve et ce qu'on raisonne de son suivi, signé) ; à l'institutionnel ils sont **le
@@ -1165,8 +1165,7 @@ le nœud, à la récolte.
 **L'étanchéité — deux crans.** (1) *Participation-gating*, à toutes les strates patient :
 *visibilité = participation*, qui dépose voit, qui n'utilise pas ne voit rien — le sanctuaire
 transposé au collectif, protégé par **l'absence de chemin**, pas par un réglage. (2) *Anonymat*,
-propre à l'institutionnel : le climat ne se lit **qu'en étant dedans** (la maille de l'unité, v1),
-les noms restent chiffrés tant qu'on ne les a pas traversés. *Décrypter, pas surveiller.*
+propre à l'institutionnel — *décrypter, pas surveiller.*
 
 **L'affectif individuel n'est pas un objet** (→ institutionnel). Pas de carnet d'humeur — ce serait
 une action de plus, l'inverse du Recul. L'affect du soignant est lu **en silence** dans ce qu'il
@@ -1240,9 +1239,12 @@ La Fragmentation prend **deux visages**, symétriques (la Vigie ne pousse dans a
 La visée n'est ni l'une ni l'autre : un **cadre vivant qui transforme**. Les bords sont le
 cadre ; les tenir vivants est le travail.
 
-**Montrée, jamais chiffrée.** L'institutionnel ne dit pas « unité fragmentée à 40 % » — il
-**montre le clair-obscur** (chiffrement phénoménologique), lu du dedans, sans nombre, sans nom,
-sans désigner personne. *Montrer sans conclure* vaut **aussi pour l'ombre** : refuser de la
+**Aucun nombre sur une personne ; le nombre est permis sur l'agrégat.** L'interdit du chiffre
+protège quelqu'un : aucun nombre ne porte sur un patient ni sur un soignant nommé (invariant 4,
+§9). À l'institutionnel il n'y a plus personne — l'agrégat est anonyme : **un nombre y est permis
+s'il est utile et s'il sert à prendre du recul**. Compter ce qu'on a déposé, ce qu'on a levé, ce
+qui a bougé depuis le dernier point : c'est notre trace, pas une valeur sur qui que ce soit. Ce
+qui reste interdit est ailleurs — **désigner**, et **conclure**. *Montrer sans conclure* vaut **aussi pour l'ombre** : refuser de la
 montrer ne la réduit pas — *on cesse seulement de voir où elle tombe*. Un outil dont la thèse
 est la continuité et qui tairait sa propre fragmentation serait **lui-même morcelé** : tenir les
 deux faces dans un même regard est sa cohérence avec ce qu'il affirme — et le **même geste** qu'à
@@ -1751,8 +1753,8 @@ pas par la couleur — §ci-dessus).
   diagnostic). Nom **scellé** (*vigilance ≠ surveillance*). Restaure l'**arrêt réflexif** que
   le sur-agir détruit. **Le Lien** (côté soignant, collectif) = le nœud vu de l'autre côté ; **anonyme, agrégé**
   à la maille de l'unité (lu du dedans, protégé par l'absence de chemin ; *visibilité =
-  participation*). Deux lectures : **affective** (*le climat* : comment on va) et **réflexive**
-  (comment on tient le soin). Un repère : les **référents** (qui connaît un patient — émerge
+  participation*). Deux faces : **Continuité / Fragmentation**. L'affectif et le réflexif y sont implicites — ils
+  nourrissent les deux faces, ils n'en sont pas. Un repère : les **référents** (qui connaît un patient — émerge
   des dépôts, jamais assigné ; montré, pas mesuré). **Affectif individuel** = **lecture
   muette** (projection §6.1), pas un carnet d'humeur. **Miroir de l'agent** = réflexif
   individuel privé, **couplé au Lien**, ne s'y déverse jamais. **Patient** : ontologie §19

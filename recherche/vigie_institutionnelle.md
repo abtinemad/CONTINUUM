@@ -85,8 +85,9 @@ total en permanence**, mais **modifiable, signable, cristallisable**. Une nature
 dépôt nouvelle, dans le même flux append-only — jamais un entrepôt parallèle.
 
 Sa signature n'est **pas** hiérarchique. Pas la chef de pôle, pas une voix au-dessus des
-autres : **au moins cinq signatures, tout le monde égal**. L'institutionnel exige plus
-de consensus que le patient (≥5 contre ≥2), mais aucune voix ne pèse plus qu'une autre —
+autres : **au moins deux signatures, tout le monde égal** (2026-07-15 : réuni cinq personnes est
+irréaliste en pratique ; le quorum descend, le principe ne bouge pas). Aucune voix ne pèse
+plus qu'une autre —
 anti-surplomb jusque dans le quorum. L'agrégat ne formule jamais seul ; c'est le
 collectif élargi qui arrête l'hypothèse institutionnelle.
 
@@ -199,7 +200,7 @@ pas ; seul le curseur nommage/signalétique se précise.
 - La forme exacte de la **signalétique** (§8) — ce qui compte comme « nouveau » ou
   « important ».
 - La **DDL** de l'hypothèse institutionnelle (§4) et du poids collectif (§5) : natures /
-  mécanismes au catalogue, quorum ≥5, poids anonyme non-triant — à graver comme les trois
+  mécanismes au catalogue, quorum ≥2, poids anonyme non-triant — à graver comme les trois
   natures du 2026-07-13, avec leurs régimes propres.
 
 Fin du contenu.

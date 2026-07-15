@@ -23,6 +23,8 @@ Le Climat montre la COULEUR (lumière : présence, distribution) mais grésille 
 NOM tant que la personne n'a pas traversé l'émotion elle-même. « On ne lit que ce
 qu'on a soi-même traversé. Le Climat déplace la lumière, il ne nomme pas à la
 place du sujet. »
+*(Périmé le 2026-07-15 — Abtine : le climat PEUT nommer, en hypothèse et au tentatif. Remplacé par
+`vigie_institutionnelle.md` §7 : « l'interdit n'est pas de nommer — c'est de conclure ».)*
 → **La projection est vaincue en REFUSANT DE NOMMER, pas en choisissant le bon
 cadre.** « Pertinence de quoi ? » se dissout : le tool ne conclut pas sur la
 pertinence, il déplace la lumière et laisse lire. L'angle mort est montré comme
@@ -44,6 +46,7 @@ absence — décrit, jamais nommé comme mécanique ; invitation, jamais bilan.
   ni ne le récite jamais.
 - **Climat = métadonnée seule** (émotion, sphère, horodatage), agrégée, anonyme ;
   pas de cartographie individuelle, pas de score, pas de mesure clinique.
+  *(Périmé le 2026-07-15 — Abtine : le climat lit le mot cru lui-même, pas seulement sa métadonnée.)*
   « Décrypter, pas surveiller. » Épicentre = même agrégation sur un cercle choisi.
 - **Exclusion volontaire** : LeCLG ne mesure PAS l'efficacité (entrée→sortie).
   → la vigie ne mesure JAMAIS le résultat du soin sur le patient ; elle mesure

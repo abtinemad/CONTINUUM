@@ -48,6 +48,8 @@ l'infini : un fil, deux boucles, le même geste vu à deux échelles.
 - le **signataire** : le **collège** (`synthese_collective`, §12 bis — le lieu
   commun qui assume) au niveau clinique ; la **chef de pôle** au niveau
   institutionnel.
+  *(Périmé le 2026-07-15 — la signature institutionnelle n'est PAS hiérarchique : plusieurs
+  signatures ÉGALES, aucune voix au-dessus. Cf. `vigie_institutionnelle.md` §4.)*
 
 ---
 
@@ -71,6 +73,7 @@ reste du **même bois que Continuité / Fragmentation** : montrée, anonyme, **s
 nombre, sans conclure**. La **chef de pôle** l'annote et la signe ; c'est cette
 signature qui **arrête** l'hypothèse — l'agrégat ne formule jamais seul. Les
 hypothèses institutionnelles **alimentent le bilobe Continuité / Fragmentation**.
+*(Périmé le 2026-07-15 — cf. `vigie_institutionnelle.md` §4 : signatures égales, pas de chef de pôle.)*
 
 ---
 
@@ -84,6 +87,7 @@ hypothèses institutionnelles **alimentent le bilobe Continuité / Fragmentation
   l'institutionnel, la chef de pôle arrête ; l'agrégat n'arrête pas de lui-même —
   ce qui ferme l'angle mort de la magnitude institutionnelle (un chiffre/verdict
   qui reviendrait par la porte de l'agrégat).
+  *(Périmé le 2026-07-15 — cf. `vigie_institutionnelle.md` §4 : signatures égales, pas de chef de pôle.)*
 - **L'hypothèse émergée n'a pas de statut de vérité.** Brouillon : on l'annote ou
   on la jette. Le patron est celui, déjà éprouvé, du condensé Affectif/Réflexif
   (§6.3) — aucun mécanisme neuf, une réutilisation.

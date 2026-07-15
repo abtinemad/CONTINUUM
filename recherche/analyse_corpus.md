@@ -50,7 +50,8 @@ C'est la **dérive, calculée** — et c'est un **nombre**. Il est permis : Abti
 jamais chiffrée » au bilobe le 2026-07-15 (« pas de problème pour stocker ou afficher un nombre si
 c'est anonyme, si c'est utile, et que ça sert à prendre du recul »). ⚠️ La garde est encore gravée
 en sens inverse à `CONTINUUM.md` L1244 et, verbatim, dans `registre_garde.md` et `internes_eval.md`
-(« magnitude → lumière ; nombre stocké ou affiché : nulle part ») : **patch à faire, non fait.**
+(« magnitude → lumière ; nombre stocké ou affiché : nulle part ») — **patché le 2026-07-15** :
+le nombre est permis sur l'agrégat anonyme du bilobe ; l'interdit reste sur la personne.
 
 **Sortie attendue : « ce trimestre, *épuisement* est significativement sur-représenté ; *projet* a
 disparu. »**

@@ -100,9 +100,8 @@ d'inscrire** : l'institutionnel est *montré, jamais chiffré* — « pas d'unit
 clair-obscur ». La magnitude institutionnelle vit donc comme **intensité de lumière**, jamais comme
 valeur stockée ou affichée (schéma, invariant 4 : aucun nombre hors dates ; §9 : pas de champ score).
 Et le différentiel per-patient reste **localisation seule** (anti-fusion) — aucun scalaire, même
-interne, ne le chiffre : la finesse même dé-anonymiserait. En un énoncé : **magnitude → lumière au
-climat anonyme ; localisation → pointeur au trilobe per-patient ; nombre stocké ou affiché : nulle
-part.**
+interne, ne le chiffre : la finesse même dé-anonymiserait. En un énoncé : **magnitude → lumière ou nombre au climat anonyme ; localisation → pointeur au trilobe
+per-patient ; aucun nombre sur une personne (CONTINUUM.md §18 bis, 2026-07-15).**
 
 ---
 

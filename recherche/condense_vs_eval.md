@@ -19,8 +19,8 @@ patient) et projettent ; la Vigilante montre l'écart Affectif↔Réflexif, tenu
 jamais résolu. **C'est la mise en lien.** Mais c'est le **matériau** de
 l'hypothèse, pas le produit fini.
 
-**L'humain noue.** Le collège (puis la chef de pôle à l'institutionnel) formule
-l'hypothèse et la signe. La machine ne noue jamais (invariant 12).
+**L'humain noue.** Le collège formule l'hypothèse et la signe ; à l'institutionnel, plusieurs
+signatures égales (`vigie_institutionnelle.md` §4). La machine ne noue jamais (invariant 12).
 
 **Le piège.** Fondre les deux : bâtir un `condense` et l'appeler « eval », ou
 attendre du `condense` qu'il lie. Le `condense` a **interdiction** de lier ;
