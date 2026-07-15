@@ -83,7 +83,7 @@ export function setRefreshStatics(fn){ refreshStatics = fn; }
   // et la signature du wordmark sont un seul et même objet. Asymétrie (loi générale) : deux amandes
   // PLIÉES inégales (gauche plus grande = le C, droite plus petite = le O), aucune ronde, partageant
   // le nœud central. Un fil fermé, un croisement. Les lobes 3/5 sont latents : ils se déplient ensuite.
-  function buildKnot2(sc){
+  function buildKnot2(sc, sym){
     var sL=(sc && sc[0])||1, sR=(sc && sc[1])||1;   // échelles par lobe (défaut 1 = forme d'origine)
     var Nx=CX-10, Ny=CY, pts=[];
     function drop(dir,w,h,lean,steps){
@@ -91,8 +91,12 @@ export function setRefreshStatics(fn){ refreshStatics = fn; }
         var c=Math.cos(t), s=Math.sin(t), dd=1+s*s, yy=h*(s*c/dd*2);
         pts.push([Nx+dir*w*(c/dd*2)+lean*yy, Ny+yy]); }
     }
-    drop(-1, 88*sL,158*sL,-0.20, 180);  // lobe gauche : le C, plus grand
-    drop(+1, 96*sR,116*sR, 0.05, 150);  // lobe droit : le O, plus rond (asymétrie tenue : le C reste dominant)
+    // sym : les deux faces au même gabarit. L'asymétrie native (le C dominant le O) est celle de la
+    // MARQUE ; sur l'instrument elle dirait « la Continuité est plus grande » — un verdict par la
+    // forme. La veilleuse et le logo gardent le C et le O ; l'écran bilobe part d'un socle égal.
+    drop(-1, 88*sL, 158*sL, -0.20, 180);
+    if(sym) drop(+1, 88*sR, 158*sR, +0.20, 180);   // le miroir exact du gauche
+    else    drop(+1, 96*sR, 116*sR, +0.05, 150);   // le O : plus rond, plus petit (la marque)
     for(var pass=0;pass<2;pass++){ var sm=[], n=pts.length;  // 2 passes 1-2-1 : le croisement reste franc (le pli) mais lissé
       for(var i=0;i<n;i++){ var a=pts[(i-1+n)%n], b=pts[i], c=pts[(i+1)%n];
         sm.push([(a[0]+2*b[0]+c[0])/4,(a[1]+2*b[1]+c[1])/4]); } pts=sm; }
@@ -345,7 +349,8 @@ export function setRefreshStatics(fn){ refreshStatics = fn; }
   // lobeCount/setGrainPenta), qui lisent CETTE forme. Aucune variable ambient, aucun reset :
   // deux formes ne peuvent pas fuir l'une dans l'autre. Les helpers sans état (geomFor,
   // loopPoint, resample, buildKnot2, selfX, xNodes, lerp, clamp…) restent au module, partagés.
-  function creerForme(){
+  function creerForme(opts){
+    var SYM = !!(opts && opts.symetrique);   // socle bilobe égal (l'instrument) vs C/O (la marque)
     // ASYMÉTRIE — loi générale de la marque : aucun lobe n'est le clone d'un autre.
     // Propre à CETTE forme (littéral neuf, jamais l'objet partagé).
     var ASYM = {
@@ -388,7 +393,7 @@ export function setRefreshStatics(fn){ refreshStatics = fn; }
       return { pts:resample(sm, N) };
     }
     // trois formes-clés — propres à cette forme
-    var K2=buildKnot2(), K3=build(3), K5=build(5);
+    var K2=buildKnot2(undefined, SYM), K3=build(3), K5=build(5);
     var KF=[K2.pts, K3.pts, K5.pts];
     var KN=[ xNodes(KF[0]).slice(0,1), xNodes(KF[1]), xNodes(KF[2]) ];
     var KCO={ pts:K2.pts, nodes:KN[0].length?KN[0]:[[CX,CY]] }; // §19 : la signature EST le nœud 2-lobes
@@ -427,7 +432,7 @@ export function setRefreshStatics(fn){ refreshStatics = fn; }
       var p = t>0 ? a/t : 0.5;             // part de la Continuité, 0..1
       var k = K_BI*(p-0.5)*2;              // ±10 % au maximum
       ASYM2.s[0] = 1+k; ASYM2.s[1] = 1-k;
-      var K2b=buildKnot2(ASYM2.s); KF[0]=K2b.pts; KN[0]=xNodes(KF[0]).slice(0,1);
+      var K2b=buildKnot2(ASYM2.s, SYM); KF[0]=K2b.pts; KN[0]=xNodes(KF[0]).slice(0,1);
     }
     return { ASYM:ASYM, KF:KF, KN:KN, KCO:KCO, K2:K2, K3:K3, K5:K5,
              build:build, shapeAt:shapeAt, nodesAt:nodesAt, lobeCount:lobeCount,

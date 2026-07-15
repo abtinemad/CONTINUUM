@@ -47,8 +47,9 @@
   /* ── le nœud : le vrai module. Il ne peint que les overs ; le fil, le nœud et les libellés
         sont au CSS de la page (= page 2, verbatim). Ici le ∞ est le sujet : il doit pouvoir pivoter. ── */
   .noeudCase{padding:6px 0 2px;text-align:center}
-  #knot{width:274px;height:274px;cursor:pointer;overflow:visible;transform-origin:50% 50%;will-change:transform}
-  /* transform-origin 50% 50% tombe pile sur le croisement : noyau.js CX=CY=210, viewBox 420 */
+  #knot{width:274px;height:274px;cursor:pointer;overflow:visible;transform-origin:47.619% 50%;will-change:transform}
+  /* le croisement est à Nx = CX-10 = 200 sur 420, pas 210 : 200/420 = 47,619 %.
+     La balance pivote sur le NŒUD, pas sur le centre du carré. */
   #fil{stroke:var(--ink);fill:none}
   #filR{fill:var(--ink);stroke:var(--ink);stroke-width:.7;stroke-linejoin:round}
   #labels text{fill:var(--ink-soft);font-family:var(--word);font-weight:700}
@@ -334,7 +335,8 @@ $("oublis").innerHTML = (oub.length ? oub : []).map(function(t){
 
 /* ══ LE NŒUD — le vrai module, comme les pages 1 et 2. Bilobe : le module nomme déjà les boucles
       (LAB2 : gauche = Continuité, droite = Fragmentation). Appui long → l'œil d'Horus, la marque. ══ */
-var noeud = creerNoeud($("knot"), { labels:true, eye:3, epaisseur:15 });
+var noeud = creerNoeud($("knot"), { labels:true, eye:3, epaisseur:15, symetrique:true });
+/* l'instrument, pas la marque : un socle égal ne pousse dans aucun sens (§6). */
 noeud.setStrate(0);
 
 /* ══ LA BALANCE ══════════════════════════════════════════════════════════════════════════

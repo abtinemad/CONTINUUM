@@ -29,7 +29,9 @@ export function creerNoeud(svgEl, opts){
       ptPup=q('ptPup'), ptIris=q('ptIris'), ptClipC=q('ptClipC'), ptCatch=q('ptCatch'),
       scouterG=q('scouter'), montureG=q('scMonture'), oudjatG=q('oudjat'),
       labels=q('labels'), eyeG=q('eyeG'), holesG=q('holes'), oversG=q('overs');
-  var forme = creerForme();
+  // opts.symetrique===true → socle bilobe à deux faces égales (l'écran instrument, §6) ; défaut false
+  // → le C et le O de la MARQUE (la veilleuse, la lentille). Ne touche que le 2-lobes.
+  var forme = creerForme({ symetrique: !!opts.symetrique });
   var densites=[0,0,0,0,0];                         // dernier d de setGrain (lu par angleMort)
   var cbStrate=function(){}, cbLobe=function(){}, cbEye=function(){}, cbEyeLong=function(){};
   var _prevLc=-1, rafId=0, mort=false;
