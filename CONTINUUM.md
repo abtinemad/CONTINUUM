@@ -900,13 +900,14 @@ Le **Recul** ne porte pas sur le patient. Il porte sur **le soin et le soignant*
 produit notre manière d'être présents, pas ce que devient le sujet. **Réflexivité, pas
 diagnostic.** Là où le reste de CONTINUUM tient le regard sur la trajectoire du patient, le
 **Recul** retourne le regard sur nous : fabrique-t-on du chronique ? s'installe-t-on dans la
-routine ? sur- ou sous-investit-on ? Elle prolonge le même interdit — *montrer sans conclure*
+routine ? sur- ou sous-investit-on ? Il prolonge le même interdit — *montrer sans conclure*
 — appliqué au soin lui-même.
 
-Le nom dit l'ontologie. *Vigilance*, c'est l'attention qui veille — on veille un malade, on
-veille sur une situation ; *surveillance*, c'est le contrôle. La Vigie veille sur le soin,
-elle ne surveille pas le sujet : l'attention de soin retournée sur nous, l'inverse exact du
-contrôle qui infantilise.
+Le nom dit l'ontologie. *Surveiller*, c'est se rapprocher — tenir à l'œil, de près, et le
+regard pèse ; *reculer*, c'est s'écarter pour que ça se voie. Le Recul ne peut donc pas
+contrôler : il s'éloigne de ce qu'il regarde. La garde n'est pas une règle qu'on s'impose,
+c'est une distance qu'on prend. Et le sur-agir est une avancée — le recul en est l'inverse
+littéral.
 
 Son geste premier est de **restaurer l'arrêt**. Le sur-agir est l'ennemi de la réflexivité :
 sur-psychiatriser, c'est sur-agir, et sur-agir camoufle les questions qu'il faudrait se poser.
@@ -914,29 +915,29 @@ Le Recul n'ajoute pas une action de plus ; il rend possible la pause où le soin
 
 ### Ancrage
 
-Elle hérite d'une tradition : la **psychothérapie institutionnelle** (soigner l'institution
+Il hérite d'une tradition : la **psychothérapie institutionnelle** (soigner l'institution
 pour pouvoir soigner le malade — Tosquelles, Oury) ; l'**hospitalisme** (l'institution qui
 fige et fabrique du chronique — Racamier) ; l'**iatrogénie bipolaire** du soin (rejetant *ou*
-fusionnel). Et elle se définit par ce qu'elle refuse de devenir : le **médico-mimétisme** —
+fusionnel). Et il se définit par ce qu'il refuse de devenir : le **médico-mimétisme** —
 reproduire dans le remède la maladie qu'on prétend soigner.
 
-### Comment elle montre sans conclure — deux mécanismes
+### Comment il montre sans conclure — deux mécanismes
 
-1. **La séparation des rôles.** Une couche mesure en silence (elle ne parle jamais) ; une
+1. **La séparation des rôles.** Une couche mesure en silence ; une
    surface montre un état (jamais un verdict). Le calcul existe, muré : il règle
    l'environnement, il ne rend pas de jugement. La machine qui score ne fait jamais face au
    soignant ; la surface qui fait face ne score jamais.
 2. **Le chiffrement phénoménologique.** Le Recul montre la lumière — présence, distribution,
-   densité — et peut *proposer* un nom, tenu au tentatif et porté par le recul de l'agrégat ; elle ne
+   densité — et peut *proposer* un nom, tenu au tentatif et porté par le recul de l'agrégat ; il ne
    le **fige** pas à la place. Le nom *décidé* reste chiffré tant qu'on ne l'a pas traversé
-   soi-même : on ne lit que ce qu'on a vécu en conscience. Elle déplace la lumière et peut
-   l'esquisser ; elle laisse lire.
+   soi-même : on ne lit que ce qu'on a vécu en conscience. Il déplace la lumière et peut
+   l'esquisser ; il laisse lire.
 
-Trois invariants tiennent ces mécanismes : la **mesure auto-effaçante** (elle crédite ce que
-le soignant fait, jamais ce qu'elle a suggéré de regarder — elle ne compte pas sa propre
-influence) ; le **dépôt brut intouché** (elle lit autour, ne réécrit ni ne récite le brut) ;
-l'**abstention d'issue** — elle ne mesure jamais le résultat du soin sur le patient (ce serait
-le score-verdict qu'elle existe pour refuser). Elle mesure notre trace, pas l'issue.
+Trois invariants tiennent ces mécanismes : la **mesure auto-effaçante** (il crédite ce que
+le soignant fait, jamais ce qu'il a suggéré de regarder — il ne compte pas sa propre
+influence) ; le **dépôt brut intouché** (il lit autour, ne réécrit ni ne récite le brut) ;
+l'**abstention d'issue** — il ne mesure jamais le résultat du soin sur le patient (ce serait
+le score-verdict qu'il existe pour refuser). Il mesure notre trace, pas l'issue.
 
 ### Les trois strates — récolte, métabolisation, institutionnel
 
@@ -1059,6 +1060,11 @@ récolté. Guichet des **coordinateurs**, en **synthèse collective signée**. T
 n'analyse plus un sujet singulier mais **nos pratiques agrégées à la maille de l'unité** — la
 forme de comment nous soignons (comment on observe, tisse, noue), anonyme, lavée du contenu
 patient. Ses deux faces : **Continuité / Fragmentation** — la santé de l'institution même. Méta.
+
+Le nom dit l'ontologie. *Vigilance*, c'est l'attention qui veille — on veille un malade, on
+veille sur une situation ; *surveillance*, c'est le contrôle. La Vigie veille sur le soin,
+elle ne surveille pas le sujet : l'attention de soin retournée sur nous, l'inverse exact du
+contrôle qui infantilise.
 
 **Comment la métabolisation est nourrie — deux sources.** (1) Un **eval** — *le cerveau du
 Collègue* — lit la **récolte brute** (5-lobes) d'un patient et en projette un **condensé** dans
