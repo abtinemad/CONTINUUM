@@ -115,6 +115,36 @@
   .item .d{font-family:var(--slate);font-size:9.5px;color:var(--ink-soft)}
   .item .t{font-family:var(--prose);font-size:12.5px;line-height:1.45;color:#2A2F35;margin-top:3px}
 
+  /* ── LA RÉSONANCE — la marque « ça résonne » sur l'objet, ses agrafes, et sa boîte ── */
+  .reso{display:inline-flex;align-items:center;gap:5px;margin-top:5px;background:0;border:0;padding:2px 0;
+    font-family:var(--slate);font-size:9.5px;letter-spacing:.06em;color:var(--ink-soft);cursor:pointer;
+    opacity:.7;transition:.15s}
+  .reso:hover{opacity:1}
+  .reso b{font-weight:400;color:var(--red);font-size:11px}
+  .reso.mien b{font-weight:700}
+  .agr{margin:6px 0 0 12px;border-left:2px solid var(--faint);padding:2px 0 2px 10px}
+  .agrTxt{font-family:var(--prose);font-size:12px;line-height:1.42;color:#3B424A}
+  .agrMeta{font-family:var(--slate);font-size:8.5px;letter-spacing:.06em;color:var(--ink-soft);
+    opacity:.75;margin-top:2px}
+  #resoBox{overflow-y:auto}
+  .resoDoc{font-family:var(--prose);font-size:13px;line-height:1.55;color:var(--ink);margin-bottom:16px}
+  .resoDoc b{font-weight:700}
+  .resoCount{font-family:var(--slate);font-size:12px;letter-spacing:.04em;color:var(--ink-soft);margin-bottom:16px}
+  .resoCount b{color:var(--red);font-weight:700;font-size:16px}
+  .resoActes{display:flex;gap:8px}
+  .resoActes button{flex:1;background:rgba(21,25,30,.05);border:1px solid var(--faint);border-radius:12px;
+    padding:12px 14px;font-family:var(--word);font-size:13px;color:var(--ink);cursor:pointer;transition:.15s}
+  .resoActes button.pri{background:var(--red);color:var(--paper);border-color:var(--red)}
+  .resoActes button:disabled{opacity:.45;cursor:default;background:rgba(21,25,30,.04);color:var(--ink-soft);border-color:var(--faint)}
+  .resoDesac{display:none;margin-top:14px}
+  .resoDesac.on{display:block}
+  .resoDesac textarea{width:100%;height:96px;border:1px solid var(--faint);border-radius:12px;background:rgba(255,255,255,.7);
+    padding:11px 13px;font-family:var(--prose);font-size:13.5px;line-height:1.5;color:var(--ink);outline:0;resize:none}
+  .resoDesac button{margin-top:10px;background:var(--ink);color:var(--paper);border:0;border-radius:12px;
+    padding:11px 18px;font-family:var(--word);font-size:13px;cursor:pointer}
+  .resoFermer{margin-top:16px;align-self:flex-start;background:0;border:0;font-family:var(--slate);font-size:11px;
+    color:var(--ink-soft);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+
   /* Fenêtre traitements */
   .over{position:absolute;inset:0;background:rgba(233,236,239,.97);z-index:9;transform:translateY(101%);transition:transform .3s;padding:24px 22px}
   .over.on{transform:none}
@@ -349,6 +379,30 @@
     <div class="fin"><button id="g-dep">Déposer</button><button class="annul" id="g-annul">annuler</button></div>
   </div>
 
+  <!-- LA RÉSONANCE — le clic sur « ça résonne » d'un objet ouvre cette boîte (même mobilier que le guichet) -->
+  <div class="guichet" id="resoBox">
+    <h4>ça résonne</h4>
+    <div class="resoDoc">
+      <b>La résonance n'est pas un avis.</b> Elle ne dit pas que c'est vrai, ni que c'est important, ni
+      ce qu'il faut faire. Elle dit : <i>ça me touche, ça fait écho à quelque chose que je connais.</i> On
+      pèse une fois, et on ne peut pas se déjuger.<br><br>
+      Ce qui résonne chez beaucoup monte à l'unité, <b>anonymisé</b> — c'est ça qui fait pencher la
+      balance du point institutionnel. Ce n'est pas une note : c'est <b>où l'équipe met son poids</b>.<br><br>
+      <b>« Ça ne résonne pas » n'est pas un contre.</b> Ça n'enlève rien à personne : ça <b>ajoute</b> ta
+      lecture. C'est pour ça qu'il faut l'écrire — un désaccord muet ne dit rien à personne.
+    </div>
+    <div class="resoCount" id="resoCount">—</div>
+    <div class="resoActes">
+      <button class="pri" id="resoPeser">ça résonne</button>
+      <button id="resoContre">ça ne résonne pas</button>
+    </div>
+    <div class="resoDesac" id="resoDesac">
+      <textarea id="resoTxt" placeholder="ce que je ne reconnais pas là-dedans…"></textarea>
+      <button id="resoDep">déposer</button>
+    </div>
+    <button class="resoFermer" id="resoFermer">fermer</button>
+  </div>
+
 </div>
 
 <div class="marge">
@@ -368,6 +422,20 @@
      signature — <span class="q">lu à l'aveugle du vôtre : l'écart est matière, pas un verdict.</span></p>
   <h3>déposer</h3>
   <p>Le « + » des Observations ouvre le guichet — une fenêtre, pas un champ de plus.</p>
+  <h3>ça résonne</h3>
+  <p>Le seul geste qui ne dit rien du patient : il dit ce qui nous touche. <span class="q">Le poids
+     n'est pas fabriqué par l'outil — il est déposé par quelqu'un ; l'outil le transcrit. Ce qui
+     résonne chez beaucoup monte à l'unité, anonymisé, et fait pencher la balance de Filigrane : non
+     pas ce qui est important, mais où l'équipe met son poids — pour pouvoir le répartir autrement,
+     petit à petit.</span></p>
+  <p>On pèse une fois, on ne se déjuge pas. Et le poids se voit sur l'objet — <b>jamais par auteur</b> :
+     aucune vue ne totalise ce que les dépôts de quelqu'un ont fait résonner. Le chemin n'existe pas.</p>
+  <p><b>« Ça ne résonne pas » n'est pas un contre</b> — c'est un dépôt, et il coûte un argument. La
+     balance n'a pas de plateau contre : ses deux plateaux sont ce que le soin rend possible et ce
+     qu'il coûte ; un désaccord n'y tomberait nulle part. Il ne retire rien : <b>il ajoute un angle</b>.
+     Et il s'<b>agrafe</b> à ce qu'il conteste : détaché, « je ne reconnais pas ça » ne veut plus rien
+     dire — et un désaccord avec une synthèse porte sur <i>notre</i> lecture, pas sur le patient. Il se
+     lit sous l'objet, jamais à côté.</p>
 </div>
 
 <script type="module">
@@ -382,20 +450,21 @@ import { creerNoeud } from '../noeud.js';
   };
   var AXES = ["Familial","Amoureux","Ami","Travail","Soin"];
   var FRAGS = [
-    {t:"Sa sœur a rappelé, depuis qu'il ne travaille plus. Elle demande si on peut passer le matin.", a:"Karima", d:"aujourd'hui", ax:[0,3]},
-    {t:"Il dit qu'il ne prend plus le traitement du soir. Il ne veut pas en parler à sa sœur.", a:"Céline", d:"hier", ax:[4,0]},
-    {t:"Rendez-vous manqué au CMP. Il était chez lui, il n'a pas ouvert.", a:"Anthony", d:"2 juil.", ax:[4]},
-    {t:"Il a parlé de son ancien poste à l'atelier. Il en parle au présent.", a:"Céline", d:"28 juin", ax:[3]},
-    {t:"Le 3 mars : « toute-puissance ». Il a refusé de s'asseoir, puis s'est excusé dans le couloir.", a:"Karima", d:"14 juin", ax:[4]},
-    {t:"Sa sœur pleure au téléphone. Elle dit qu'elle n'en peut plus, mais qu'elle ne lâchera pas.", a:"Karima", d:"11 juin", ax:[0]},
-    {t:"Un voisin l'a vu au parc avec quelqu'un. Il n'en a rien dit.", a:"L.M.", d:"3 juin", ax:[1,2]},
-    {t:"A mangé au foyer deux fois cette semaine.", a:"M.T.", d:"29 mai", ax:[2,4]}
+    {t:"Sa sœur a rappelé, depuis qu'il ne travaille plus. Elle demande si on peut passer le matin.", a:"Karima", d:"aujourd'hui", ax:[0,3], reso:4, moi:false, agr:[]},
+    {t:"Il dit qu'il ne prend plus le traitement du soir. Il ne veut pas en parler à sa sœur.", a:"Céline", d:"hier", ax:[4,0], reso:5, moi:false, agr:[]},
+    {t:"Rendez-vous manqué au CMP. Il était chez lui, il n'a pas ouvert.", a:"Anthony", d:"2 juil.", ax:[4], reso:3, moi:true, agr:[]},
+    {t:"Il a parlé de son ancien poste à l'atelier. Il en parle au présent.", a:"Céline", d:"28 juin", ax:[3], reso:2, moi:false, agr:[]},
+    {t:"Le 3 mars : « toute-puissance ». Il a refusé de s'asseoir, puis s'est excusé dans le couloir.", a:"Karima", d:"14 juin", ax:[4], reso:1, moi:false, agr:[]},
+    {t:"Sa sœur pleure au téléphone. Elle dit qu'elle n'en peut plus, mais qu'elle ne lâchera pas.", a:"Karima", d:"11 juin", ax:[0], reso:0, moi:false, agr:[]},
+    {t:"Un voisin l'a vu au parc avec quelqu'un. Il n'en a rien dit.", a:"L.M.", d:"3 juin", ax:[1,2], reso:0, moi:false, agr:[]},
+    {t:"A mangé au foyer deux fois cette semaine.", a:"M.T.", d:"29 mai", ax:[2,4], reso:0, moi:false, agr:[]}
   ];
   var RECIT_MACHINE =
     "Paul est en rupture partielle de traitement (le soir), non discutée en famille. Sa sœur reste le lien principal mais dit son épuisement. Le travail apparaît au présent dans son discours — un appui qui n'est plus actif mais reste vivant. Un rendez-vous manqué récent, sans explication donnée.";
   var RECITS = [];   // l'historique des récits signés en équipe (la machine propose au-dessus, vivant)
   var SYNTHESES = [
-    { d:"4 juil.", par:"équipe", t:"Alliance tenue par la sœur. Traitement pris. Réinvestissement possible du côté du travail à explorer. Pas d'inquiétude aiguë." }
+    { d:"4 juil.", par:"équipe", reso:0, moi:false, t:"Alliance tenue par la sœur. Traitement pris. Réinvestissement possible du côté du travail à explorer. Pas d'inquiétude aiguë.",
+      agr:[ { t:"Je ne reconnais pas « alliance tenue ». Sa sœur tient, ce n'est pas pareil.", a:"Karima", d:"5 juil." } ] }
   ];
   /* ⚠️ FICTION DE MAQUETTE, DE MA MAIN — à reprendre par Abtine. Le registre-garde s'applique :
      les mots de la personne, zéro jargon, posture tentative, aucun verdict. */
@@ -420,7 +489,7 @@ import { creerNoeud } from '../noeud.js';
     "« Le retrait de Paul — le traitement du soir arrêté, le rendez-vous manqué — est-il un refus du soin, ou une manière de tenir un reste de maîtrise là où le travail et le lien lui échappent ? »";
   // « Où on va » — l'ancien contenu de l'Hypothèse, à sa vraie place.
   var ACCOMPAGNEMENTS = [
-    { d:"4 juil.", par:"équipe", t:"On accompagne le desserrage du lien fraternel sans le rompre ; on ouvre doucement le versant travail comme appui. On ne force pas le traitement du soir — on attend qu'il en reparle." }
+    { d:"4 juil.", par:"équipe", reso:0, moi:false, agr:[], t:"On accompagne le desserrage du lien fraternel sans le rompre ; on ouvre doucement le versant travail comme appui. On ne force pas le traitement du soir — on attend qu'il en reparle." }
   ];
   // Le brouillon machine — pré-mâché sur critères cliniques, à reprendre puis signer (≠ carte signée).
   var ACCOMPAGNEMENT_MACHINE =
@@ -428,6 +497,61 @@ import { creerNoeud } from '../noeud.js';
 
   var esc = function(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;"); };
   var $ = function(id){ return document.getElementById(id); };
+
+  /* ══ LA RÉSONANCE — le poids collectif (vigie_institutionnelle §5). L'outil TRANSCRIT le +1, il ne
+     le fabrique jamais (§1). Le poids se voit SUR L'OBJET ; AUCUNE fonction ne le somme ni ne le
+     groupe par auteur (a/par) — le chemin n'existe pas (ce n'est pas un réglage, c'est une absence).
+     On ne peut pas non plus RETIRER son poids. L'agrafe est un truc agrafé SEULEMENT, pour ce cas. ══ */
+  var RESO_REG = {}, RESO_N = 0, resoCur = null;
+  function resoId(o){ if(!o._rid){ o._rid = "r" + (RESO_N++); } RESO_REG[o._rid] = o; return o._rid; }
+  /* la marque — une seule fonction, les DEUX gabarits (cards #frags + .item de rendreStack) */
+  function marqueReso(o){
+    var n = o.reso || 0;
+    return '<button class="reso'+(o.moi?' mien':'')+'" title="la résonance">'+
+           (n ? '<b>+'+n+'</b>' : '<b>·</b>') + ' ça résonne</button>';
+  }
+  /* les agrafes — le désaccord se lit SOUS son objet, en retrait ; mêmes deux gabarits */
+  function agrafes(o){
+    return (o.agr||[]).map(function(g){
+      return '<div class="agr"><div class="agrTxt">'+esc(g.t)+'</div>'+
+             '<div class="agrMeta">'+esc(g.a)+' · '+esc(g.d)+' · agrafé</div></div>'; }).join("");
+  }
+  /* enveloppe marque+agrafes ; data-oid porte l'id interne (auto-enregistré) → robuste aux re-rendus */
+  function resoBloc(o){ return '<div class="resoWrap" data-oid="'+resoId(o)+'">'+marqueReso(o)+agrafes(o)+'</div>'; }
+  function refreshObj(o){ var w = document.querySelector('.resoWrap[data-oid="'+o._rid+'"]'); if(w){ w.innerHTML = marqueReso(o)+agrafes(o); } }
+  function openReso(o){
+    if(!o) return;
+    resoCur = o;
+    var n = o.reso || 0;
+    $("resoCount").innerHTML = n ? ('<b>'+n+'</b> personne'+(n>1?'s':'')) : "personne, pour l'instant";
+    var p = $("resoPeser");
+    p.disabled = !!o.moi;                          // on pèse UNE fois : déjà pesé → inerte dès l'ouverture
+    p.textContent = o.moi ? "tu as déjà pesé" : "ça résonne";
+    $("resoDesac").classList.remove("on"); $("resoTxt").value = "";
+    $("resoBox").classList.add("on");
+  }
+  document.addEventListener("click", function(e){    // clic délégué sur la marque de n'importe quel objet
+    var b = e.target.closest && e.target.closest(".reso"); if(!b) return;
+    var w = b.closest(".resoWrap"); if(w){ openReso(RESO_REG[w.getAttribute("data-oid")]); }
+  });
+  $("resoPeser").addEventListener("click", function(){
+    if(!resoCur || resoCur.moi) return;              // on ne se déjuge pas, on ne retire pas son poids
+    resoCur.reso = (resoCur.reso || 0) + 1; resoCur.moi = true;
+    refreshObj(resoCur);
+    $("resoBox").classList.remove("on");
+  });
+  $("resoContre").addEventListener("click", function(){ $("resoDesac").classList.add("on"); $("resoTxt").focus(); });
+  $("resoDep").addEventListener("click", function(){
+    var t = $("resoTxt").value.trim();
+    if(!t){ $("resoBox").classList.remove("on"); return; }   // vide → rien, on ferme
+    /* « ça ne résonne pas » n'est PAS un poids négatif : un DÉPÔT qui S'AGRAFE à l'objet contesté.
+       o.reso NE BOUGE PAS. Jamais ajouté à FRAGS — détaché, « je ne reconnais pas ça » ne dit rien. */
+    resoCur.agr = resoCur.agr || [];
+    resoCur.agr.unshift({ t:t, a:"S. Rivière", d:"aujourd’hui" });
+    refreshObj(resoCur);
+    $("resoBox").classList.remove("on");
+  });
+  $("resoFermer").addEventListener("click", function(){ $("resoBox").classList.remove("on"); });
 
   /* En-tête */
   $("nom").textContent = PATIENT.nom;
@@ -486,7 +610,7 @@ import { creerNoeud } from '../noeud.js';
     var el = document.createElement("div");
     el.className = "frag"; el.dataset.ax = JSON.stringify(f.ax || []);
     var lbs = (f.ax || []).map(function(a){ return '<span class="lb">'+esc(AXES[a])+'</span>'; }).join("");
-    el.innerHTML = '<div class="txt">'+esc(f.t)+'</div><div class="meta"><span>'+esc(f.a)+' · '+esc(f.d)+'</span>'+lbs+'</div>';
+    el.innerHTML = '<div class="txt">'+esc(f.t)+'</div><div class="meta"><span>'+esc(f.a)+' · '+esc(f.d)+'</span>'+lbs+'</div>'+resoBloc(f);
     return el;
   }
   FRAGS.forEach(function(f){ fr.appendChild(creerFrag(f)); });
@@ -560,7 +684,7 @@ import { creerNoeud } from '../noeud.js';
   /* Une pile signée générique (Synthèse / Hypothèse) */
   function rendreStack(listId, data){
     $(listId).innerHTML = data.map(function(o,i){
-      return '<div class="item'+(i===0?' tete':'')+'"><div class="d">'+esc(o.d)+' · '+esc(o.par)+'</div><div class="t">'+esc(o.t)+'</div></div>';
+      return '<div class="item'+(i===0?' tete':'')+'"><div class="d">'+esc(o.d)+' · '+esc(o.par)+'</div><div class="t">'+esc(o.t)+'</div>'+resoBloc(o)+'</div>';
     }).join("");
   }
   function brancherActe(cfg){
