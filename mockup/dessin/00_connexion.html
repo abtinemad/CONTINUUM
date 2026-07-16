@@ -65,15 +65,18 @@
   #labels text{fill:var(--ink-soft);font-family:var(--labelface);font-weight:700}
 
   /* ── Le shell : le nœud, toujours visible. Ce n'est pas un logo posé en en-tête —
-        c'est le seul organe de navigation de l'app. ─────────────────────────────── */
-  /* .app (grille 440px + 1fr) a disparu : le cadre téléphone est la mise en page. Le shell
-     garde son sticky — il le tenait déjà sous .app, et c'est lui qui garde le nœud sous
-     l'œil pendant que le panneau défile. Le padding remplace celui que .app donnait. */
-  .shell{position:sticky;top:18px;padding:16px 22px 2px}
+        c'est le seul organe de navigation de l'app.
+        (2026-07-15 — le cadre téléphone n'a qu'une colonne : le nœud, puis le panneau
+        dessous, tout défile ensemble, comme sur les pages 1/2/3. Le nœud restait visible
+        parce qu'app_mockup était en deux colonnes.) ─────────────────────────────── */
+  .shell{padding:16px 22px 2px}
   #knot{width:232px;height:232px;display:block;margin:0 auto;cursor:pointer;overflow:visible;touch-action:manipulation}
   .switch{display:flex;border:1px solid var(--faint);margin:14px auto 0;width:max-content}
+  /* 14px de padding latéral donnaient 364px de large pour 346 disponibles dans le cadre :
+     il débordait la gouttière et `margin:auto` ne pouvait plus le centrer. 10px suffisent
+     à le faire rentrer. La police ne bouge pas — les trois mots sont de doctrine. */
   .switch button{font-family:var(--slate);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
-    padding:10px 14px;background:transparent;border:0;color:var(--ink-soft);cursor:pointer;transition:background .25s,color .25s}
+    padding:10px 10px;background:transparent;border:0;color:var(--ink-soft);cursor:pointer;transition:background .25s,color .25s}
   .switch button.on{background:var(--ink);color:var(--paper)}
   .tag{font-family:var(--slate);font-size:11px;letter-spacing:.1em;color:var(--ink-soft);text-align:center;margin:12px 0 0}
   .tag b{font-weight:400;color:var(--ink)}
@@ -425,7 +428,10 @@ import { creerNoeud } from '../noeud.js';
         rendre(); $("txt").focus();
         // Aucune boucle ne bouge. La passe n'a pas tourné.
       });
-      txt.focus();
+      // Pas de focus ici : `rendre()` tourne aussi à l'ouverture, et le focus y faisait
+      // défiler .ecran jusqu'au champ — le nœud sortait du cadre avant qu'on l'ait vu.
+      // Le focus appartient au DÉPÔT (on continue d'écrire), pas au rendu : il est posé
+      // sur chacun des trois gestes qui déposent, jamais ici.
       return;
     }
 
@@ -491,7 +497,7 @@ import { creerNoeud } from '../noeud.js';
           DEPOTS.push({a:QUI, n:"vide_info", c:c, t:tx.value, h:new Date()});
           BROUILLON="";
         }
-        rendre();
+        rendre(); $("txt").focus();   // déposé aussi : le champ reprend la main
       });
     });
   }
