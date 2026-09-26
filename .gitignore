@@ -5,3 +5,7 @@ node_modules/
 scratch/
 temp/
 tmp/
+
+# Espaces de travail des outils (Cowork, Claude Code) — jamais dans le dépôt
+Claude outputs/
+.claude/
