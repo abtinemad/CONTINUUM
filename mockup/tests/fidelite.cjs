@@ -207,12 +207,10 @@ const relacher = pg => tenirBoucle(pg, 0.5, 0.5);   // le centre : l'œil se dé
   await attendre(250);
   const acte = (a, i) => pgC.$$eval(`.actes a[data-a="${a}"]`, (n, k) => n[k].click(), i);
 
-  // I8 — les marques n'écrivent jamais dans le champ, et déposer un doute n'efface pas la prose.
-  //      « Le bruit est la donnée » : une IA qui organise la phrase efface le soignant, et c'est
-  //      justement lui qu'on récolte — ses projections alimentent le trilobe.
-  await acte("gest", 2); await attendre(350);
-  tenu("I8 · déposer un doute n'efface pas la prose en cours",
-       (await pgC.$eval("#txt", e => e.value)) === PROSE);
+  // I8 — retiré le 26/09/2026, avec son geste. Il gardait que « déposer un doute n'efface pas la
+  //      prose en cours » ; le doute (`gestation`, « ça travaille ») n'existe plus au guichet de
+  //      récolte (I12). Une garde sans chemin à garder ne garde rien. « Le bruit est la donnée »
+  //      ne meurt pas avec lui : I4 tient déjà le verbatim.
 
   // I9 — la couverture ne conditionne JAMAIS le dépôt. Un bouton grisé par trois marques, c'est
   //      la machine qui décide quand une observation est complète. Elle montre ; elle n'empêche pas.

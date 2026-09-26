@@ -90,8 +90,6 @@
   .actes a{color:var(--ink-soft);text-decoration:none;border-bottom:1px dotted var(--ink-faint);cursor:pointer}
   .actes a:hover{color:var(--ink)}
   .nat{margin-left:10px;padding-left:10px;border-left:1px solid var(--ink-faint)}
-  .depot.nu{color:var(--ink-soft);font-style:italic}
-  ul.fil li.gest::before{border-left:1px dotted var(--ink-faint);background:none;width:0}
   .note-bas{font-family:var(--slate);font-size:11px;line-height:1.8;color:var(--ink-soft);
             border-top:1px solid var(--ink-faint);padding-top:16px;margin-top:8px}
   .note-bas b{color:var(--ink);font-weight:400}
@@ -261,7 +259,6 @@ import { creerNoeud } from './noeud.js';
   function passer(){
     var frags=[], AX=noeud.axes();   // la carte des axes vient du nœud (forme de l'instance), jamais copiée ici
     DEPOTS.forEach(function(d,di){
-      if(d.n==="gestation") return;          // rien à ranger : elle est nue, et c'est un acte
       // découpage grossier en propositions — la portion la plus petite QUI GARDE LE SENS.
       var parts=d.t.split(/(?<=[.;])\s+/);
       var off=0;
@@ -341,15 +338,9 @@ import { creerNoeud } from './noeud.js';
 
     if(s===2 && HELD<0){                                // ── LE NŒUD : on écrit ──
       var fl=DEPOTS.map(function(d){
-        // La gestation est la seule nature autorisée à n'avoir aucun contenu
-        // (`depots_contenu_sauf_gestation`). Elle ne s'affiche pas comme un dépôt raté :
-        // elle s'affiche comme un acte. « Personne n'a jamais mal rempli un champ qu'il avait
-        // le droit de laisser en gestation. »
-        var corps = d.n==="gestation"
-          ? '<p class="depot nu">ça travaille — '+ech(motDe(d.c))+'</p>'
-          : '<p class="depot">'+ech(d.t)+'</p>';
+        var corps = '<p class="depot">'+ech(d.t)+'</p>';
         var typ = (d.n && d.n!=="observation") ? '<span class="nat">'+ech(d.n)+'</span>' : '';
-        return '<li'+(d.n==="gestation"?' class="gest"':'')+'>'+corps+
+        return '<li>'+corps+
                '<p class="attr">'+ech(d.a)+' · '+quand(d.h)+' '+typ+'</p></li>';
       }).join("");
       pan.innerHTML =
@@ -412,8 +403,8 @@ import { creerNoeud } from './noeud.js';
       'L’œil se tient au centre et veille : sentinelle, non lecteur. Agrégat anonyme, montré jamais chiffré.</div>';
   }
 
-  // La prose en cours n'est pas un dépôt — mais elle n'est pas rien non plus. Déposer un doute
-  // (`gestation`) ne doit pas effacer ce qu'on était en train d'écrire. Le brouillon vit dans
+  // La prose en cours n'est pas un dépôt — mais elle n'est pas rien non plus. Re-rendre l'écran
+  // (un dépôt, une marque, une strate) ne doit pas effacer ce qu'on était en train d'écrire. Le brouillon vit dans
   // l'écran, jamais dans la base : « rien n'est déposé tant qu'il n'a pas signé. »
   var BROUILLON="";
 
@@ -427,23 +418,20 @@ import { creerNoeud } from './noeud.js';
     var t=$("txt")?$("txt").value:"", etats=couvertures(t);
     zone.innerHTML = COUV.map(function(c,i){
       return '<span class="mq'+(etats[i]?' on':'')+'" data-i="'+i+'">'+c.mot+
-             '<b class="actes"><a data-a="rien" data-i="'+i+'">j’ai regardé, rien</a>'+
-             '<a data-a="gest" data-i="'+i+'">ça travaille</a></b></span>';
+             '<b class="actes"><a data-a="rien" data-i="'+i+'">j’ai regardé, rien</a></b></span>';
     }).join("");
     zone.querySelectorAll("a").forEach(function(a){
       a.addEventListener("click", function(e){
         e.preventDefault();
         var c=COUV[+a.dataset.i].cle, tx=$("txt");
-        if(a.dataset.a==="gest"){
-          // La seule nature qui reste NUE. Aucun texte demandé, aucun texte pris.
-          DEPOTS.push({a:QUI, n:"gestation", c:c, t:"", h:new Date()});
-        } else {
-          // `vide_info` porte un contenu : « j'ai regardé, il n'y avait rien » est un FAIT,
-          // il se dit. Le champ vide reste refusé — un fait ne se dépose pas en blanc.
-          if(!/\S/.test(tx.value)){ tx.focus(); return; }
-          DEPOTS.push({a:QUI, n:"vide_info", c:c, t:tx.value, h:new Date()});
-          BROUILLON="";
-        }
+        // Un seul acte sur une marque. « ça travaille » (`gestation`) est retiré le 26/09/2026 :
+        // attendre est devenu une `temporalite`, argumentée et déposée EN COLLÈGE (db/30, gestes
+        // 12-13). Le guichet de récolte est un cadre=seul — il n'en a pas le chemin (banc : I12).
+        // `vide_info` porte un contenu : « j'ai regardé, il n'y avait rien » est un FAIT,
+        // il se dit. Le champ vide reste refusé — un fait ne se dépose pas en blanc.
+        if(!/\S/.test(tx.value)){ tx.focus(); return; }
+        DEPOTS.push({a:QUI, n:"vide_info", c:c, t:tx.value, h:new Date()});
+        BROUILLON="";
         rendre();
       });
     });
