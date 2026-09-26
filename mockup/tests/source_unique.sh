@@ -19,4 +19,12 @@ if [ -n "$hits" ]; then
   echo "$hits" | sed 's/^/  /'
   exit 1
 fi
-echo "source unique — le moteur ne vit que dans noyau.js"
+# Même garde pour l'app de récolte (26/09/2026) : sa signature interne est cranRecolte, que
+# seul recolte.js contient. Deux écrans l'ont portée en copie et ont divergé ; plus jamais.
+hits=$(grep -rl --include='*.html' --include='*.js' --exclude='recolte.js' --exclude-dir=node_modules "cranRecolte" . || true)
+if [ -n "$hits" ]; then
+  echo "SOURCE UNIQUE ROMPUE — cranRecolte (app de récolte) recopié hors de recolte.js :"
+  echo "$hits" | sed 's/^/  /'
+  exit 1
+fi
+echo "source unique — le moteur ne vit que dans noyau.js, l'app de récolte que dans recolte.js"
