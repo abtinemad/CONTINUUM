@@ -219,21 +219,27 @@ const relacher = pg => tenirBoucle(pg, 0.5, 0.5);   // le centre : l'œil se dé
   tenu("I9 · le bouton n'est jamais grisé par une couverture",
        (await pgC.$eval("#btDep", e => e.disabled)) === false);
 
-  // C6 — la `gestation` est la seule nature autorisée à rester nue
-  //      (`depots_contenu_sauf_gestation`, db/30). Elle se dépose sans un mot, et porte quand même
-  //      son auteur et son heure. Personne n'a jamais mal rempli un champ qu'il avait le droit de
-  //      laisser en gestation.
+  // I12 — aucune temporalité ne naît au guichet de récolte. (Inversion de C6, 26/09/2026.)
+  //      Depuis le 12/07 (`c02be9c`, `b62d04b`, `c156bc9`) la `gestation` est devenue `temporalite` :
+  //      un temps ARGUMENTÉ, déposé et levé EN COLLÈGE — attendre est un acte d'équipe. La base
+  //      refuse la temporalité nue (geste 12) et seule (geste 13). Le guichet de récolte est un
+  //      cadre=seul : il ne peut en produire aucune, ni muette ni écrite. L'ancien C6 certifiait
+  //      l'inverse contre une contrainte morte (`depots_contenu_sauf_gestation`) : deux bancs verts
+  //      qui se contredisaient. Ce geste les remet d'accord — c'est l'écran qui suit.
+  const temporalites = () => pgC.$$eval("ul.fil li .attr", ns =>
+    ns.filter(a => /gestation|temporalit/i.test(a.textContent)).length);
+  const tenter = async i => {   // si le geste a disparu de l'écran, l'impossibilité tient par absence de chemin
+    await pgC.$$eval(`.actes a[data-a="gest"]`, (n, k) => { if (n[k]) n[k].click(); }, i);
+    await attendre(350);
+  };
   await pgC.$eval("#txt", e => { e.value = ""; e.dispatchEvent(new Event("input")); });
-  const avantG = await pgC.$$eval("ul.fil li", n => n.length);
-  await acte("gest", 1); await attendre(350);
-  const dernier = await pgC.$$eval("ul.fil li", n => {
-    const e = n[n.length - 1];
-    return { nu: !!e.querySelector(".depot.nu"), attr: e.querySelector(".attr").textContent, n: n.length };
-  });
-  tenu("C6 · une gestation se dépose nue, champ vide", dernier.n === avantG + 1 && dernier.nu);
-  const sigG = signature(dernier.attr), quiG = await signataire(pgC);
-  tenu("C6 · et elle est signée, horodatée, et dit sa nature",
-       sigG.auteur === quiG && sigG.horodate && /gestation/.test(dernier.attr), dernier.attr.trim());
+  const t0 = await temporalites();
+  await tenter(1);
+  tenu("I12 · aucune temporalité ne naît à la récolte — ni nue", (await temporalites()) === t0);
+  await pgC.type("#txt", "On attend son retour de vacances.");
+  await tenter(1);
+  tenu("I12 · ni écrite par un seul", (await temporalites()) === t0);
+  await pgC.$eval("#txt", e => { e.value = ""; e.dispatchEvent(new Event("input")); });
 
   // I10 — `vide_info` n'est pas la gestation. « J'ai regardé, il n'y avait rien » est un FAIT,
   //      il se dit. Un fait ne se dépose pas en blanc.
