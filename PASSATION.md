@@ -4,6 +4,36 @@
 > **Socles permanents** (à lire avant de rouvrir un sujet) : mécanique du logo →
 > `passations/logo_mecanique.md`.
 
+## 2026-09-27 (errata) — deux affirmations fausses de Claude, et ce qui restait vraiment du nombre
+
+**Erratum 1 — la garde du nombre n'était pas « à faire ».** Les entrées du 16/07 (écrite le 13/09) et du
+26/09 portent, dans *Reste ouvert*, « la garde gravée en sens inverse du nombre permis au bilobe — patch
+identifié le 15/07, non fait ». **Faux.** `2b3d2f6` (15/07, 23:18) notait « patch à faire, non fait » ;
+`789dd99`, vingt-deux minutes plus tard, l'a fait : §18 bis, `registre_garde.md` ×2, `internes_eval.md` disent
+*aucun nombre sur une personne ; le nombre est permis sur l'agrégat*. Claude avait repris le « non fait » de
+la mémoire importée sans lire le commit suivant, puis l'avait recopié. C'est la faute que la règle de passation
+interdit : vérifier dans le dépôt, jamais de mémoire.
+
+**Erratum 2 — le balayage du 27/09 déclarait propres quatre termes qui ne l'étaient pas.** Le shell tournait
+sans locale UTF-8 : tout motif à crochets accentués (`[ée]`, `[ôo]`) ne pouvait rien trouver. *Chef de pôle*,
+*chiffrement phénoménologique*, *« montrée, jamais chiffrée »*, *médiane* : faussement « propres ». Refait en
+Unicode. La plupart des occurrences sont légitimes — les notes de recherche marquent le périmé sur place, *aucune
+médiane* dans `01` est une négation, *« montrée, jamais chiffrée »* dans Filigrane a été gardé exprès (`3b0e1cf`,
+il parle du ∞), `recolte.js` parle du patient. Leçon d'outil : un balayage se fait en Unicode, et se contrôle sur
+un exemple connu avant d'être cru.
+
+**Ce qui restait vraiment, arbitré et appliqué.** Selon la convention des notes — marquer, pas effacer :
+`internes_eval.md`, le paragraphe « magnitude = lumière, jamais chiffre », dont seule la conclusion avait été
+corrigée ; `registre_garde.md`, *« (sans nombre, le clair-obscur) »* et le récit de §18 bis d'avant révision.
+Tous marqués *(Périmé le 2026-07-15 …)*.
+
+**Le chiffrement phénoménologique garde son nom** (Abtine, 27/09). `CONTINUUM.md` le décrit dédoublé : le nom
+*proposé* se dit au tentatif, le nom *décidé* reste chiffré tant qu'on ne l'a pas traversé. Le 15/07 a levé le
+chiffrement **au climat** (bilobe, plus personne dedans), pas **au Recul** (une équipe, un patient) — même
+coupe que pour le nombre : l'interdit suit la personne. Seul `internes_eval.md` L176, qui lisait le climat dans
+l'ancien sens (*« grésille le nom »*), est marqué périmé. `schema.md` L497 (*« entier »*, miroir d'un seul
+soignant) est cohérent avec `extraction_leclg`.
+
 ## 2026-09-27 — le balayage des périmés : la doctrine en retard sur l'écran, pour la première fois
 
 **Méthode.** Une dérive se loge là où aucun banc ne regarde ; avant d'écrire des gestes pour les écrans 01 à

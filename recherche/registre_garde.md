@@ -87,6 +87,8 @@ pas par la vigilance de chaque prompt pris à part. « Langue du participant »
   patient), §9 (aucun score qui fasse face). Cran institutionnel : §18 bis,
   « Continuité et Fragmentation — la lumière et l'ombre » (*sans nombre*, le
   clair-obscur).
+  *(Périmé le 2026-07-15 — « sans nombre » ne vaut plus qu'à la personne : sur l'agrégat anonyme du
+  bilobe, le nombre est permis s'il sert le recul. Cf. CONTINUUM.md §18 bis.)*
 - **Ne créditer que le déposé** → **§6.4** (il crédite ce que *tu* fais, jamais
   ce que la machine a suggéré). Déjà en dur dans `EVAL_SYSTEM`.
 - **La mesure ne gouverne pas le soin** → §9, mesure auto-effaçante ; visible
@@ -132,6 +134,8 @@ portée est bornée — pas seulement qu'elle l'est.
    resserrage reprend verbatim l'énoncé d'internes_eval.md :
    magnitude → lumière ; aucun nombre sur une personne. (Sur l'agrégat anonyme du bilobe, le
    nombre est permis s'il sert le recul — CONTINUUM.md §18 bis, 2026-07-15.)
+   *(Périmé le 2026-07-15 — « grave *sans nombre* » décrit §18 bis avant sa révision ; l'énoncé qui
+   clôt ce point est à jour.)*
 
 ---
 

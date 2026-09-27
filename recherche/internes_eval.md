@@ -102,6 +102,10 @@ valeur stockée ou affichée (schéma, invariant 4 : aucun nombre hors dates ; �
 Et le différentiel per-patient reste **localisation seule** (anti-fusion) — aucun scalaire, même
 interne, ne le chiffre : la finesse même dé-anonymiserait. En un énoncé : **magnitude → lumière ou nombre au climat anonyme ; localisation → pointeur au trilobe
 per-patient ; aucun nombre sur une personne (CONTINUUM.md §18 bis, 2026-07-15).**
+*(Périmé le 2026-07-15 — le titre et le corps de ce paragraphe gardent l'état d'avant : « magnitude =
+lumière, jamais chiffre », « montré, jamais chiffré ». À l'institutionnel, le nombre est permis sur
+l'agrégat anonyme ; l'interdit ne vaut plus que pour la personne. L'énoncé en gras ci-dessus est à jour.
+Cf. CONTINUUM.md §18 bis.)*
 
 ---
 
@@ -177,6 +181,10 @@ verbatim (donc aucune sélection-de-pertinence sur les mots eux-mêmes) ; le chi
 *montre en déplaçant la lumière, grésille le nom* — l'angle est montré comme **absence**, jamais rangé
 sur une norme. ⇒ pertinence = **l'angle mort rendu étrange**, jamais pertinence-à-une-norme. Confirmé,
 pas conjecturé.
+*(Périmé le 2026-07-15 pour le climat — « grésille le nom » est l'ancien sens : le climat peut nommer, au
+tentatif. Le chiffrement phénoménologique garde sa moitié chiffrée au Recul : le nom proposé se dit au
+tentatif, le nom décidé reste chiffré tant qu'on ne l'a pas traversé. Cf. CONTINUUM.md, les deux
+mécanismes du Recul.)*
 
 **Couverture-surprise = Vigilante, unifiée** (réponse #1). Un défaut de couverture *est* un
 candidat-angle-mort remonté à la Vigilante — un seul geste épistémique, pas deux. Et *comment* on
