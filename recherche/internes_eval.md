@@ -131,7 +131,7 @@ l'Interne 1 pour le « récit qui s'écrit » (§18 bis, « Les trois strates �
    `{ mouvement, direction, question }` — *« la question qui vous travaille »*. La lecture
    longitudinale culmine en **question ouverte**, pas en pronostic. → *montrer sans conclure* dans le
    temps ; « laisser la personne écrire la suite » (§18 bis, « Les trois strates — récolte, métabolisation, institutionnel ») ; le projet reste hypothèse de travail,
-   jamais contrat (schéma §4, `equilibre`).
+   jamais contrat (schéma §4, `hypothese_clinique`).
 
 5. **Au plus profond, ça reste tentatif — jamais « le sujet ».** La `matrice` est la couche la plus
    profonde (*« la structure fondamentale, ce dont on vient »*) — et même là, `schema_central` doit

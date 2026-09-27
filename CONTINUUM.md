@@ -1500,8 +1500,7 @@ et le Réflexif — le regard accompagne le nouage — et il **scrute** dans la 
 mode n'est pas une humeur de l'œil mais la nature du lobe** : composer et scruter sont deux
 organes, non deux réglages — deux lobes composent, un seul lit. Les lobes de composition
 **n'ont pas de lentille** ; scruter est **une boucle qui lit les deux autres**, jamais un
-mode qu'on activerait partout. Sur l'**institutionnel** (2 lobes), l'œil se tient au centre
-et **veille** — sentinelle, non lecteur. Rouge = sanctuaire (§3/§20). Déplacement doux,
+mode qu'on activerait partout. Sur l'**institutionnel** (2 lobes), l'œil **veille** — sentinelle, non lecteur. Rouge = sanctuaire (§3/§20). Déplacement doux,
 jamais de téléportation. Il porte désormais **deux fonctions de sens :**
 
 **Sa taille = l'intensité de l'attention.** Il grossit sur la boucle qu'on déploie — on
