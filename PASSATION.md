@@ -4,6 +4,39 @@
 > **Socles permanents** (à lire avant de rouvrir un sujet) : mécanique du logo →
 > `passations/logo_mecanique.md`.
 
+## 2026-09-27 — le balayage des périmés : la doctrine en retard sur l'écran, pour la première fois
+
+**Méthode.** Une dérive se loge là où aucun banc ne regarde ; avant d'écrire des gestes pour les écrans 01 à
+03, on a mesuré. La liste des mots morts a été tirée **des commits qui les ont retirés** (`c02be9c`,
+`a3182b0`, `ea0be69`, `165cb77`, `789dd99`, `6b3aff4`, `3b0e1cf`, le cahier 01), jamais de mémoire, puis
+cherchée sur tout le dépôt vivant, hors `passations/` et `PASSATION.md`.
+
+**Propre.** `gestation` (seuls restent les commentaires qui expliquent son départ, et le filtre d'I12),
+`depots_contenu_sauf_gestation`, `rendez_vous`, l'hypothèse-terrain, `quorum`, la chef de pôle, le chiffrement
+phénoménologique, *« montré jamais chiffré »*, contre-jour et hachures, *médiane / seuil de 4 dépôts*.
+« Équilibre » survit dans `CONTINUUM.md` comme **visée** du soin — voulu — et non comme la nature retirée.
+
+**Arbitré et appliqué** (`def65ac`) : `CONTINUUM.md` §19, *« l'œil se tient au centre et veille »* →
+*« l'œil veille »* — périmé depuis le 15/07 ; **c'est la première dérive dans ce sens-là** : l'écran avait
+avancé, la doctrine non. L'onglet de la strate 0 de la vitrine, « Réflexivité » → **« Institutionnel »**,
+le même nom que le panneau et que l'app. `internes_eval.md` renvoie à `hypothese_clinique`, plus à
+`equilibre`. `corriger_bloc_B.py` sort : fossile d'un patch du 09/07 déjà appliqué. **Laissés, arbitrés** :
+*« lu du dedans »* (L1260, L1755) — le retrait de `789dd99` était local ; *« Tosquelles, Oury »* dans
+l'Ancrage — filiation, pas redondance.
+
+**Ce que la machine ne voit pas.** Le renommage *Vigie → Recul* ne se greppe pas : « Vigie » reste juste au
+bilobe. Écrans vérifiés (4 occurrences, toutes dans Filigrane) ; les 17 de `CONTINUUM.md` restent à lire en
+contexte. Et une piste ouverte : `schema.md` L410, *« le nom reste chiffré »*, pour la Vigilante de récolte.
+Le 15/07 a levé le chiffrement pour le **climat** (bilobe, plus personne dedans) ; cette ligne porte sur **un
+patient** — ne pas nommer « somatisation » sur quelqu'un — et relève peut-être de l'interdit sur la personne,
+qui tient. Question de doctrine, pas de vocabulaire : non touchée.
+
+**Leçon.** La dérive circule dans les deux sens. La prose de `CONTINUUM.md` délibère et ne lie pas — aucun
+banc ne l'attrapera — mais c'est elle qu'une session lit pour comprendre : c'est par là qu'un mot mort
+rentrerait dans un écran. Le balayage est à refaire après chaque série d'arbitrages.
+
+Commits `1bb855c..def65ac` — 1.
+
 ## 2026-09-26 — l'accord : deux bancs verts qui se contredisaient, et une app qui vivait deux fois
 
 **Ouverture, dépôt en main.** Rien n'avait bougé depuis `190bc05`, mais un `.git/index.lock` vide (16/09)
