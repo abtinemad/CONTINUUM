@@ -4,6 +4,60 @@
 > **Socles permanents** (à lire avant de rouvrir un sujet) : mécanique du logo →
 > `passations/logo_mecanique.md`.
 
+## 2026-09-26 — l'accord : deux bancs verts qui se contredisaient, et une app qui vivait deux fois
+
+**Ouverture, dépôt en main.** Rien n'avait bougé depuis `190bc05`, mais un `.git/index.lock` vide (16/09)
+bloquait de nouveau tout commit — le deuxième après celui du 7/08. Le mécanisme est prouvé : le shell Cowork
+qui atteint le dépôt **crée des verrous qu'il ne peut pas délier**, un simple `git status` compris. Parade,
+par absence de chemin : toute lecture git passe en `GIT_OPTIONAL_LOCKS=0`, et les verrous sont retirés après
+chaque commit. Correction de la passation du 13/09 : le registre-garde n'a **aucun point d'attache** — le
+dépôt ne contient aucun prompt ; il est en aval du serveur, pas à côté.
+
+**L'ordre de marche du 10/07, appliqué.** L'UI est dessinée ; la phase suivante est l'accord, et son
+instrument existait. Le banc de fidélité, rejoué : 27 tenus — mais contre `app_mockup.html` (13/07), aucun des
+quatre écrans ; et son geste C6 certifiait *« une gestation se dépose nue, champ vide »*, déposée par un
+seul, en citant `depots_contenu_sauf_gestation` — contrainte morte depuis `db/70` (12/07). La base refuse ce
+geste deux fois (gestes 12 et 13). **Deux bancs verts qui certifiaient l'inverse l'un de l'autre** : chacun
+tenait contre son objet, rien ne tenait entre eux. Le renommage `gestation` → `temporalite` n'était pas
+cosmétique — attendre est devenu un acte d'équipe, argumenté — et les écrans avaient gardé l'attente muette et
+solitaire.
+
+**Le test d'abord, l'écran suit.** C6 s'inverse en **I12** — *aucune temporalité ne naît au guichet de
+récolte, ni muette ni écrite par un seul* — et le banc passe volontairement au rouge, 25/2 (`3540ad6`).
+L'écran de récolte retire « ça travaille » ; I8 part avec son geste — *une garde sans chemin à garder ne
+garde rien*, « le bruit est la donnée » reste tenu par I4 : **26/26** (`44f2447`). La vitrine reçoit la même
+chirurgie (`1c468af`).
+
+**La cause : l'app vivait deux fois.** `00_connexion.html` ne montrait pas l'app, il en contenait une copie —
+et les copies avaient divergé dans les deux sens : la vitrine gardait la gestation, `app_mockup` affichait
+deux phrases périmées le 15/07 que seule la vitrine avait corrigées. Même panne que le nœud en juillet, même
+remède : **`mockup/recolte.js`**, `monterRecolte(opts)`, une seule fois (`9e3e82e`). Les différences
+légitimes deviennent des options, comme `opts.labels` / `opts.encre` pour le nœud : `anonyme` (la vitrine
+ne signe personne ; l'app signe — §5, I11) et `exemples` (le contenu reste chez la vitrine). Tri des écarts
+arbitré : montent de la vitrine le focus posé sur le dépôt, le fil ouvert en bas, les notes du trilobe et du
+bilobe corrigées le 15/07. **Étiquettes : « Métabolisation » et « Institutionnel »** — « trilobe » et
+« l'infini » n'étaient que la forme du logo. Garde : `source_unique.sh` rougit si `cranRecolte` réapparaît
+hors de `recolte.js`. Vérifié avant/après, chaque strate des deux écrans, dans Chromium : seules changent les
+notes et étiquettes arbitrées.
+
+**Ménage.** `4a56e42` (GitHub Desktop) avait embarqué la copie de relecture de la passation du 13/09 ;
+`dd4a0cc` la retire et ignore `Claude outputs/` et `.claude/`.
+
+**Méthode, changée le 26/09.** Claude commite chaque étape ; Abtine pousse d'un clic dans GitHub Desktop.
+Cette session ne peut pas pousser : le proxy refuse CONTINUUM, hors de ses dépôts autorisés.
+
+**Mesure du 26/09.** Banc de fidélité **26/26**, « Récolte tenue ». Source unique tenue — le nœud ne vit que
+dans `noyau.js`, l'app de récolte que dans `recolte.js`. Géométrie verte. Base : 33/33 au 13/09, non rejouée,
+aucun fichier `db/` touché.
+
+**Reste ouvert** — le banc ne couvre que la récolte d'`app_mockup` : ni la métabolisation, ni
+l'institutionnel, ni la dictée, ni les écrans 01 à 03, ni la vitrine (anonyme, elle contredit I11 par
+construction : il lui faudra ses propres gestes) ; `tsc` n'est pas vérifiable depuis le shell Cowork
+(binaire darwin) ; et, inchangés depuis le 13/09 : les deux arbitrages Vigilante, `CONTINUUM.md` §10, la garde
+gravée en sens inverse du nombre permis au bilobe, et le serveur — en amont du registre-garde.
+
+Commits `190bc05..9e3e82e` — 6.
+
 ## 2026-07-16 — les quatre écrans, le moteur unique, et la base à 33 gestes
 
 *(Entrée écrite le 13/09/2026, à froid, contre le dépôt : la passation s'était arrêtée au 10/07 —
